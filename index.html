@@ -27,23 +27,17 @@
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.65;
-    min-height: 100vh;
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* ========================================
-     HEADER
-     ======================================== */
   .header {
     background: #fff;
-    color: var(--text);
     padding: 14px 16px;
     display: flex;
     align-items: center;
@@ -72,9 +66,6 @@
     margin-top: 2px;
   }
 
-  /* ========================================
-     INFO BAR
-     ======================================== */
   .info-bar {
     background: var(--pri-50);
     padding: 9px 16px;
@@ -88,9 +79,6 @@
   }
   .info-bar strong { color: var(--pri-dark); }
 
-  /* ========================================
-     PAGES
-     ======================================== */
   .page {
     display: none;
     padding-bottom: max(70px, calc(env(safe-area-inset-bottom, 0px) + 70px));
@@ -100,30 +88,17 @@
 
   @keyframes fadeSlideIn {
     from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ========================================
-     HOME GRID
-     ======================================== */
-  .home-grid {
-    display: grid;
-    gap: 14px;
-    padding: 20px 16px;
-  }
+  .home-grid { display: grid; gap: 14px; padding: 20px 16px; }
+
   .home-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 22px 18px;
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1.5px solid var(--border);
-    position: relative;
-    overflow: hidden;
+    display: flex; align-items: center; gap: 14px; padding: 22px 18px;
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); cursor: pointer;
+    transition: all 0.2s ease; border: 1.5px solid var(--border);
+    position: relative; overflow: hidden;
   }
   .home-card:active { transform: scale(0.98); }
   .home-card:hover, .home-card:active { box-shadow: var(--shadow-lg); border-color: transparent; }
@@ -139,410 +114,195 @@
   .home-card:nth-child(2) .icon { background: var(--emerald-light); }
   .home-card:nth-child(3) .icon { background: var(--violet-light); }
   .home-card .info { flex: 1; min-width: 0; }
-  .home-card .info h2 { font-size: clamp(15px, 3.5vw, 17px); margin-bottom: 4px; font-weight: 700; color: var(--text); }
+  .home-card .info h2 { font-size: clamp(15px, 3.5vw, 17px); margin-bottom: 4px; font-weight: 700; }
   .home-card .info p { font-size: clamp(12px, 2.8vw, 13.5px); color: var(--text-mid); line-height: 1.5; }
 
-  /* ========================================
-     BACK HEADER
-     ======================================== */
   .back-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 99;
+    display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+    background: var(--card); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 99;
   }
   .back-btn {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--border);
-    background: var(--card);
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--pri);
+    width: 36px; height: 36px; border: 1.5px solid var(--border);
+    background: var(--card); border-radius: 50%; font-size: 20px;
+    cursor: pointer; flex-shrink: 0; display: flex;
+    align-items: center; justify-content: center; color: var(--pri);
     transition: all 0.15s;
   }
   .back-btn:active { background: var(--pri-light); border-color: var(--pri-dark); }
   .back-header .title { font-size: clamp(15px, 3.5vw, 17px); font-weight: 700; flex: 1; min-width: 0; }
 
-  /* ========================================
-     SUB TABS
-     ======================================== */
   .sub-tabs {
-    display: flex;
-    background: var(--card);
-    border-bottom: 1.5px solid var(--border);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 2px;
-    padding: 2px 8px;
+    display: flex; background: var(--card); border-bottom: 1.5px solid var(--border);
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 2px; padding: 2px 8px;
   }
   .sub-tabs::-webkit-scrollbar { display: none; }
   .sub-tab {
-    flex-shrink: 0;
-    padding: 11px 13px;
-    font-size: clamp(12px, 2.7vw, 13.5px);
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: var(--text-light);
-    transition: all 0.15s;
-    white-space: nowrap;
-    border-radius: 8px 8px 0 0;
-    position: relative;
+    flex-shrink: 0; padding: 11px 13px; font-size: clamp(12px, 2.7vw, 13.5px);
+    font-weight: 600; cursor: pointer; border: none; background: none;
+    color: var(--text-light); transition: all 0.15s; white-space: nowrap;
+    border-radius: 8px 8px 0 0; position: relative;
   }
   .sub-tab.active {
-    color: var(--pri);
-    background: var(--pri-light);
+    color: var(--pri); background: var(--pri-light);
     border-bottom: 3px solid var(--pri-dark);
   }
   .sub-tab:active { background: var(--pri-light); }
 
-  /* ========================================
-     SEARCH BOX
-     ======================================== */
-  .search-box {
-    padding: 10px 12px;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
+  .search-box { padding: 10px 12px; background: var(--card); border-bottom: 1px solid var(--border); }
   .search-box input {
-    width: 100%;
-    padding: 10px 14px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    font-size: clamp(13px, 3vw, 15px);
-    outline: none;
-    background: var(--bg);
-    color: var(--text);
-    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%; padding: 10px 14px; border: 2px solid var(--border);
+    border-radius: 10px; font-size: clamp(13px, 3vw, 15px); outline: none;
+    background: var(--bg); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s;
   }
   .search-box input:focus {
-    border-color: var(--pri-dark);
-    box-shadow: 0 0 0 3px rgba(13,42,80,0.08);
-    background: #fff;
+    border-color: var(--pri-dark); box-shadow: 0 0 0 3px rgba(37,99,235,0.08); background: #fff;
   }
   .search-box input::placeholder { color: var(--text-light); }
 
-  /* ========================================
-     QUICK JUMP
-     ======================================== */
-  .quick-jump {
-    padding: 10px 12px;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
-  .qj-label {
-    font-size: clamp(10px, 2.3vw, 11.5px);
-    color: var(--text-light);
-    margin-bottom: 7px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
+  .quick-jump { padding: 10px 12px; background: var(--card); border-bottom: 1px solid var(--border); }
+  .qj-label { font-size: clamp(10px, 2.3vw, 11.5px); color: var(--text-light); margin-bottom: 7px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
   .qj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .qj-tag {
-    padding: 4px 10px;
-    background: var(--pri-light);
-    color: var(--pri);
-    border: 1px solid #d4dff2;
-    border-radius: 6px;
-    font-size: clamp(10px, 2.3vw, 12px);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-    font-weight: 500;
+    padding: 4px 10px; background: var(--pri-light); color: var(--pri);
+    border: 1px solid #dbeafe; border-radius: 6px;
+    font-size: clamp(10px, 2.3vw, 12px); cursor: pointer; transition: all 0.15s;
+    white-space: nowrap; font-weight: 500;
   }
   .qj-tag:active { background: var(--pri-dark); color: #fff; border-color: var(--pri-dark); }
 
-  /* ========================================
-     QA CARDS
-     ======================================== */
-  .qa-section { /* wrapper for show/hide */ }
+  .qa-section {}
   .qa-card {
-    margin: 8px 12px;
-    background: var(--card);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    border: 1px solid var(--border);
+    margin: 8px 12px; background: var(--card); border-radius: var(--radius-sm);
+    box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border);
     transition: box-shadow 0.15s;
   }
-  .qa-card:active { box-shadow: var(--shadow); }
+  .qa-card:active { box-shadow: var(--shadow-md); }
   .qa-q {
-    padding: 14px 14px 6px;
-    font-weight: 700;
-    font-size: clamp(13px, 3vw, 15px);
-    color: var(--pri);
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    cursor: pointer;
-    user-select: none;
+    padding: 14px 14px 6px; font-weight: 700;
+    font-size: clamp(13px, 3vw, 15px); color: var(--pri);
+    display: flex; gap: 10px; align-items: flex-start; cursor: pointer; user-select: none;
   }
   .qa-q .num {
-    flex-shrink: 0;
-    width: 22px; height: 22px;
-    background: var(--pri-dark);
-    color: #fff;
-    border-radius: 50%;
-    font-size: 10px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1px;
+    flex-shrink: 0; width: 22px; height: 22px; background: var(--pri-dark);
+    color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px;
   }
   .qa-q .q-text { flex: 1; line-height: 1.5; }
-  .qa-q .arrow {
-    color: var(--text-light);
-    font-size: 12px;
-    transition: transform 0.2s;
-    flex-shrink: 0;
-    margin-top: 3px;
-  }
+  .qa-q .arrow { color: var(--text-light); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; margin-top: 3px; }
   .qa-q .arrow.open { transform: rotate(180deg); }
   .qa-a {
-    padding: 0 14px 14px;
-    color: var(--text-mid);
-    font-size: clamp(12.5px, 2.9vw, 14px);
-    line-height: 1.8;
-    display: none;
+    padding: 0 14px 14px; color: var(--text-mid);
+    font-size: clamp(12.5px, 2.9vw, 14px); line-height: 1.8; display: none;
   }
   .qa-a.open { display: block; }
   .qa-a strong { color: var(--text); font-weight: 600; }
   .copy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 5px 14px;
-    background: var(--pri-light);
-    color: var(--pri);
-    border: 1px solid #d4dff2;
-    border-radius: 6px;
-    font-size: clamp(11px, 2.5vw, 12.5px);
-    cursor: pointer;
-    margin-top: 8px;
-    transition: all 0.15s;
-    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px; padding: 5px 14px;
+    background: var(--pri-light); color: var(--pri);
+    border: 1px solid #dbeafe; border-radius: 6px;
+    font-size: clamp(11px, 2.5vw, 12.5px); cursor: pointer;
+    margin-top: 8px; transition: all 0.15s; font-weight: 500;
   }
   .copy-btn:active { background: var(--pri-dark); color: #fff; border-color: var(--pri-dark); }
   .copy-btn.copied { background: var(--emerald); color: #fff; border-color: var(--emerald); }
 
-  /* ========================================
-     SCORE TABLES
-     ======================================== */
   .score-section { padding: 6px 12px; }
   .score-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: clamp(12px, 2.8vw, 14px);
-    background: var(--card);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 8px;
-    border: 1px solid var(--border);
+    width: 100%; border-collapse: collapse; font-size: clamp(12px, 2.8vw, 14px);
+    background: var(--card); border-radius: 10px; overflow: hidden;
+    box-shadow: var(--shadow); margin-bottom: 8px; border: 1px solid var(--border);
   }
   .score-table th {
-    background: var(--pri);
-    color: #fff;
-    padding: 10px 10px;
-    text-align: left;
-    font-size: clamp(11px, 2.5vw, 13px);
-    font-weight: 600;
+    background: var(--pri); color: #fff; padding: 10px 10px;
+    text-align: left; font-size: clamp(11px, 2.5vw, 13px); font-weight: 600;
   }
-  .score-table td {
-    padding: 9px 10px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-mid);
-  }
+  .score-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text-mid); }
   .score-table tr:last-child td { border-bottom: none; }
   .score-table tr:active td { background: var(--pri-light); }
   .score-table .cat-row td {
-    background: var(--pri-light);
-    font-weight: 700;
-    font-size: clamp(11.5px, 2.6vw, 13px);
-    color: var(--pri);
+    background: var(--pri-light); font-weight: 700;
+    font-size: clamp(11.5px, 2.6vw, 13px); color: var(--pri);
     padding: 9px 10px;
   }
   .score-table .score-val { font-weight: 700; color: var(--pri-dark); }
 
-  .score-provinces {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 8px 12px;
-  }
+  .score-provinces { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; }
   .province-btn {
-    padding: 7px 14px;
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    font-size: clamp(11.5px, 2.6vw, 13px);
-    cursor: pointer;
-    transition: all 0.15s;
-    color: var(--text-mid);
-    font-weight: 500;
+    padding: 7px 14px; background: var(--card); border: 1.5px solid var(--border);
+    border-radius: 20px; font-size: clamp(11.5px, 2.6vw, 13px);
+    cursor: pointer; transition: all 0.15s; color: var(--text-mid); font-weight: 500;
   }
   .province-btn:active, .province-btn.active {
-    background: var(--pri-dark);
-    color: #fff;
-    border-color: var(--pri-dark);
+    background: var(--pri-dark); color: #fff; border-color: var(--pri-dark);
   }
 
-  /* ========================================
-     MAJOR SECTIONS
-     ======================================== */
   .college-section {
-    margin: 8px 12px;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border);
+    margin: 8px 12px; border-radius: var(--radius-sm); overflow: hidden;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
   }
   .college-header {
-    background: var(--pri);
-    color: #fff;
-    padding: 12px 14px;
-    font-size: clamp(13px, 3vw, 15px);
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: var(--pri); color: #fff; padding: 12px 14px;
+    font-size: clamp(13px, 3vw, 15px); font-weight: 700;
+    display: flex; justify-content: space-between; align-items: center;
   }
-  .college-header .count {
-    font-size: clamp(10px, 2.3vw, 12px);
-    opacity: 0.75;
-    font-weight: 400;
-  }
+  .college-header .count { font-size: clamp(10px, 2.3vw, 12px); opacity: 0.75; font-weight: 400; }
   .major-card {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    padding: 11px 14px;
-    cursor: pointer;
-    transition: background 0.15s;
+    background: var(--card); border-top: 1px solid var(--border);
+    padding: 11px 14px; cursor: pointer; transition: background 0.15s;
   }
   .major-card:active { background: var(--pri-light); }
   .major-card .major-name {
-    font-weight: 700;
-    font-size: clamp(13px, 3vw, 15px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text);
+    font-weight: 700; font-size: clamp(13px, 3vw, 15px);
+    display: flex; justify-content: space-between; align-items: center;
   }
-  .major-card .major-name .arrow {
-    color: var(--text-light);
-    font-size: 12px;
-    transition: transform 0.2s;
-    flex-shrink: 0;
-  }
+  .major-card .major-name .arrow { color: var(--text-light); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
   .major-card .major-name .arrow.open { transform: rotate(180deg); }
   .major-card .major-desc {
-    display: none;
-    font-size: clamp(12px, 2.8vw, 13.5px);
-    color: var(--text-mid);
-    margin-top: 7px;
-    line-height: 1.75;
+    display: none; font-size: clamp(12px, 2.8vw, 13.5px);
+    color: var(--text-mid); margin-top: 7px; line-height: 1.75;
   }
   .major-card .major-desc.open { display: block; }
 
-  /* ========================================
-     UTILITY
-     ======================================== */
   .hidden { display: none !important; }
 
   .back-top {
-    position: fixed;
-    bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 20px));
-    right: 20px;
-    width: 42px; height: 42px;
-    background: var(--pri);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(9,28,53,0.25);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    transition: transform 0.15s;
+    position: fixed; bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 20px));
+    right: 20px; width: 42px; height: 42px; background: var(--pri);
+    color: #fff; border: none; border-radius: 50%; font-size: 20px;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+    display: none; align-items: center; justify-content: center;
+    z-index: 200; transition: transform 0.15s;
   }
   .back-top.show { display: flex; }
   .back-top:active { transform: scale(0.92); }
 
   .toast {
-    position: fixed;
-    bottom: max(76px, calc(env(safe-area-inset-bottom, 0px) + 76px));
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--pri-dark);
-    color: #fff;
-    padding: 9px 20px;
-    border-radius: 20px;
-    font-size: clamp(11px, 2.5vw, 13px);
-    z-index: 300;
-    opacity: 0;
-    transition: opacity 0.25s;
-    pointer-events: none;
-    white-space: nowrap;
-    font-weight: 500;
+    position: fixed; bottom: max(76px, calc(env(safe-area-inset-bottom, 0px) + 76px));
+    left: 50%; transform: translateX(-50%); background: var(--pri-dark);
+    color: #fff; padding: 9px 20px; border-radius: 20px;
+    font-size: clamp(11px, 2.5vw, 13px); z-index: 300;
+    opacity: 0; transition: opacity 0.25s; pointer-events: none;
+    white-space: nowrap; font-weight: 500;
   }
   .toast.show { opacity: 1; }
 
   .empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-light);
-    font-size: clamp(13px, 3vw, 15px);
+    text-align: center; padding: 40px 20px;
+    color: var(--text-light); font-size: clamp(13px, 3vw, 15px);
   }
 
-  /* ========================================
-     FOOTER
-     ======================================== */
   .site-footer {
-    text-align: center;
-    padding: 20px 16px 30px;
+    text-align: center; padding: 20px 16px 30px;
     padding-bottom: max(30px, calc(env(safe-area-inset-bottom, 0px) + 30px));
-    font-size: clamp(11px, 2.4vw, 12.5px);
-    color: var(--text-light);
-    line-height: 2;
-    border-top: 1px solid var(--border);
-    background: #fff;
-    margin-top: 20px;
+    font-size: clamp(11px, 2.4vw, 12.5px); color: var(--text-light);
+    line-height: 2; border-top: 1px solid var(--border);
+    background: #fff; margin-top: 20px;
   }
-  .site-footer .footer-brand {
-    font-weight: 700;
-    color: var(--pri);
-    font-size: clamp(12px, 2.6vw, 14px);
-    margin-bottom: 2px;
-  }
-  .site-footer .footer-dev {
-    color: var(--text-mid);
-  }
-  .site-footer .footer-disclaimer {
-    color: var(--text-light);
-    font-size: clamp(10px, 2.2vw, 11.5px);
-    margin-top: 6px;
-    line-height: 1.7;
-  }
+  .site-footer .footer-brand { font-weight: 700; color: var(--pri); font-size: clamp(12px, 2.6vw, 14px); margin-bottom: 2px; }
+  .site-footer .footer-dev { color: var(--text-mid); }
+  .site-footer .footer-disclaimer { color: var(--text-light); font-size: clamp(10px, 2.2vw, 11.5px); margin-top: 6px; line-height: 1.7; }
 
-  /* ========================================
-     RESPONSIVE: Extra small phones (< 360px)
-     ======================================== */
   @media (max-width: 360px) {
     .header { padding: 10px 12px; }
     .home-grid { padding: 14px 10px; gap: 10px; }
@@ -552,9 +312,6 @@
     .score-section { padding: 4px 8px; }
   }
 
-  /* ========================================
-     RESPONSIVE: Larger phones / tablets
-     ======================================== */
   @media (min-width: 480px) {
     .home-grid { padding: 28px 24px; max-width: 500px; margin: 0 auto; }
     .qa-card, .college-section, .score-section { max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -565,7 +322,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-text">
     <h1>四川文化产业职业学院</h1>
@@ -573,61 +329,33 @@
   </div>
 </div>
 
-<!-- Info Bar -->
 <div class="info-bar">
   代码：<strong>5185</strong>（川）· <strong>14086</strong>（部颁）&nbsp;&nbsp;|&nbsp;&nbsp; 招生咨询：<strong>028-85766716</strong>&nbsp;/&nbsp;<strong>64551517</strong>
 </div>
 
-<!-- ========================================
-     HOME PAGE
-     ======================================== -->
 <div class="page active" id="page-home">
   <div class="home-grid">
     <div class="home-card" onclick="showPage('qa')">
-      <div class="icon">💬</div>
-      <div class="info">
-        <h2>常见问题快速问答</h2>
-        <p>按分类查找录取、专业、校园等常见咨询问题</p>
-      </div>
+      <div class="icon">💬</div><div class="info"><h2>常见问题快速问答</h2><p>按分类查找录取、专业、校园等常见咨询问题</p></div>
     </div>
     <div class="home-card" onclick="showPage('score')">
-      <div class="icon">📊</div>
-      <div class="info">
-        <h2>2025年最低录取分查询</h2>
-        <p>省内 / 省外各专业最低录取分速查</p>
-      </div>
+      <div class="icon">📊</div><div class="info"><h2>2025年最低录取分查询</h2><p>省内 / 省外各专业最低录取分速查</p></div>
     </div>
     <div class="home-card" onclick="showPage('major')">
-      <div class="icon">📚</div>
-      <div class="info">
-        <h2>专业介绍（按学院分类）</h2>
-        <p>各学院招生专业详细介绍</p>
-      </div>
+      <div class="icon">📚</div><div class="info"><h2>专业介绍（按学院分类）</h2><p>各学院招生专业详细介绍</p></div>
     </div>
   </div>
 </div>
 
-<!-- ========================================
-     QA PAGE
-     ======================================== -->
 <div class="page" id="page-qa">
-  <div class="back-header">
-    <button class="back-btn" onclick="goHome()" aria-label="返回">&#8249;</button>
-    <span class="title">💬 常见问题快速问答</span>
-  </div>
+  <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">💬 常见问题快速问答</span></div>
   <div class="sub-tabs" id="qaTabs"></div>
   <div class="search-box"><input type="text" id="qaSearch" placeholder="搜索问题关键词..." oninput="searchQA()"></div>
   <div id="qaContent"></div>
 </div>
 
-<!-- ========================================
-     SCORE PAGE
-     ======================================== -->
 <div class="page" id="page-score">
-  <div class="back-header">
-    <button class="back-btn" onclick="goHome()" aria-label="返回">&#8249;</button>
-    <span class="title">📊 2025年最低录取分查询</span>
-  </div>
+  <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">📊 2025年最低录取分查询</span></div>
   <div class="sub-tabs" id="scoreTabs">
     <buttont class="sub-tab active" onclick="switchScoreTab('nei')">四川省内</buttont>
     <buttont class="sub-tab" onclick="switchScoreTab('wai')">四川省外</buttont>
@@ -635,426 +363,14 @@
   <div id="scoreContent"></div>
 </div>
 
-<!-- ========================================
-     MAJOR PAGE
-     ======================================== -->
 <div class="page" id="page-major">
-  <div class="back-header">
-    <button class="back-btn" onclick="goHome()" aria-label="返回">&#8249;</button>
-    <span class="title">📚 专业介绍（按学院分类）</span>
-  </div>
+  <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">📚 专业介绍（按学院分类）</span></div>
   <div class="search-box"><input type="text" id="majorSearch" placeholder="搜索专业名称..." oninput="searchMajor()"></div>
   <div id="majorContent"></div>
 </div>
 
-<!-- Floating UI -->
 <button class="back-top" id="backTop" onclick="scrollToTop()" aria-label="回到顶部">↑</button>
 <div class="toast" id="toast"></div>
-
-<script>
-// ============================================================
-// DATA
-// ============================================================
-
-const QA_CATEGORIES = [
-  { id: 'score-rule', label: '📊 录取分数与规则', questions: [
-    { q: '今年的录取分数是多少？', a: '2026年我校各专业各类别最终录取分数要等录取结束才知道。填报志愿时可参考<strong>2025年各专业最低录取分数</strong>（可在本系统"最低录取分查询"中快速查看，或在学校招生网查阅）。' },
-    { q: '录取规则是什么？', a: '实行<strong>分数优先</strong>原则，从高分到低分录取，专业志愿间不设分数级差。投档成绩相同时按省教育考试院同分排序规则录取。服从专业调剂者从高分到低分调剂到未录满专业，不服从者作退档处理。' },
-    { q: '志愿应该怎么填报？', a: '按<strong>"位次优先，遵循志愿，一轮投档"</strong>原则。把我校志愿填在前列，能保证在有位次优势时录取到我校。平行志愿，即使未被我校录取也不影响后续志愿。' },
-    { q: '2025年四川新高考志愿填报模式是什么？', a: '实行<strong>3+1+2模式</strong>，采用"院校+专业组"方式设置志愿，实行"位次优先、遵循志愿、一轮投档"的平行志愿投档规则。' },
-    { q: '2024年各招生类别最低录取分？', a: '<strong>普通类</strong>：文科448，理科438<br><strong>美术与设计类（文）</strong>：467.53，<strong>（理）</strong>：461.1<br><strong>舞蹈类（文史）</strong>：430.03<br><strong>音乐表演类（文史）</strong>：421.45<br><strong>体育类</strong>：86.98<br>2025年是新高考，实际分数因试题难度和报考人数而异。' },
-    { q: '学校好不好考？是不是艺术类院校？', a: '录取分数取决于填报我校的考生人数和考试分数。建议合理填报并选择<strong>服从专业调配</strong>增加录取几率。我校是<strong>综合类专科学校</strong>，并非艺术类学校。2026年单招33个专业中艺术类7个、普通类26个。' },
-    { q: '四川省高考成绩和志愿填报截止时间？', a: '6月25日公布考生成绩及录取控制分数线。<br>艺术、体育类志愿截止：<strong>7月1日17:00</strong><br>普通类志愿截止：<strong>7月5日17:00</strong>' },
-    { q: '普通类、艺术类什么时候开始录取？', a: '四川省艺体类预计在<strong>8月初</strong>，普通类在<strong>8月中旬</strong>。具体以省教育考试院公布为准。' }
-  ]},
-  { id: 'major-choice', label: '🎓 专业填报与选择', questions: [
-    { q: '今年有哪些招生专业？', a: '2025年共有<strong>38个招生专业</strong>，覆盖普通类、美术与设计类、舞蹈类、音乐表演类、体育类等。2026年单招共33个专业。详细专业和介绍见本系统"专业介绍"模块。' },
-    { q: '我能报考什么专业？能不能跨类别？', a: '单招计划表上详细公布了每个专业对应的招生类别。填报专业志愿时最多可填<strong>6个专业</strong>。建议选择<strong>"服从调剂"</strong>增加录取几率。进校后可按规定转专业。' },
-    { q: '非艺体生能报艺体类专业吗？', a: '单招中所有普高类专业均是<strong>文理兼收</strong>。中职需按对应招生类别报考。' },
-    { q: '艺术类专业成绩没过省控线怎么办？', a: '如果<strong>文化成绩</strong>上了省控线，可以填报学校<strong>历史、物理类</strong>的专业志愿。' },
-    { q: '哪些专业是王牌专业？', a: '学校围绕四川文化强省发展需要，对接文创产业、文化科技产业、文化旅游产业等，每个专业都有独特特色。可查看本系统"专业介绍"模块了解各专业详细情况。' }
-  ]},
-  { id: 'transfer', label: '🔄 转专业', questions: [
-    { q: '录取专业不喜欢，进校后能换吗？', a: '<strong>可以</strong>。<br>1. 大一第一学期不能挂科。<br>2. 第一学期末教务处发布转专业通知，学生报名。<br>3. 转出学院审核，转入学院考核，合格后公示确认。<br><strong>不能跨大类</strong>，且转入专业必须在当年同一招生类别里。<br>统招生第一学期结束时<strong>免费</strong>转专业一次。（具体政策咨询教务处）' }
-  ]},
-  { id: 'postadmit', label: '📋 录取后事宜', questions: [
-    { q: '怎么知道我已被录取？', a: '一是登录各省教育考试院官网查询或拨打录取查询热线。<br>二是省教育考试院审核通过后，在学校官网（招生网）点击<strong>"录取查询"</strong>查询。' },
-    { q: '考上了但不想来读，能退档吗？', a: '可以申请<strong>放弃录取资格</strong>。须由考生本人携带二代身份证原件到学校招生就业处（明慧楼115室）现场办理。单招考生须在<strong>4月17日12:00前</strong>办理，逾期不予办理。电话：028-85766716。' },
-    { q: '录取后能去当兵吗？', a: '<strong>可以</strong>。国家鼓励在校或毕业大学生应征入伍，相关政策和手续进校后咨询学生工作部和安全保卫处。' },
-    { q: '新生报到时间和要求？', a: '具体报到时间以录取通知书及学校官网通知为准，一般在8月底至9月初。按录取通知书上的要求准备材料。学校全面实行网上缴费。' }
-  ]},
-  { id: 'further', label: '📚 专升本与留学', questions: [
-    { q: '进校后可以专升本吗？', a: '<strong>可以</strong>，有2种途径：<br><strong>途径一</strong>：参加四川省教育考试院组织的全省专升本统一考试，录取后进入全日制本科学校学习。<br><strong>途径二</strong>：学校设有自考专升本助学服务中心，在专科学习的同时可报读自考本科，获取专科毕业证后即可申请本科毕业证。' },
-    { q: '可以去留学吗？', a: '<strong>可以</strong>。学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，提供海外留学升本绿色通道。' }
-  ]},
-  { id: 'campus', label: '🏠 校园生活与环境', questions: [
-    { q: '校园环境怎样？住宿条件怎样？', a: '校园占地<strong>520余亩</strong>，环境优美。学生公寓为<strong>六人间</strong>，配备独立卫生间、洗漱间、空调、电脑桌、衣橱、风扇、扫码式洗衣机、热水淋浴、直饮水等。住宿费<strong>800-1000元/年</strong>。' },
-    { q: '学校周边交通方便吗？', a: '学校位于成都市，交通便利。可在地图APP搜索"四川文化产业职业学院"查看具体路线。' },
-    { q: '学校有哪些实训基地？', a: '学校建有校内外实习实训基地<strong>150余个</strong>，大师工作室及传习所10余个。' }
-  ]},
-  { id: 'award', label: '💰 奖助学金与政策', questions: [
-    { q: '高分考生有什么奖励？', a: '学校设立<strong>"优秀新生奖学金"</strong>奖励品学兼优新生：<br>一等奖 <strong>5000元</strong>/人<br>二等奖 <strong>3000元</strong>/人<br>三等奖 <strong>1000元</strong>/人' },
-    { q: '学校有哪些奖助学金？', a: '设有<strong>国家奖学金</strong>、<strong>学校奖学金</strong>、<strong>国家励志奖学金</strong>、<strong>国家助学金</strong>等奖助项目，帮助品学兼优的学生完成学业。' },
-    { q: '有贫困生资助吗？', a: '学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。' },
-    { q: '少数民族或获奖能不能加分？', a: '以省教育考试院相关政策为准，我校在录取中予以认可。获奖证书保送/免试的具体条件请查阅学校招生网"单独招生"栏中的相关公告。' },
-    { q: '进校后能考教师资格证吗？', a: '请进校后咨询学校教务处或相关部门，以当年国家及四川省相关政策为准。' }
-  ]},
-  { id: 'career', label: '💼 就业与发展', questions: [
-    { q: '学校毕业生就业情况怎么样？', a: '学校高度重视毕业生就业工作。根据往年数据，我校毕业生就业率保持在较高水平，学校每年举办多场校园招聘会，与多家文化企业建立了稳定的合作关系，为学生提供丰富的就业机会。具体情况可查看学校官网就业质量报告。' },
-    { q: '在校学习期间有哪些奖励？', a: '学校设有完善的奖励体系，具体可咨询学校学生资助管理中心或查看学校官网相关公告。' }
-  ]},
-  { id: 'veteran', label: '⭐ 退伍军人', questions: [
-    { q: '退伍军人能不能报名单招？', a: '已参加2026年四川省普通高等学校招生报名，且通过报名资格审核的考生，均可以参加2026年单招考试。（具体报名方式在省教育考试院官网查看）' }
-  ]},
-  { id: 'brochure', label: '📖 招生简章补充', questions: [
-    { q: '学校是什么性质的？', a: '我校是经四川省人民政府批准、教育部备案的<strong>公办全日制普通高等专科学校</strong>，由四川省教育厅主管。在川招生代码5185，部颁代码14086。' },
-    { q: '学校地址在哪里？', a: '学校位于四川省成都市双流区（具体地址以招生简章为准）。' },
-    { q: '学校有哪些二级学院？', a: '学校设有文化传播学院、文化旅游学院、文化商学院、艺术设计学院、文博学院、文化信息学院（数码学院）、体育部、音乐舞蹈学院等，涵盖文化艺术、新闻传播、旅游管理、商务会计、信息技术等领域。' },
-    { q: '各专业学费是多少？', a: '各专业学费以四川省发改委、财政厅核定标准执行，不同专业有所不同。住宿费800-1000元/年。具体可查看招生简章或咨询学校财务处。' },
-    { q: '学校是否有国际交流合作？', a: '学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，为我校学生提供海外留学升本绿色通道。' },
-    { q: '学校2025年招生总计划是多少？', a: '2025年共有38个招生专业，各专业的分省招生计划以各招生省份教育主管部门统一公布为准。' },
-    { q: '学校的办学历史是怎样的？', a: '学校自2006年办学以来，致力于文化事业和文化产业办学专业的建设和发展。' },
-    { q: '学校的师资力量如何？', a: '学校拥有一支高素质高水平的师资团队，建有大师工作室及传习所10余个。' }
-  ]}
-];
-
-const SCORE_NEI = {
-  '美术与设计类（不分科类）': { touDang: '454.85', majors: [['首饰设计与工艺','455.19'],['产品艺术设计','458.02'],['服装与服饰设计','456.93'],['游戏艺术设计','475.19'],['环境艺术设计','454.85'],['数字媒体艺术设计','462.52'],['室内艺术设计','455.19'],['视觉传达设计','458']] },
-  '舞蹈类': { touDang: '421.45', majors: [['舞蹈表演','421.45']] },
-  '音乐表演类（声乐方向）': { touDang: '413.15', majors: [['音乐表演','413.15']] },
-  '体育类': { touDang: '79.08', majors: [['休闲体育','79.08']] },
-  '历史': { touDang: '449', majors: [['新闻采编与制作','453'],['网络舆情监测','456'],['影视多媒体技术','452'],['网络直播与运营','452'],['融媒体技术与运营','458'],['旅游管理','449'],['酒店管理与数字化运营','451'],['智慧旅游技术应用','456'],['公共文化服务与管理','453'],['现代家政服务与管理','456'],['文化产业经营与管理','449'],['大数据与会计','458'],['会展策划与管理','450'],['市场营销','450'],['跨境电子商务','449'],['婚庆服务与管理','449'],['文化创意与策划','452'],['文物修复与保护','488'],['宝玉石鉴定与加工','453'],['文物展示利用技术','450'],['建筑动画技术','452'],['数字广播电视技术','450'],['移动互联应用技术','449'],['大数据技术','453'],['数字媒体技术','462'],['人工智能技术应用','453'],['中文','455']] },
-  '物理': { touDang: '364', majors: [['新闻采编与制作','393'],['网络舆情监测','365'],['影视多媒体技术','397'],['网络直播与运营','388'],['融媒体技术与运营','388'],['旅游管理','386'],['酒店管理与数字化运营','375'],['智慧旅游技术应用','387'],['公共文化服务与管理','420'],['现代家政服务与管理','399'],['文化产业经营与管理','375'],['大数据与会计','393'],['会展策划与管理','364'],['市场营销','369'],['跨境电子商务','371'],['婚庆服务与管理','366'],['文化创意与策划','391'],['文物修复与保护','453'],['宝玉石鉴定与加工','405'],['文物展示利用技术','364'],['建筑动画技术','397'],['数字广播电视技术','364'],['移动互联应用技术','369'],['大数据技术','392'],['数字媒体技术','434'],['人工智能技术应用','403'],['中文','369']] }
-};
-
-const SCORE_WAI = {
-  '云南':{'美术与设计类（不分科类）':{touDang:'483.25',majors:[['产品艺术设计','483.25']]},'音乐表演类':{touDang:'397.45',majors:[['音乐表演','397.45']]}},
-  '吉林':{'历史':{touDang:'396',majors:[['中文','396']]}},
-  '天津':{'综合改革':{touDang:'201.085',majors:[['酒店管理与数字化运营','201.085']]}},
-  '宁夏':{'历史':{touDang:'355',majors:[['跨境电子商务','355']]}},
-  '安徽':{'历史':{touDang:'361',majors:[['会展策划与管理','361']]}},
-  '山东':{'综合改革':{touDang:'427',majors:[['网络舆情监测','427'],['影视多媒体技术','441'],['文化产业经营与管理','442'],['文化创意与策划','435'],['文物展示利用技术','430'],['移动互联应用技术','423'],['数字媒体技术','448']]},'美术与设计类（不分科类）':{touDang:'437.25',majors:[['首饰设计与工艺','437.25'],['游戏艺术设计','451']]}},
-  '山西':{'美术与设计类（不分科类）':{touDang:'422.5',majors:[['视觉传达设计','422.5']]},'历史':{touDang:'371',majors:[['市场营销','371'],['新闻采编与制作','380']]},'物理':{touDang:'405',majors:[['大数据与会计','405']]}},
-  '广东':{'美术与设计类（不分科类）':{touDang:'355',majors:[['室内艺术设计','355']]}},
-  '广西':{'美术与设计类（历史）':{touDang:'431',majors:[['产品艺术设计','431']]},'历史':{touDang:'370',majors:[['市场营销','370']]}},
-  '新疆':{'文史（普通单列类）':{touDang:'291',majors:[['网络舆情监测','291']]},'文史':{touDang:'268',majors:[['网络舆情监测','268']]},'理工':{touDang:'168',majors:[['跨境电子商务','168'],['数字广播电视技术','227'],['移动互联应用技术','212'],['大数据技术','224'],['人工智能技术应用','206']]}},
-  '江苏':{'历史':{touDang:'385',majors:[['会展策划与管理','385']]},'物理':{touDang:'237',majors:[['跨境电子商务','237']]}},
-  '江西':{'美术与设计类（不分科类）':{touDang:'452.16',majors:[['产品艺术设计','452.16']]},'历史':{touDang:'458',majors:[['融媒体技术与运营','458']]}},
-  '河北':{'美术与设计类（不分科类）':{touDang:'446.5',majors:[['游戏艺术设计','446.5']]},'历史':{touDang:'431',majors:[['公共文化服务与管理','431'],['文物展示利用技术','434'],['中文','464'],['网络舆情监测','441']]},'物理':{touDang:'440',majors:[['人工智能技术应用','440'],['数字广播电视技术','430']]}},
-  '河南':{'美术与设计类（历史）':{touDang:'429',majors:[['视觉传达设计','429'],['游戏艺术设计','424.75'],['室内艺术设计','419.75']]},'历史':{touDang:'441',majors:[['大数据技术','442'],['会展策划与管理','441'],['网络舆情监测','445']]},'物理':{touDang:'403',majors:[['移动互联应用技术','403'],['人工智能技术应用','424'],['数字广播电视技术','404']]}},
-  '浙江':{'综合改革':{touDang:'492（一段）',majors:[['新闻采编与制作','492'],['人工智能技术应用','494'],['人工智能技术应用','489']]}},
-  '海南':{'综合改革':{touDang:'472',majors:[['大数据与会计','476'],['酒店管理与数字化运营','472']]}},
-  '湖北':{'历史':{touDang:'392',majors:[['网络舆情监测','392'],['文化产业经营与管理','389']]}},
-  '湖南':{'历史':{touDang:'435',majors:[['文化产业经营与管理','435'],['中文','435'],['新闻采编与制作','427']]},'物理':{touDang:'378',majors:[['移动互联应用技术','378']]}},
-  '甘肃':{'美术与设计类（不分科类）':{touDang:'416.25',majors:[['游戏艺术设计','416.25']]},'历史':{touDang:'391',majors:[['文物修复与保护','391'],['文化创意与策划','394'],['现代家政服务与管理','387']]},'物理':{touDang:'346',majors:[['智慧旅游技术应用','346']]}},
-  '福建':{'物理':{touDang:'419',majors:[['大数据技术','419'],['跨境电子商务','408'],['网络直播与运营','394']]}},
-  '西藏':{'美术与设计类（文史）':{touDang:'380',majors:[['视觉传达设计','380'],['产品艺术设计','329']]},'舞蹈类（文史）':{touDang:'387',majors:[['舞蹈表演','387']]},'舞蹈类（理工）':{touDang:'395',majors:[['舞蹈表演','395']]}},
-  '贵州':{'舞蹈类':{touDang:'377.75',majors:[['舞蹈表演','377.75']]},'音乐表演类':{touDang:'377.58',majors:[['音乐表演','377.58']]},'历史':{touDang:'450',majors:[['新闻采编与制作','450'],['文化创意与策划','448']]}},
-  '辽宁':{'历史':{touDang:'420',majors:[['中文','420']]}},
-  '重庆':{'美术与设计类（不分科类）':{touDang:'178.503',majors:[['环境艺术设计','178.503'],['视觉传达设计','182.003']]},'历史':{touDang:'385',majors:[['酒店管理与数字化运营','385'],['文物展示利用技术','403']]},'物理':{touDang:'370',majors:[['网络直播与运营','370']]}},
-  '陕西':{'历史':{touDang:'377',majors:[['新闻采编与制作','379'],['融媒体技术与运营','377']]}},
-  '青海':{'历史':{touDang:'318',majors:[['现代家政服务与管理','318'],['会展策划与管理','326'],['市场营销','333']]},'物理':{touDang:'326',majors:[['大数据与会计','326']]}},
-  '黑龙江':{'美术与设计类（不分科类）':{touDang:'339.8',majors:[['游戏艺术设计','339.8']]},'历史':{touDang:'360',majors:[['会展策划与管理','372'],['文化产业经营与管理','360']]},'物理':{touDang:'339',majors:[['移动互联应用技术','339']]}}
-};
-
-const COLLEGES = [
-  { name: '文化传播学院', icon: '📡', majors: [
-    { name: '新闻采编与制作', desc: '培养掌握新闻采编、摄影摄像、图文编辑等技能，能在广播电视台、报社、新媒体平台从事新闻采编、报道制作等工作的高素质技术技能人才。主要课程：新闻采访与写作、新闻摄影、电视节目制作、新媒体运营等。' },
-    { name: '网络舆情监测', desc: '培养掌握网络舆情分析、数据挖掘、危机公关等技能，能在政府部门、企事业单位、互联网公司从事舆情监测与分析、网络信息管理等工作的高素质技术技能人才。' },
-    { name: '影视多媒体技术', desc: '培养掌握影视拍摄、后期剪辑、特效制作等技能，能在影视制作公司、广告公司、新媒体平台从事影视创作与制作的高素质技术技能人才。' },
-    { name: '网络直播与运营', desc: '培养掌握网络直播策划、直播运营、短视频创作等技能，能在电商平台、MCN机构、新媒体企业从事网络直播、内容运营等工作的高素质技术技能人才。' },
-    { name: '融媒体技术与运营', desc: '培养掌握融媒体内容生产、平台运营、数据分析等技能，能在融媒体中心、传媒公司、互联网平台从事融媒体内容策划、采编与运营的高素质技术技能人才。' },
-    { name: '中文', desc: '培养具有扎实的中文功底和较强的文字表达能力，能在文化教育、新闻出版、行政管理等领域从事文秘、编辑、宣传、教育等工作的高素质技术技能人才。' }
-  ]},
-  { name: '文化旅游学院', icon: '✈️', majors: [
-    { name: '旅游管理', desc: '培养掌握旅游服务与管理技能，能在旅行社、旅游景区、旅游电商平台等从事导游服务、旅游策划、景区管理等工作的高素质技术技能人才。' },
-    { name: '酒店管理与数字化运营', desc: '培养掌握酒店数字化运营与管理技能，能在高星级酒店、连锁酒店集团、文旅企业等从事前厅、客房、餐饮管理及数字化运营的高素质技术技能人才。' },
-    { name: '智慧旅游技术应用', desc: '培养掌握智慧旅游技术、旅游大数据分析等技能，能在智慧景区、在线旅游平台、文旅科技企业从事智慧旅游系统运维、数据分析等工作的高素质技术技能人才。' },
-    { name: '会展策划与管理', desc: '培养掌握会展策划、组织管理、品牌推广等技能，能在会展公司、文化传媒机构、大型企业从事会议展览策划、管理与执行的高素质技术技能人才。' }
-  ]},
-  { name: '文化商学院', icon: '💹', majors: [
-    { name: '文化产业经营与管理', desc: '培养掌握文化产业运营管理、文化项目策划等技能，能在文化传媒公司、文旅企业、文创园区等从事经营管理、项目策划与推广的高素质技术技能人才。' },
-    { name: '大数据与会计', desc: '培养掌握会计实务、财务数据分析、大数据处理等技能，能在企事业单位、会计师事务所、金融机构等从事会计核算、财务管理、数据分析等工作的高素质技术技能人才。' },
-    { name: '市场营销', desc: '培养掌握市场调研、营销策划、品牌管理等技能，能在各类企业从事市场推广、品牌运营、新媒体营销等工作的高素质技术技能人才。' },
-    { name: '跨境电子商务', desc: '培养掌握跨境电商平台运营、国际贸易、网络营销等技能，能在跨境电商企业、外贸公司等从事跨境平台运营、海外市场推广等工作的高素质技术技能人才。' },
-    { name: '公共文化服务与管理', desc: '培养掌握公共文化服务管理、文化项目策划等技能，能在文化馆、博物馆、社区文化中心等公共文化机构从事文化服务与管理工作的高素质技术技能人才。' },
-    { name: '现代家政服务与管理', desc: '培养掌握现代家政管理、社区服务等技能，能在家政服务企业、社区服务中心、康养机构等从事管理、培训与服务工作的高素质技术技能人才。' },
-    { name: '婚庆服务与管理', desc: '培养掌握婚庆策划、活动组织、礼仪服务等技能，能在婚庆公司、文化传媒机构等从事婚庆策划、活动执行与管理工作的高素质技术技能人才。' }
-  ]},
-  { name: '艺术设计学院', icon: '🎨', majors: [
-    { name: '视觉传达设计', desc: '培养掌握平面设计、品牌形象设计、包装设计等技能，能在广告公司、设计机构、文化传媒企业等从事视觉设计与创意工作的高素质技术技能人才。' },
-    { name: '环境艺术设计', desc: '培养掌握室内外环境设计、景观设计等技能，能在室内设计公司、建筑装饰企业、景观设计机构等从事环境艺术设计与施工管理的高素质技术技能人才。' },
-    { name: '数字媒体艺术设计', desc: '培养掌握数字媒体设计、交互设计、UI/UX设计等技能，能在互联网企业、游戏公司、数字媒体机构等从事数字内容创作的高素质技术技能人才。' },
-    { name: '产品艺术设计', desc: '培养掌握产品造型设计、文创产品开发等技能，能在制造企业、文创公司、设计机构等从事产品设计与开发的高素质技术技能人才。' },
-    { name: '室内艺术设计', desc: '培养掌握室内空间设计、软装搭配等技能，能在装饰设计公司、家居企业、房地产企业等从事室内设计与项目管理的高素质技术技能人才。' },
-    { name: '服装与服饰设计', desc: '培养掌握服装设计、制版工艺、服饰搭配等技能，能在服装企业、时尚机构等从事服装设计、产品开发等工作的高素质技术技能人才。' },
-    { name: '首饰设计与工艺', desc: '培养掌握首饰设计、工艺制作、珠宝鉴定等技能，能在珠宝企业、文创公司等从事首饰设计、工艺制作与营销的高素质技术技能人才。' },
-    { name: '游戏艺术设计', desc: '培养掌握游戏美术设计、角色建模、场景设计等技能，能在游戏开发公司、数字娱乐企业等从事游戏美术设计与制作的高素质技术技能人才。' },
-    { name: '文化创意与策划', desc: '培养掌握文创产品设计、品牌策划、活动策划等技能，能在文创企业、文化传媒公司、文旅项目等从事文化创意与策划工作的高素质技术技能人才。' }
-  ]},
-  { name: '文博学院', icon: '🏛️', majors: [
-    { name: '文物修复与保护', desc: '培养掌握文物修复技术、文物保护管理等技能，能在博物馆、文物修复机构、文化遗产保护单位等从事文物修复、保护与管理的高素质技术技能人才。' },
-    { name: '宝玉石鉴定与加工', desc: '培养掌握宝玉石鉴定、饰品设计加工等技能，能在珠宝检测机构、珠宝企业等从事宝玉石鉴定评估、设计加工等工作的高素质技术技能人才。' },
-    { name: '文物展示利用技术', desc: '培养掌握文物陈列展示、数字展览设计等技能，能在博物馆、展览馆、文化遗产景区等从事展陈设计、数字展示与文物活化利用的高素质技术技能人才。' }
-  ]},
-  { name: '文化信息学院（数码学院）', icon: '💻', majors: [
-    { name: '人工智能技术应用', desc: '培养掌握人工智能应用开发、数据分析、机器学习等技能，能在IT企业、智慧文旅企业等从事AI应用开发、数据标注与分析等工作的高素质技术技能人才。' },
-    { name: '大数据技术', desc: '培养掌握大数据采集、存储、处理与分析等技能，能在互联网企业、数据分析公司等从事大数据开发、数据分析与运维的高素质技术技能人才。' },
-    { name: '数字媒体技术', desc: '培养掌握数字媒体开发、虚拟现实(VR/AR)、交互设计等技能，能在数字媒体企业、游戏公司、文化科技企业等从事数字内容开发的高素质技术技能人才。' },
-    { name: '移动互联应用技术', desc: '培养掌握移动应用开发、Web前端设计等技能，能在互联网企业、软件公司等从事移动端应用开发与运维的高素质技术技能人才。' },
-    { name: '建筑动画技术', desc: '培养掌握建筑动画制作、BIM技术应用等技能，能在建筑设计公司、装饰企业、数字媒体公司等从事建筑可视化设计与动画制作的高素质技术技能人才。' },
-    { name: '数字广播电视技术', desc: '培养掌握数字音视频制作、广播电视系统运维等技能，能在广播电视台、融媒体中心、网络视听机构等从事技术运维与内容制作的高素质技术技能人才。' }
-  ]},
-  { name: '体育部', icon: '🏅', majors: [
-    { name: '休闲体育', desc: '培养掌握休闲体育指导、健身教练、体育管理等技能，能在健身俱乐部、体育场馆、体育文化公司等从事体育指导、赛事组织与管理的高素质技术技能人才。' }
-  ]},
-  { name: '音乐舞蹈学院（演艺学院）', icon: '🎵', majors: [
-    { name: '舞蹈表演', desc: '培养掌握舞蹈表演、舞蹈编导等技能，能在文艺团体、文化传媒公司、演艺机构等从事舞蹈表演、编导与教学的高素质技术技能人才。' },
-    { name: '音乐表演', desc: '培养掌握声乐演唱、器乐演奏等技能，能在文艺团体、文化馆站、演艺机构等从事音乐表演、艺术培训与文化活动组织的高素质技术技能人才。' }
-  ]}
-];
-
-// ============================================================
-// RENDER FUNCTIONS
-// ============================================================
-
-// --- QA ---
-function renderQA() {
-  var tabs = document.getElementById('qaTabs');
-  var content = document.getElementById('qaContent');
-  var tabHtml = '', contentHtml = '';
-
-  QA_CATEGORIES.forEach(function(cat, i) {
-    tabHtml += '<buttont class="sub-tab' + (i===0?' active':'') + '" onclick="switchQATab(' + i + ')">' + cat.label + '</buttont>';
-    var qjHtml = '', qaHtml = '';
-    cat.questions.forEach(function(q, j) {
-      var qId = 'qa-' + cat.id + '-' + j;
-      qjHtml += '<span class="qj-tag" onclick="scrollToQA(\'' + qId + '\')">Q' + (j+1) + '</span>';
-      qaHtml += '<div class="qa-card" id="' + qId + '">' +
-        '<div class="qa-q" onclick="toggleAnswer(\'' + qId + '\')">' +
-        '<span class="num">' + (j+1) + '</span><span class="q-text">' + q.q + '</span><span class="arrow">&#9660;</span>' +
-        '</div><div class="qa-a" id="a-' + qId + '"><div>' + q.a + '</div>' +
-        '<button class="copy-btn" onclick="copyAnswer(\'' + qId + '\')">&#128203; 复制答案</button></div></div>';
-    });
-    contentHtml += '<div class="qa-section' + (i===0?'':' hidden') + '" id="qaSec-' + i + '">' +
-      '<div class="quick-jump"><div class="qj-label">快速跳转</div><div class="qj-tags">' + qjHtml + '</div></div>' + qaHtml + '</div>';
-  });
-
-  tabs.innerHTML = tabHtml;
-  content.innerHTML = contentHtml;
-}
-renderQA();
-
-// --- Score ---
-function renderScoreNei() {
-  var html = '<div class="search-box"><input type="text" id="scoreNeiSearch" placeholder="输入专业名实时搜索..." oninput="searchScoreNei()"></div>';
-  Object.entries(SCORE_NEI).forEach(function(entry) {
-    var cat = entry[0], data = entry[1];
-    html += '<div class="score-section"><table class="score-table">' +
-      '<tr class="cat-row"><td colspan="2">' + cat + '　投档线：<strong>' + data.touDang + '</strong></td></tr>' +
-      '<tr><th>专业名称</th><th>最低分</th></tr>';
-    data.majors.forEach(function(m) {
-      html += '<tr class="score-row"><td>' + m[0] + '</td><td class="score-val">' + m[1] + '</td></tr>';
-    });
-    html += '</table></div>';
-  });
-  document.getElementById('scoreContent').innerHTML = html;
-}
-
-function renderScoreWai() {
-  var provs = Object.keys(SCORE_WAI).sort();
-  var html = '<div class="score-provinces">';
-  provs.forEach(function(p) { html += '<button class="province-btn" onclick="showProvince(\'' + p + '\')">' + p + '</button>'; });
-  html += '</div><div id="provinceDetail"><div class="empty-state">👆 点击上方省份查看录取分数</div></div>';
-  document.getElementById('scoreContent').innerHTML = html;
-}
-renderScoreNei();
-
-// --- Major ---
-function renderMajors() {
-  var html = '';
-  COLLEGES.forEach(function(col, ci) {
-    html += '<div class="college-section"><div class="college-header"><span>' + col.icon + ' ' + col.name + '</span><span class="count">' + col.majors.length + '个专业</span></div>';
-    col.majors.forEach(function(m, i) {
-      var mid = 'm-' + ci + '-' + i;
-      html += '<div class="major-card" onclick="toggleMajor(\'' + mid + '\')">' +
-        '<div class="major-name"><span>' + m.name + '</span><span class="arrow" id="ar-' + mid + '">&#9660;</span></div>' +
-        '<div class="major-desc" id="md-' + mid + '">' + m.desc + '</div></div>';
-    });
-    html += '</div>';
-  });
-  document.getElementById('majorContent').innerHTML = html;
-}
-renderMajors();
-
-// ============================================================
-// PAGE NAVIGATION
-// ============================================================
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-  document.getElementById('page-' + page).classList.add('active');
-  window.scrollTo(0, 0);
-}
-function goHome() { showPage('home'); }
-
-// ============================================================
-// QA FUNCTIONS
-// ============================================================
-var curQATab = 0;
-
-function switchQATab(idx) {
-  curQATab = idx;
-  document.querySelectorAll('#qaTabs .sub-tab').forEach(function(t,i) { t.classList.toggle('active', i===idx); });
-  document.querySelectorAll('#qaContent .qa-section').forEach(function(s,i) {
-    s.classList.toggle('hidden', i !== idx);
-  });
-  document.getElementById('qaSearch').value = '';
-}
-
-function toggleAnswer(qId) {
-  var a = document.getElementById('a-' + qId);
-  var card = a.closest('.qa-card');
-  var arrow = card.querySelector('.arrow');
-  a.classList.toggle('open');
-  arrow.classList.toggle('open');
-}
-
-function scrollToQA(qId) {
-  var el = document.getElementById(qId);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  var a = document.getElementById('a-' + qId);
-  var arrow = el.querySelector('.arrow');
-  if (a) a.classList.add('open');
-  if (arrow) arrow.classList.add('open');
-}
-
-function searchQA() {
-  var q = document.getElementById('qaSearch').value.trim().toLowerCase();
-  var cat = QA_CATEGORIES[curQATab];
-  var cards = document.getElementById('qaSec-' + curQATab).querySelectorAll('.qa-card');
-  cards.forEach(function(card, i) {
-    if (!q) { card.style.display = ''; return; }
-    var qt = cat.questions[i].q.toLowerCase();
-    var at = cat.questions[i].a.replace(/<[^>]*>/g, '').toLowerCase();
-    card.style.display = (qt.indexOf(q) >= 0 || at.indexOf(q) >= 0) ? '' : 'none';
-  });
-}
-
-function copyAnswer(qId) {
-  var el = document.getElementById('a-' + qId);
-  var text = el.textContent.replace('复制答案', '').trim();
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(function() {
-      var btn = el.querySelector('.copy-btn');
-      btn.innerHTML = '&#10004; 已复制';
-      btn.classList.add('copied');
-      setTimeout(function() { btn.innerHTML = '&#128203; 复制答案'; btn.classList.remove('copied'); }, 2000);
-    }).catch(function() { showToast('复制失败，请手动选择文字'); });
-  } else {
-    showToast('复制失败，请手动选择文字');
-  }
-}
-
-// ============================================================
-// SCORE FUNCTIONS
-// ============================================================
-var scoreTab = 'nei';
-
-function switchScoreTab(tab) {
-  scoreTab = tab;
-  document.querySelectorAll('#scoreTabs .sub-tab').forEach(function(t) {
-    var isNei = t.textContent.indexOf('省内') >= 0;
-    var isWai = t.textContent.indexOf('省外') >= 0;
-    t.classList.toggle('active', (tab === 'nei' && isNei) || (tab === 'wai' && isWai));
-  });
-  if (tab === 'nei') renderScoreNei(); else renderScoreWai();
-}
-
-function searchScoreNei() {
-  var q = document.getElementById('scoreNeiSearch').value.trim().toLowerCase();
-  document.querySelectorAll('.score-row').forEach(function(row) {
-    if (!q) { row.style.display = ''; return; }
-    row.style.display = row.cells[0].textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
-  });
-}
-
-function showProvince(prov) {
-  document.querySelectorAll('.province-btn').forEach(function(b) { b.classList.toggle('active', b.textContent === prov); });
-  var data = SCORE_WAI[prov];
-  if (!data) return;
-  var html = '<div class="score-section"><h3 style="margin-bottom:10px;font-size:clamp(14px,3.2vw,16px);font-weight:700;">📍 ' + prov + '</h3>';
-  Object.entries(data).forEach(function(entry) {
-    var kl = entry[0], d = entry[1];
-    html += '<table class="score-table"><tr class="cat-row"><td colspan="2">' + kl + '　投档线：<strong>' + d.touDang + '</strong></td></tr><tr><th>专业名称</th><th>最低分</th></tr>';
-    d.majors.forEach(function(m) { html += '<tr><td>' + m[0] + '</td><td class="score-val">' + m[1] + '</td></tr>'; });
-    html += '</table>';
-  });
-  html += '</div>';
-  document.getElementById('provinceDetail').innerHTML = html;
-}
-
-// ============================================================
-// MAJOR FUNCTIONS
-// ============================================================
-function toggleMajor(mid) {
-  var desc = document.getElementById('md-' + mid);
-  var arrow = document.getElementById('ar-' + mid);
-  if (desc) desc.classList.toggle('open');
-  if (arrow) arrow.classList.toggle('open');
-}
-
-function searchMajor() {
-  var q = document.getElementById('majorSearch').value.trim().toLowerCase();
-  document.querySelectorAll('.college-section').forEach(function(s) { s.style.display = ''; });
-  document.querySelectorAll('.major-card').forEach(function(c) { c.style.display = ''; });
-  document.querySelectorAll('.major-desc.open').forEach(function(d) { d.classList.remove('open'); });
-  document.querySelectorAll('.arrow.open').forEach(function(a) { a.classList.remove('open'); });
-  if (!q) return;
-
-  COLLEGES.forEach(function(col, ci) {
-    var colMatch = false;
-    col.majors.forEach(function(m, i) {
-      var mid = 'm-' + ci + '-' + i;
-      var card = document.getElementById('md-' + mid);
-      if (!card) return;
-      var cardEl = card.closest('.major-card');
-      if (m.name.indexOf(q) >= 0 || m.desc.indexOf(q) >= 0) {
-        colMatch = true;
-        cardEl.style.display = '';
-        card.classList.add('open');
-        var ar = document.getElementById('ar-' + mid);
-        if (ar) ar.classList.add('open');
-      } else {
-        cardEl.style.display = 'none';
-      }
-    });
-    if (!colMatch) {
-      document.querySelectorAll('.college-section').forEach(function(s) {
-        if (s.querySelector('.college-header') && s.querySelector('.college-header').textContent.indexOf(col.name) >= 0) {
-          s.style.display = 'none';
-        }
-      });
-    }
-  });
-}
-
-// ============================================================
-// UTILITY
-// ============================================================
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-window.addEventListener('scroll', function() {
-  document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
-});
-
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 2000);
-}
-</script>
 
 <!-- FOOTER -->
 <div class="site-footer">
@@ -1062,6 +378,323 @@ function showToast(msg) {
   <div class="footer-dev">开发者：优联协会——姜佳乐</div>
   <div class="footer-disclaimer">本系统仅供招就处值班人员内部参考使用，数据来源于学校官方招生简章及历年录取统计。<br>如有疑问请以学校招生网（zsw.sceeo.com）公布为准。</div>
 </div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const QA_CATEGORIES=[
+{id:'score-rule',label:'📊 录取分数与规则',questions:[
+{q:'今年的录取分数是多少？',a:'2026年我校各专业各类别最终录取分数要等录取结束才知道。填报志愿时可参考<strong>2025年各专业最低录取分数</strong>（可在本系统"最低录取分查询"中快速查看，或在学校招生网查阅）。'},
+{q:'录取规则是什么？',a:'实行<strong>分数优先</strong>原则，从高分到低分录取，专业志愿间不设分数级差。投档成绩相同时按省教育考试院同分排序规则录取。服从专业调剂者从高分到低分调剂到未录满专业，不服从者作退档处理。'},
+{q:'志愿应该怎么填报？',a:'按<strong>"位次优先，遵循志愿，一轮投档"</strong>原则。把我校志愿填在前列，能保证在有位次优势时录取到我校。平行志愿，即使未被我校录取也不影响后续志愿。'},
+{q:'2025年四川新高考志愿填报模式是什么？',a:'实行<strong>3+1+2模式</strong>，采用"院校+专业组"方式设置志愿，实行"位次优先、遵循志愿、一轮投档"的平行志愿投档规则。'},
+{q:'2024年各招生类别最低录取分？',a:'<strong>普通类</strong>：文科448，理科438<br><strong>美术与设计类（文）</strong>：467.53，<strong>（理）</strong>：461.1<br><strong>舞蹈类（文史）</strong>：430.03<br><strong>音乐表演类（文史）</strong>：421.45<br><strong>体育类</strong>：86.98<br>2025年是新高考，实际分数因试题难度和报考人数而异。'},
+{q:'学校好不好考？是不是艺术类院校？',a:'录取分数取决于填报我校的考生人数和考试分数。建议合理填报并选择<strong>服从专业调配</strong>增加录取几率。我校是<strong>综合类专科学校</strong>，并非艺术类学校。2026年单招33个专业中艺术类7个、普通类26个。'},
+{q:'四川省高考成绩和志愿填报截止时间？',a:'6月25日公布考生成绩及录取控制分数线。<br>艺术、体育类志愿截止：<strong>7月1日17:00</strong><br>普通类志愿截止：<strong>7月5日17:00</strong>'},
+{q:'普通类、艺术类什么时候开始录取？',a:'四川省艺体类预计在<strong>8月初</strong>，普通类在<strong>8月中旬</strong>。具体以省教育考试院公布为准。'}
+]},
+{id:'major-choice',label:'🎓 专业填报与选择',questions:[
+{q:'今年有哪些招生专业？',a:'2025年共有<strong>38个招生专业</strong>，覆盖普通类、美术与设计类、舞蹈类、音乐表演类、体育类等。2026年单招共33个专业。详细专业和介绍见本系统"专业介绍"模块。'},
+{q:'我能报考什么专业？能不能跨类别？',a:'单招计划表上详细公布了每个专业对应的招生类别。填报专业志愿时最多可填<strong>6个专业</strong>。建议选择<strong>"服从调剂"</strong>增加录取几率。进校后可按规定转专业。'},
+{q:'非艺体生能报艺体类专业吗？',a:'单招中所有普高类专业均是<strong>文理兼收</strong>。中职需按对应招生类别报考。'},
+{q:'艺术类专业成绩没过省控线怎么办？',a:'如果<strong>文化成绩</strong>上了省控线，可以填报学校<strong>历史、物理类</strong>的专业志愿。'},
+{q:'哪些专业是王牌专业？',a:'学校围绕四川文化强省发展需要，对接文创产业、文化科技产业、文化旅游产业等，每个专业都有独特特色。可查看本系统"专业介绍"模块了解各专业详细情况。'}
+]},
+{id:'transfer',label:'🔄 转专业',questions:[
+{q:'录取专业不喜欢，进校后能换吗？',a:'<strong>可以</strong>。<br>1. 大一第一学期不能挂科。<br>2. 第一学期末教务处发布转专业通知，学生报名。<br>3. 转出学院审核，转入学院考核，合格后公示确认。<br><strong>不能跨大类</strong>，且转入专业必须在当年同一招生类别里。<br>统招生第一学期结束时<strong>免费</strong>转专业一次。（具体政策咨询教务处）'}
+]},
+{id:'postadmit',label:'📋 录取后事宜',questions:[
+{q:'怎么知道我已被录取？',a:'一是登录各省教育考试院官网查询或拨打录取查询热线。<br>二是省教育考试院审核通过后，在学校官网（招生网）点击<strong>"录取查询"</strong>查询。'},
+{q:'考上了但不想来读，能退档吗？',a:'可以申请<strong>放弃录取资格</strong>。须由考生本人携带二代身份证原件到学校招生就业处（明慧楼115室）现场办理。单招考生须在<strong>4月17日12:00前</strong>办理，逾期不予办理。电话：028-85766716。'},
+{q:'录取后能去当兵吗？',a:'<strong>可以</strong>。国家鼓励在校或毕业大学生应征入伍，相关政策和手续进校后咨询学生工作部和安全保卫处。'},
+{q:'新生报到时间和要求？',a:'具体报到时间以录取通知书及学校官网通知为准，一般在8月底至9月初。按录取通知书上的要求准备材料。学校全面实行网上缴费。'}
+]},
+{id:'further',label:'📚 专升本与留学',questions:[
+{q:'进校后可以专升本吗？',a:'<strong>可以</strong>，有2种途径：<br><strong>途径一</strong>：参加四川省教育考试院组织的全省专升本统一考试，录取后进入全日制本科学校学习。<br><strong>途径二</strong>：学校设有自考专升本助学服务中心，在专科学习的同时可报读自考本科，获取专科毕业证后即可申请本科毕业证。'},
+{q:'可以去留学吗？',a:'<strong>可以</strong>。学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，提供海外留学升本绿色通道。'}
+]},
+{id:'campus',label:'🏠 校园生活与环境',questions:[
+{q:'校园环境怎样？住宿条件怎样？',a:'校园占地<strong>520余亩</strong>，环境优美。学生公寓为<strong>六人间</strong>，配备独立卫生间、洗漱间、空调、电脑桌、衣橱、风扇、扫码式洗衣机、热水淋浴、直饮水等。住宿费<strong>800-1000元/年</strong>。'},
+{q:'学校周边交通方便吗？',a:'学校位于成都市，交通便利。可在地图APP搜索"四川文化产业职业学院"查看具体路线。'},
+{q:'学校有哪些实训基地？',a:'学校建有校内外实习实训基地<strong>150余个</strong>，大师工作室及传习所10余个。'}
+]},
+{id:'award',label:'💰 奖助学金与政策',questions:[
+{q:'高分考生有什么奖励？',a:'学校设立<strong>"优秀新生奖学金"</strong>奖励品学兼优新生：<br>一等奖 <strong>5000元</strong>/人<br>二等奖 <strong>3000元</strong>/人<br>三等奖 <strong>1000元</strong>/人'},
+{q:'学校有哪些奖助学金？',a:'设有<strong>国家奖学金</strong>、<strong>学校奖学金</strong>、<strong>国家励志奖学金</strong>、<strong>国家助学金</strong>等奖助项目，帮助品学兼优的学生完成学业。'},
+{q:'有贫困生资助吗？',a:'学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。'},
+{q:'少数民族或获奖能不能加分？',a:'以省教育考试院相关政策为准，我校在录取中予以认可。获奖证书保送/免试的具体条件请查阅学校招生网"单独招生"栏中的相关公告。'},
+{q:'进校后能考教师资格证吗？',a:'请进校后咨询学校教务处或相关部门，以当年国家及四川省相关政策为准。'}
+]},
+{id:'career',label:'💼 就业与发展',questions:[
+{q:'学校毕业生就业情况怎么样？',a:'学校高度重视毕业生就业工作。根据往年数据，我校毕业生就业率保持在较高水平，学校每年举办多场校园招聘会，与多家文化企业建立了稳定的合作关系，为学生提供丰富的就业机会。具体情况可查看学校官网就业质量报告。'},
+{q:'在校学习期间有哪些奖励？',a:'学校设有完善的奖励体系，具体可咨询学校学生资助管理中心或查看学校官网相关公告。'}
+]},
+{id:'veteran',label:'⭐ 退伍军人',questions:[
+{q:'退伍军人能不能报名单招？',a:'已参加2026年四川省普通高等学校招生报名，且通过报名资格审核的考生，均可以参加2026年单招考试。（具体报名方式在省教育考试院官网查看）'}
+]},
+{id:'brochure',label:'📖 招生简章补充',questions:[
+{q:'学校是什么性质的？',a:'我校是经四川省人民政府批准、教育部备案的<strong>公办全日制普通高等专科学校</strong>，由四川省教育厅主管。在川招生代码5185，部颁代码14086。'},
+{q:'学校地址在哪里？',a:'学校位于四川省成都市双流区（具体地址以招生简章为准）。'},
+{q:'学校有哪些二级学院？',a:'学校设有文化传播学院、文化旅游学院、文化商学院、艺术设计学院、文博学院、文化信息学院（数码学院）、体育部、音乐舞蹈学院等，涵盖文化艺术、新闻传播、旅游管理、商务会计、信息技术等领域。'},
+{q:'各专业学费是多少？',a:'各专业学费以四川省发改委、财政厅核定标准执行，不同专业有所不同。住宿费800-1000元/年。具体可查看招生简章或咨询学校财务处。'},
+{q:'学校是否有国际交流合作？',a:'学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，为我校学生提供海外留学升本绿色通道。'},
+{q:'学校2025年招生总计划是多少？',a:'2025年共有38个招生专业，各专业的分省招生计划以各招生省份教育主管部门统一公布为准。'},
+{q:'学校的办学历史是怎样的？',a:'学校自2006年办学以来，致力于文化事业和文化产业办学专业的建设和发展。'},
+{q:'学校的师资力量如何？',a:'学校拥有一支高素质高水平的师资团队，建有大师工作室及传习所10余个。'}
+]}];
+
+const SCORE_NEI={
+'美术与设计类（不分科类）':{touDang:'454.85',majors:[['首饰设计与工艺','455.19'],['产品艺术设计','458.02'],['服装与服饰设计','456.93'],['游戏艺术设计','475.19'],['环境艺术设计','454.85'],['数字媒体艺术设计','462.52'],['室内艺术设计','455.19'],['视觉传达设计','458']]},
+'舞蹈类':{touDang:'421.45',majors:[['舞蹈表演','421.45']]},
+'音乐表演类（声乐方向）':{touDang:'413.15',majors:[['音乐表演','413.15']]},
+'体育类':{touDang:'79.08',majors:[['休闲体育','79.08']]},
+'历史':{touDang:'449',majors:[['新闻采编与制作','453'],['网络舆情监测','456'],['影视多媒体技术','452'],['网络直播与运营','452'],['融媒体技术与运营','458'],['旅游管理','449'],['酒店管理与数字化运营','451'],['智慧旅游技术应用','456'],['公共文化服务与管理','453'],['现代家政服务与管理','456'],['文化产业经营与管理','449'],['大数据与会计','458'],['会展策划与管理','450'],['市场营销','450'],['跨境电子商务','449'],['婚庆服务与管理','449'],['文化创意与策划','452'],['文物修复与保护','488'],['宝玉石鉴定与加工','453'],['文物展示利用技术','450'],['建筑动画技术','452'],['数字广播电视技术','450'],['移动互联应用技术','449'],['大数据技术','453'],['数字媒体技术','462'],['人工智能技术应用','453'],['中文','455']]},
+'物理':{touDang:'364',majors:[['新闻采编与制作','393'],['网络舆情监测','365'],['影视多媒体技术','397'],['网络直播与运营','388'],['融媒体技术与运营','388'],['旅游管理','386'],['酒店管理与数字化运营','375'],['智慧旅游技术应用','387'],['公共文化服务与管理','420'],['现代家政服务与管理','399'],['文化产业经营与管理','375'],['大数据与会计','393'],['会展策划与管理','364'],['市场营销','369'],['跨境电子商务','371'],['婚庆服务与管理','366'],['文化创意与策划','391'],['文物修复与保护','453'],['宝玉石鉴定与加工','405'],['文物展示利用技术','364'],['建筑动画技术','397'],['数字广播电视技术','364'],['移动互联应用技术','369'],['大数据技术','392'],['数字媒体技术','434'],['人工智能技术应用','403'],['中文','369']]}
+};
+
+const SCORE_WAI={
+'云南':{'美术与设计类（不分科类）':{touDang:'483.25',majors:[['产品艺术设计','483.25']]},'音乐表演类':{touDang:'397.45',majors:[['音乐表演','397.45']]}},
+'吉林':{'历史':{touDang:'396',majors:[['中文','396']]}},
+'天津':{'综合改革':{touDang:'201.085',majors:[['酒店管理与数字化运营','201.085']]}},
+'宁夏':{'历史':{touDang:'355',majors:[['跨境电子商务','355']]}},
+'安徽':{'历史':{touDang:'361',majors:[['会展策划与管理','361']]}},
+'山东':{'综合改革':{touDang:'427',majors:[['网络舆情监测','427'],['影视多媒体技术','441'],['文化产业经营与管理','442'],['文化创意与策划','435'],['文物展示利用技术','430'],['移动互联应用技术','423'],['数字媒体技术','448']]},'美术与设计类（不分科类）':{touDang:'437.25',majors:[['首饰设计与工艺','437.25'],['游戏艺术设计','451']]}},
+'山西':{'美术与设计类（不分科类）':{touDang:'422.5',majors:[['视觉传达设计','422.5']]},'历史':{touDang:'371',majors:[['市场营销','371'],['新闻采编与制作','380']]},'物理':{touDang:'405',majors:[['大数据与会计','405']]}},
+'广东':{'美术与设计类（不分科类）':{touDang:'355',majors:[['室内艺术设计','355']]}},
+'广西':{'美术与设计类（历史）':{touDang:'431',majors:[['产品艺术设计','431']]},'历史':{touDang:'370',majors:[['市场营销','370']]}},
+'新疆':{'文史（普通单列类）':{touDang:'291',majors:[['网络舆情监测','291']]},'文史':{touDang:'268',majors:[['网络舆情监测','268']]},'理工':{touDang:'168',majors:[['跨境电子商务','168'],['数字广播电视技术','227'],['移动互联应用技术','212'],['大数据技术','224'],['人工智能技术应用','206']]}},
+'江苏':{'历史':{touDang:'385',majors:[['会展策划与管理','385']]},'物理':{touDang:'237',majors:[['跨境电子商务','237']]}},
+'江西':{'美术与设计类（不分科类）':{touDang:'452.16',majors:[['产品艺术设计','452.16']]},'历史':{touDang:'458',majors:[['融媒体技术与运营','458']]}},
+'河北':{'美术与设计类（不分科类）':{touDang:'446.5',majors:[['游戏艺术设计','446.5']]},'历史':{touDang:'431',majors:[['公共文化服务与管理','431'],['文物展示利用技术','434'],['中文','464'],['网络舆情监测','441']]},'物理':{touDang:'440',majors:[['人工智能技术应用','440'],['数字广播电视技术','430']]}},
+'河南':{'美术与设计类（历史）':{touDang:'429',majors:[['视觉传达设计','429'],['游戏艺术设计','424.75'],['室内艺术设计','419.75']]},'历史':{touDang:'441',majors:[['大数据技术','442'],['会展策划与管理','441'],['网络舆情监测','445']]},'物理':{touDang:'403',majors:[['移动互联应用技术','403'],['人工智能技术应用','424'],['数字广播电视技术','404']]}},
+'浙江':{'综合改革':{touDang:'492（一段）',majors:[['新闻采编与制作','492'],['人工智能技术应用','494'],['人工智能技术应用','489']]}},
+'海南':{'综合改革':{touDang:'472',majors:[['大数据与会计','476'],['酒店管理与数字化运营','472']]}},
+'湖北':{'历史':{touDang:'392',majors:[['网络舆情监测','392'],['文化产业经营与管理','389']]}},
+'湖南':{'历史':{touDang:'435',majors:[['文化产业经营与管理','435'],['中文','435'],['新闻采编与制作','427']]},'物理':{touDang:'378',majors:[['移动互联应用技术','378']]}},
+'甘肃':{'美术与设计类（不分科类）':{touDang:'416.25',majors:[['游戏艺术设计','416.25']]},'历史':{touDang:'391',majors:[['文物修复与保护','391'],['文化创意与策划','394'],['现代家政服务与管理','387']]},'物理':{touDang:'346',majors:[['智慧旅游技术应用','346']]}},
+'福建':{'物理':{touDang:'419',majors:[['大数据技术','419'],['跨境电子商务','408'],['网络直播与运营','394']]}},
+'西藏':{'美术与设计类（文史）':{touDang:'380',majors:[['视觉传达设计','380'],['产品艺术设计','329']]},'舞蹈类（文史）':{touDang:'387',majors:[['舞蹈表演','387']]},'舞蹈类（理工）':{touDang:'395',majors:[['舞蹈表演','395']]}},
+'贵州':{'舞蹈类':{touDang:'377.75',majors:[['舞蹈表演','377.75']]},'音乐表演类':{touDang:'377.58',majors:[['音乐表演','377.58']]},'历史':{touDang:'450',majors:[['新闻采编与制作','450'],['文化创意与策划','448']]}},
+'辽宁':{'历史':{touDang:'420',majors:[['中文','420']]}},
+'重庆':{'美术与设计类（不分科类）':{touDang:'178.503',majors:[['环境艺术设计','178.503'],['视觉传达设计','182.003']]},'历史':{touDang:'385',majors:[['酒店管理与数字化运营','385'],['文物展示利用技术','403']]},'物理':{touDang:'370',majors:[['网络直播与运营','370']]}},
+'陕西':{'历史':{touDang:'377',majors:[['新闻采编与制作','379'],['融媒体技术与运营','377']]}},
+'青海':{'历史':{touDang:'318',majors:[['现代家政服务与管理','318'],['会展策划与管理','326'],['市场营销','333']]},'物理':{touDang:'326',majors:[['大数据与会计','326']]}},
+'黑龙江':{'美术与设计类（不分科类）':{touDang:'339.8',majors:[['游戏艺术设计','339.8']]},'历史':{touDang:'360',majors:[['会展策划与管理','372'],['文化产业经营与管理','360']]},'物理':{touDang:'339',majors:[['移动互联应用技术','339']]}}
+};
+
+const COLLEGES=[
+{name:'文化传播学院',icon:'📡',majors:[
+{name:'新闻采编与制作',desc:'培养掌握新闻采编、摄影摄像、图文编辑等技能，能在广播电视台、报社、新媒体平台从事新闻采编、报道制作等工作的高素质技术技能人才。主要课程：新闻采访与写作、新闻摄影、电视节目制作、新媒体运营等。'},
+{name:'网络舆情监测',desc:'培养掌握网络舆情分析、数据挖掘、危机公关等技能，能在政府部门、企事业单位、互联网公司从事舆情监测与分析、网络信息管理等工作的高素质技术技能人才。'},
+{name:'影视多媒体技术',desc:'培养掌握影视拍摄、后期剪辑、特效制作等技能，能在影视制作公司、广告公司、新媒体平台从事影视创作与制作的高素质技术技能人才。'},
+{name:'网络直播与运营',desc:'培养掌握网络直播策划、直播运营、短视频创作等技能，能在电商平台、MCN机构、新媒体企业从事网络直播、内容运营等工作的高素质技术技能人才。'},
+{name:'融媒体技术与运营',desc:'培养掌握融媒体内容生产、平台运营、数据分析等技能，能在融媒体中心、传媒公司、互联网平台从事融媒体内容策划、采编与运营的高素质技术技能人才。'},
+{name:'中文',desc:'培养具有扎实的中文功底和较强的文字表达能力，能在文化教育、新闻出版、行政管理等领域从事文秘、编辑、宣传、教育等工作的高素质技术技能人才。'}
+]},
+{name:'文化旅游学院',icon:'✈️',majors:[
+{name:'旅游管理',desc:'培养掌握旅游服务与管理技能，能在旅行社、旅游景区、旅游电商平台等从事导游服务、旅游策划、景区管理等工作的高素质技术技能人才。'},
+{name:'酒店管理与数字化运营',desc:'培养掌握酒店数字化运营与管理技能，能在高星级酒店、连锁酒店集团、文旅企业等从事前厅、客房、餐饮管理及数字化运营的高素质技术技能人才。'},
+{name:'智慧旅游技术应用',desc:'培养掌握智慧旅游技术、旅游大数据分析等技能，能在智慧景区、在线旅游平台、文旅科技企业从事智慧旅游系统运维、数据分析等工作的高素质技术技能人才。'},
+{name:'会展策划与管理',desc:'培养掌握会展策划、组织管理、品牌推广等技能，能在会展公司、文化传媒机构、大型企业从事会议展览策划、管理与执行的高素质技术技能人才。'}
+]},
+{name:'文化商学院',icon:'💹',majors:[
+{name:'文化产业经营与管理',desc:'培养掌握文化产业运营管理、文化项目策划等技能，能在文化传媒公司、文旅企业、文创园区等从事经营管理、项目策划与推广的高素质技术技能人才。'},
+{name:'大数据与会计',desc:'培养掌握会计实务、财务数据分析、大数据处理等技能，能在企事业单位、会计师事务所、金融机构等从事会计核算、财务管理、数据分析等工作的高素质技术技能人才。'},
+{name:'市场营销',desc:'培养掌握市场调研、营销策划、品牌管理等技能，能在各类企业从事市场推广、品牌运营、新媒体营销等工作的高素质技术技能人才。'},
+{name:'跨境电子商务',desc:'培养掌握跨境电商平台运营、国际贸易、网络营销等技能，能在跨境电商企业、外贸公司等从事跨境平台运营、海外市场推广等工作的高素质技术技能人才。'},
+{name:'公共文化服务与管理',desc:'培养掌握公共文化服务管理、文化项目策划等技能，能在文化馆、博物馆、社区文化中心等公共文化机构从事文化服务与管理工作的高素质技术技能人才。'},
+{name:'现代家政服务与管理',desc:'培养掌握现代家政管理、社区服务等技能，能在家政服务企业、社区服务中心、康养机构等从事管理、培训与服务工作的高素质技术技能人才。'},
+{name:'婚庆服务与管理',desc:'培养掌握婚庆策划、活动组织、礼仪服务等技能，能在婚庆公司、文化传媒机构等从事婚庆策划、活动执行与管理工作的高素质技术技能人才。'}
+]},
+{name:'艺术设计学院',icon:'🎨',majors:[
+{name:'视觉传达设计',desc:'培养掌握平面设计、品牌形象设计、包装设计等技能，能在广告公司、设计机构、文化传媒企业等从事视觉设计与创意工作的高素质技术技能人才。'},
+{name:'环境艺术设计',desc:'培养掌握室内外环境设计、景观设计等技能，能在室内设计公司、建筑装饰企业、景观设计机构等从事环境艺术设计与施工管理的高素质技术技能人才。'},
+{name:'数字媒体艺术设计',desc:'培养掌握数字媒体设计、交互设计、UI/UX设计等技能，能在互联网企业、游戏公司、数字媒体机构等从事数字内容创作的高素质技术技能人才。'},
+{name:'产品艺术设计',desc:'培养掌握产品造型设计、文创产品开发等技能，能在制造企业、文创公司、设计机构等从事产品设计与开发的高素质技术技能人才。'},
+{name:'室内艺术设计',desc:'培养掌握室内空间设计、软装搭配等技能，能在装饰设计公司、家居企业、房地产企业等从事室内设计与项目管理的高素质技术技能人才。'},
+{name:'服装与服饰设计',desc:'培养掌握服装设计、制版工艺、服饰搭配等技能，能在服装企业、时尚机构等从事服装设计、产品开发等工作的高素质技术技能人才。'},
+{name:'首饰设计与工艺',desc:'培养掌握首饰设计、工艺制作、珠宝鉴定等技能，能在珠宝企业、文创公司等从事首饰设计、工艺制作与营销的高素质技术技能人才。'},
+{name:'游戏艺术设计',desc:'培养掌握游戏美术设计、角色建模、场景设计等技能，能在游戏开发公司、数字娱乐企业等从事游戏美术设计与制作的高素质技术技能人才。'},
+{name:'文化创意与策划',desc:'培养掌握文创产品设计、品牌策划、活动策划等技能，能在文创企业、文化传媒公司、文旅项目等从事文化创意与策划工作的高素质技术技能人才。'}
+]},
+{name:'文博学院',icon:'🏛️',majors:[
+{name:'文物修复与保护',desc:'培养掌握文物修复技术、文物保护管理等技能，能在博物馆、文物修复机构、文化遗产保护单位等从事文物修复、保护与管理的高素质技术技能人才。'},
+{name:'宝玉石鉴定与加工',desc:'培养掌握宝玉石鉴定、饰品设计加工等技能，能在珠宝检测机构、珠宝企业等从事宝玉石鉴定评估、设计加工等工作的高素质技术技能人才。'},
+{name:'文物展示利用技术',desc:'培养掌握文物陈列展示、数字展览设计等技能，能在博物馆、展览馆、文化遗产景区等从事展陈设计、数字展示与文物活化利用的高素质技术技能人才。'}
+]},
+{name:'文化信息学院（数码学院）',icon:'💻',majors:[
+{name:'人工智能技术应用',desc:'培养掌握人工智能应用开发、数据分析、机器学习等技能，能在IT企业、智慧文旅企业等从事AI应用开发、数据标注与分析等工作的高素质技术技能人才。'},
+{name:'大数据技术',desc:'培养掌握大数据采集、存储、处理与分析等技能，能在互联网企业、数据分析公司等从事大数据开发、数据分析与运维的高素质技术技能人才。'},
+{name:'数字媒体技术',desc:'培养掌握数字媒体开发、虚拟现实(VR/AR)、交互设计等技能，能在数字媒体企业、游戏公司、文化科技企业等从事数字内容开发的高素质技术技能人才。'},
+{name:'移动互联应用技术',desc:'培养掌握移动应用开发、Web前端设计等技能，能在互联网企业、软件公司等从事移动端应用开发与运维的高素质技术技能人才。'},
+{name:'建筑动画技术',desc:'培养掌握建筑动画制作、BIM技术应用等技能，能在建筑设计公司、装饰企业、数字媒体公司等从事建筑可视化设计与动画制作的高素质技术技能人才。'},
+{name:'数字广播电视技术',desc:'培养掌握数字音视频制作、广播电视系统运维等技能，能在广播电视台、融媒体中心、网络视听机构等从事技术运维与内容制作的高素质技术技能人才。'}
+]},
+{name:'体育部',icon:'🏅',majors:[
+{name:'休闲体育',desc:'培养掌握休闲体育指导、健身教练、体育管理等技能，能在健身俱乐部、体育场馆、体育文化公司等从事体育指导、赛事组织与管理的高素质技术技能人才。'}
+]},
+{name:'音乐舞蹈学院（演艺学院）',icon:'🎵',majors:[
+{name:'舞蹈表演',desc:'培养掌握舞蹈表演、舞蹈编导等技能，能在文艺团体、文化传媒公司、演艺机构等从事舞蹈表演、编导与教学的高素质技术技能人才。'},
+{name:'音乐表演',desc:'培养掌握声乐演唱、器乐演奏等技能，能在文艺团体、文化馆站、演艺机构等从事音乐表演、艺术培训与文化活动组织的高素质技术技能人才。'}
+]}];
+
+// ============================================================
+// RENDER
+// ============================================================
+
+function renderQA(){
+var t=document.getElementById('qaTabs'),c=document.getElementById('qaContent'),th='',ch='';
+QA_CATEGORIES.forEach(function(cat,i){
+th+='<buttont class="sub-tab'+(i===0?' active':'')+'" onclick="switchQATab('+i+')">'+cat.label+'</buttont>';
+var qj='',qa='';
+cat.questions.forEach(function(q,j){
+var qid='qa-'+cat.id+'-'+j;
+qj+='<span class="qj-tag" onclick="scrollToQA(\''+qid+'\')">Q'+(j+1)+'</span>';
+qa+='<div class="qa-card" id="'+qid+'"><div class="qa-q" onclick="toggleAnswer(\''+qid+'\')"><span class="num">'+(j+1)+'</span><span class="q-text">'+q.q+'</span><span class="arrow">▼</span></div><div class="qa-a" id="a-'+qid+'"><div>'+q.a+'</div><button class="copy-btn" onclick="copyAnswer(\''+qid+'\')">📋 复制答案</button></div></div>';
+});
+ch+='<div class="qa-section'+(i===0?'':' hidden')+'" id="qaSec-'+i+'"><div class="quick-jump"><div class="qj-label">快速跳转</div><div class="qj-tags">'+qj+'</div></div>'+qa+'</div>';
+});
+t.innerHTML=th;c.innerHTML=ch;
+}renderQA();
+
+function renderScoreNei(){
+var h='<div class="search-box"><input type="text" id="scoreNeiSearch" placeholder="输入专业名实时搜索..." oninput="searchScoreNei()"></div>';
+Object.entries(SCORE_NEI).forEach(function(e){
+var cat=e[0],d=e[1];
+h+='<div class="score-section"><table class="score-table"><tr class="cat-row"><td colspan="2">'+cat+'　投档线：<strong>'+d.touDang+'</strong></td></tr><tr><th>专业名称</th><th>最低分</th></tr>';
+d.majors.forEach(function(m){h+='<tr class="score-row"><td>'+m[0]+'</td><td class="score-val">'+m[1]+'</td></tr>';});
+h+='</table></div>';
+});
+document.getElementById('scoreContent').innerHTML=h;
+}
+
+function renderScoreWai(){
+var p=Object.keys(SCORE_WAI).sort(),h='<div class="score-provinces">';
+p.forEach(function(x){h+='<button class="province-btn" onclick="showProvince(\''+x+'\')">'+x+'</button>';});
+h+='</div><div id="provinceDetail"><div class="empty-state">👆 点击上方省份查看录取分数</div></div>';
+document.getElementById('scoreContent').innerHTML=h;
+}renderScoreNei();
+
+function renderMajors(){
+var h='';
+COLLEGES.forEach(function(col,ci){
+h+='<div class="college-section"><div class="college-header"><span>'+col.icon+' '+col.name+'</span><span class="count">'+col.majors.length+'个专业</span></div>';
+col.majors.forEach(function(m,i){
+var mid='m-'+ci+'-'+i;
+h+='<div class="major-card" onclick="toggleMajor(\''+mid+'\')"><div class="major-name"><span>'+m.name+'</span><span class="arrow" id="ar-'+mid+'">▼</span></div><div class="major-desc" id="md-'+mid+'">'+m.desc+'</div></div>';
+});
+h+='</div>';
+});
+document.getElementById('majorContent').innerHTML=h;
+}renderMajors();
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(p){
+document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active');});
+document.getElementById('page-'+p).classList.add('active');
+window.scrollTo(0,0);
+}
+function goHome(){showPage('home');}
+
+// QA
+var curQATab=0;
+function switchQATab(i){
+curQATab=i;
+document.querySelectorAll('#qaTabs .sub-tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+document.querySelectorAll('#qaContent .qa-section').forEach(function(s,j){s.classList.toggle('hidden',j!==i);});
+document.getElementById('qaSearch').value='';
+}
+function toggleAnswer(id){
+var a=document.getElementById('a-'+id),ar=a.closest('.qa-card').querySelector('.arrow');
+a.classList.toggle('open');ar.classList.toggle('open');
+}
+function scrollToQA(id){
+var e=document.getElementById(id);if(!e)return;
+e.scrollIntoView({behavior:'smooth',block:'center'});
+var a=document.getElementById('a-'+id),ar=e.querySelector('.arrow');
+if(a)a.classList.add('open');if(ar)ar.classList.add('open');
+}
+function searchQA(){
+var q=document.getElementById('qaSearch').value.trim().toLowerCase();
+var cat=QA_CATEGORIES[curQATab];
+document.getElementById('qaSec-'+curQATab).querySelectorAll('.qa-card').forEach(function(c,i){
+if(!q){c.style.display='';return;}
+var qt=cat.questions[i].q.toLowerCase(),at=cat.questions[i].a.replace(/<[^>]*>/g,'').toLowerCase();
+c.style.display=(qt.indexOf(q)>=0||at.indexOf(q)>=0)?'':'none';
+});
+}
+function copyAnswer(id){
+var e=document.getElementById('a-'+id),t=e.textContent.replace('复制答案','').trim();
+if(navigator.clipboard){
+navigator.clipboard.writeText(t).then(function(){
+var b=e.querySelector('.copy-btn');b.innerHTML='✅ 已复制';b.classList.add('copied');
+setTimeout(function(){b.innerHTML='📋 复制答案';b.classList.remove('copied');},2000);
+}).catch(function(){showToast('复制失败，请手动选择文字');});
+}else{showToast('复制失败，请手动选择文字');}
+}
+
+// SCORE
+var scoreTab='nei';
+function switchScoreTab(t){
+scoreTab=t;
+document.querySelectorAll('#scoreTabs .sub-tab').forEach(function(b){
+b.classList.toggle('active',(t==='nei'&&b.textContent.indexOf('省内')>=0)||(t==='wai'&&b.textContent.indexOf('省外')>=0));
+});
+if(t==='nei')renderScoreNei();else renderScoreWai();
+}
+function searchScoreNei(){
+var q=document.getElementById('scoreNeiSearch').value.trim().toLowerCase();
+document.querySelectorAll('.score-row').forEach(function(r){
+if(!q){r.style.display='';return;}
+r.style.display=r.cells[0].textContent.toLowerCase().indexOf(q)>=0?'':'none';
+});
+}
+function showProvince(p){
+document.querySelectorAll('.province-btn').forEach(function(b){b.classList.toggle('active',b.textContent===p);});
+var d=SCORE_WAI[p];if(!d)return;
+var h='<div class="score-section"><h3 style="margin-bottom:10px;font-size:clamp(14px,3.2vw,16px);font-weight:700;">📍 '+p+'</h3>';
+Object.entries(d).forEach(function(e){
+var kl=e[0],v=e[1];
+h+='<table class="score-table"><tr class="cat-row"><td colspan="2">'+kl+'　投档线：<strong>'+v.touDang+'</strong></td></tr><tr><th>专业名称</th><th>最低分</th></tr>';
+v.majors.forEach(function(m){h+='<tr><td>'+m[0]+'</td><td class="score-val">'+m[1]+'</td></tr>';});
+h+='</table>';
+});
+h+='</div>';
+document.getElementById('provinceDetail').innerHTML=h;
+}
+
+// MAJOR
+function toggleMajor(mid){
+var d=document.getElementById('md-'+mid),a=document.getElementById('ar-'+mid);
+if(d)d.classList.toggle('open');if(a)a.classList.toggle('open');
+}
+function searchMajor(){
+var q=document.getElementById('majorSearch').value.trim().toLowerCase();
+document.querySelectorAll('.college-section').forEach(function(s){s.style.display='';});
+document.querySelectorAll('.major-card').forEach(function(c){c.style.display='';});
+document.querySelectorAll('.major-desc.open').forEach(function(d){d.classList.remove('open');});
+document.querySelectorAll('.arrow.open').forEach(function(a){a.classList.remove('open');});
+if(!q)return;
+COLLEGES.forEach(function(col,ci){
+var cm=false;
+col.majors.forEach(function(m,i){
+var mid='m-'+ci+'-'+i,card=document.getElementById('md-'+mid);
+if(!card)return;var ce=card.closest('.major-card');
+if(m.name.indexOf(q)>=0||m.desc.indexOf(q)>=0){cm=true;ce.style.display='';card.classList.add('open');var ar=document.getElementById('ar-'+mid);if(ar)ar.classList.add('open');}
+else{ce.style.display='none';}
+});
+if(!cm){document.querySelectorAll('.college-section').forEach(function(s){if(s.querySelector('.college-header')&&s.querySelector('.college-header').textContent.indexOf(col.name)>=0)s.style.display='none';});}
+});
+}
+
+// UTILITY
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+window.addEventListener('scroll',function(){document.getElementById('backTop').classList.toggle('show',window.scrollY>300);});
+function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2000);}
+</script>
 
 </body>
 </html>

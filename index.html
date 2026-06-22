@@ -69,13 +69,12 @@
   .info-bar {
     background: var(--pri-50);
     padding: 9px 16px;
-    font-size: clamp(11px, 2.3vw, 12.5px);
+    font-size: clamp(10px, 2.2vw, 12.5px);
     text-align: center;
     color: var(--pri);
     font-weight: 600;
     border-bottom: 1px solid #dbeafe;
     line-height: 1.5;
-    word-break: keep-all;
   }
   .info-bar strong { color: var(--pri-dark); }
 
@@ -105,14 +104,17 @@
   .home-card:nth-child(1) { border-left: 4px solid var(--pri); }
   .home-card:nth-child(2) { border-left: 4px solid var(--emerald); }
   .home-card:nth-child(3) { border-left: 4px solid var(--violet); }
+  .home-card:nth-child(4) { border-left: 4px solid var(--amber); }
   .home-card:nth-child(1):hover, .home-card:nth-child(1):active { background: linear-gradient(135deg, #eff6ff, #fff); }
   .home-card:nth-child(2):hover, .home-card:nth-child(2):active { background: linear-gradient(135deg, #ecfdf5, #fff); }
   .home-card:nth-child(3):hover, .home-card:nth-child(3):active { background: linear-gradient(135deg, #f5f3ff, #fff); }
+  .home-card:nth-child(4):hover, .home-card:nth-child(4):active { background: linear-gradient(135deg, #fffbeb, #fff); }
 
   .home-card .icon { font-size: 36px; flex-shrink: 0; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 14px; }
   .home-card:nth-child(1) .icon { background: var(--pri-light); }
   .home-card:nth-child(2) .icon { background: var(--emerald-light); }
   .home-card:nth-child(3) .icon { background: var(--violet-light); }
+  .home-card:nth-child(4) .icon { background: var(--amber-light); }
   .home-card .info { flex: 1; min-width: 0; }
   .home-card .info h2 { font-size: clamp(15px, 3.5vw, 17px); margin-bottom: 4px; font-weight: 700; }
   .home-card .info p { font-size: clamp(12px, 2.8vw, 13.5px); color: var(--text-mid); line-height: 1.5; }
@@ -123,11 +125,11 @@
     position: sticky; top: 0; z-index: 99;
   }
   .back-btn {
-    width: 36px; height: 36px; border: 1.5px solid var(--border);
-    background: var(--card); border-radius: 50%; font-size: 20px;
+    width: 40px; height: 40px; border: 1.5px solid var(--border);
+    background: var(--card); border-radius: 50%; font-size: 22px;
     cursor: pointer; flex-shrink: 0; display: flex;
     align-items: center; justify-content: center; color: var(--pri);
-    transition: all 0.15s;
+    transition: all 0.15s; min-width: 40px;
   }
   .back-btn:active { background: var(--pri-light); border-color: var(--pri-dark); }
   .back-header .title { font-size: clamp(15px, 3.5vw, 17px); font-weight: 700; flex: 1; min-width: 0; }
@@ -227,6 +229,11 @@
   }
   .score-table .score-val { font-weight: 700; color: var(--pri-dark); }
 
+  @media (max-width: 380px) {
+    .score-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .score-table { min-width: 280px; }
+  }
+
   .score-provinces { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; }
   .province-btn {
     padding: 7px 14px; background: var(--card); border: 1.5px solid var(--border);
@@ -310,6 +317,15 @@
     .home-card .icon { width: 42px; height: 42px; font-size: 28px; }
     .qa-card, .college-section { margin: 6px 8px; }
     .score-section { padding: 4px 8px; }
+    .global-search { padding: 10px 10px 0; }
+    .global-search input { padding: 11px 14px 11px 38px; font-size: 14px; }
+    .global-search .search-icon { left: 22px; top: 10px; transform: translateY(11px); font-size: 16px; }
+    .global-search-results { left: 10px; right: 10px; }
+    .phone-dept-card { padding: 10px 10px; gap: 6px; }
+    .phone-dept-card .copy-tel { font-size: 10px; padding: 5px 7px; }
+    .phone-dept-card .call-btn { width: 36px; height: 36px; font-size: 16px; }
+    .score-table { font-size: 11px; }
+    .score-table th, .score-table td { padding: 7px 8px; }
   }
 
   @media (min-width: 480px) {
@@ -317,7 +333,158 @@
     .qa-card, .college-section, .score-section { max-width: 500px; margin-left: auto; margin-right: auto; }
     .sub-tabs { justify-content: center; }
     .search-box { max-width: 500px; margin: 0 auto; }
+    .global-search { max-width: 500px; margin: 0 auto; padding: 14px 0 0; }
+    .global-search-results { left: 0; right: 0; }
+    .phone-dept-grid { max-width: 500px; margin: 0 auto; }
   }
+
+
+
+/* Hide sub-tabs - replaced by category grid */
+#qaTabs { display: none; }
+
+/* Category grid in FAQ page */
+.qa-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 12px;
+}
+.qa-cat-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--pri);
+  position: relative;
+  overflow: hidden;
+}
+.qa-cat-card:active {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-md);
+}
+.qa-cat-card:hover, .qa-cat-card:active {
+  border-color: transparent;
+  box-shadow: var(--shadow-lg);
+  background: var(--cc-hover-bg, var(--pri-light));
+}
+.qa-cat-card.active {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--pri);
+  background: var(--pri-light);
+}
+.qa-cat-card .cc-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.qa-cat-card .cc-info {
+  flex: 1;
+  min-width: 0;
+}
+.qa-cat-card .cc-info h3 {
+  font-size: clamp(12px, 2.8vw, 14px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.qa-cat-card .cc-info .cc-count {
+  font-size: clamp(10px, 2.2vw, 11.5px);
+  color: var(--text-light);
+  margin-top: 2px;
+}
+@media (max-width: 360px) {
+  .qa-cat-grid { gap: 8px; padding: 8px; }
+  .qa-cat-card { padding: 11px 10px; gap: 8px; }
+  .qa-cat-card .cc-icon { width: 32px; height: 32px; font-size: 18px; }
+}
+@media (min-width: 480px) {
+  .qa-cat-grid { padding: 16px 24px; max-width: 500px; margin: 0 auto; }
+}
+
+
+/* FAQ detail page */
+#qaDetailSearch { margin-bottom: 0; }
+#qaDetailContent { padding-bottom: 20px; }
+#qaDetailContent .qa-card { margin: 8px 12px; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow); overflow: hidden; border: 1px solid var(--border); }
+#qaDetailContent .qa-card:active { box-shadow: var(--shadow-md); }
+#qaDetailContent .qa-q { padding: 14px 14px 6px; font-weight: 700; font-size: clamp(13px, 3vw, 15px); color: var(--pri); display: flex; gap: 10px; align-items: flex-start; cursor: pointer; user-select: none; }
+#qaDetailContent .qa-q .num { flex-shrink: 0; width: 22px; height: 22px; background: var(--pri-dark); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+#qaDetailContent .qa-q .q-text { flex: 1; line-height: 1.5; }
+#qaDetailContent .qa-q .arrow { color: var(--text-light); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; margin-top: 3px; }
+#qaDetailContent .qa-q .arrow.open { transform: rotate(180deg); }
+#qaDetailContent .qa-a { padding: 0 14px 14px; color: var(--text-mid); font-size: clamp(12.5px, 2.9vw, 14px); line-height: 1.8; display: none; }
+#qaDetailContent .qa-a.open { display: block; }
+#qaDetailContent .qa-a strong { color: var(--text); font-weight: 600; }
+#qaDetailContent .copy-btn { display: inline-flex; align-items: center; gap: 4px; padding: 5px 14px; background: var(--pri-light); color: var(--pri); border: 1px solid #dbeafe; border-radius: 6px; font-size: clamp(11px, 2.5vw, 12.5px); cursor: pointer; margin-top: 8px; transition: all 0.15s; font-weight: 500; }
+#qaDetailContent .copy-btn:active { background: var(--pri-dark); color: #fff; border-color: var(--pri-dark); }
+#qaDetailContent .copy-btn.copied { background: var(--emerald); color: #fff; border-color: var(--emerald); }
+@media (max-width: 360px) {
+  #qaDetailContent .qa-card { margin: 6px 8px; }
+}
+@media (min-width: 480px) {
+  #qaDetailContent .qa-card { max-width: 500px; margin-left: auto; margin-right: auto; }
+}
+
+
+/* ---- Phone Directory ---- */
+.phone-dept-grid { display: grid; gap: 8px; padding: 6px 12px; }
+.phone-dept-card { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.15s; }
+.phone-dept-card:active { transform: scale(0.99); }
+.phone-dept-card .dept-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--amber-light); color: var(--amber); border-radius: 8px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.phone-dept-card .dept-info { flex: 1; min-width: 0; }
+.phone-dept-card .dept-name { font-size: clamp(13px, 3vw, 14.5px); font-weight: 600; color: var(--text); }
+.phone-dept-card .dept-tel { font-size: clamp(14px, 3.2vw, 17px); font-weight: 700; color: var(--pri-dark); letter-spacing: 0.5px; }
+.phone-dept-card .call-btn { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--amber); color: #fff; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.phone-dept-card .call-btn:active { background: #b45309; transform: scale(1.1); }
+.phone-dept-card .copy-tel { flex-shrink: 0; padding: 6px 10px; border: 1px solid var(--border); background: var(--card); border-radius: 6px; font-size: 11px; color: var(--text-mid); cursor: pointer; white-space: nowrap; font-weight: 500; transition: all 0.15s; }
+.phone-dept-card .copy-tel:active { background: var(--pri-light); color: var(--pri); border-color: var(--pri); }
+
+/* ---- Global Search ---- */
+.global-search { padding: 14px 16px 0; position: relative; }
+.global-search input {
+  width: 100%; padding: 13px 16px 13px 44px; border: 2px solid var(--border);
+  border-radius: var(--radius); font-size: clamp(14px, 3.2vw, 16px);
+  outline: none; background: var(--card); color: var(--text);
+  transition: all 0.2s; box-shadow: var(--shadow);
+}
+.global-search input:focus { border-color: var(--pri-dark); box-shadow: 0 0 0 4px rgba(37,99,235,0.08); }
+.global-search input::placeholder { color: var(--text-light); }
+.global-search .search-icon { position: absolute; left: 29px; top: 14px; transform: translateY(13px); font-size: 18px; color: var(--text-light); pointer-events: none; }
+.global-search-results {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg); max-height: min(360px, 55vh); overflow-y: auto; margin-top: 6px;
+  display: none; position: absolute; left: 16px; right: 16px; z-index: 50;
+}
+.global-search-results.active { display: block; }
+.gsr-item {
+  display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px;
+  border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s;
+}
+.gsr-item:last-child { border-bottom: none; }
+.gsr-item:active, .gsr-item:hover { background: var(--pri-light); }
+.gsr-item .gsr-type {
+  flex-shrink: 0; padding: 2px 8px; border-radius: 5px; font-size: 10px; font-weight: 700;
+  color: #fff; margin-top: 2px; letter-spacing: 0.3px;
+}
+.gsr-type.qa-type { background: var(--pri); }
+.gsr-type.score-type { background: var(--emerald); }
+.gsr-type.major-type { background: var(--violet); }
+.gsr-type.phone-type { background: var(--amber); }
+.gsr-item .gsr-text { flex: 1; font-size: clamp(12.5px, 2.9vw, 14px); line-height: 1.5; color: var(--text); }
+.gsr-item .gsr-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.gsr-empty { padding: 24px 14px; text-align: center; color: var(--text-light); font-size: 13px; }
+
 </style>
 </head>
 <body>
@@ -334,6 +501,11 @@
 </div>
 
 <div class="page active" id="page-home">
+  <div class="global-search">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="globalSearchInput" placeholder="搜问题、专业、部门…快速定位" oninput="globalSearch()" onfocus="globalSearch()" autocomplete="off">
+    <div class="global-search-results" id="globalSearchResults"></div>
+  </div>
   <div class="home-grid">
     <div class="home-card" onclick="showPage('qa')">
       <div class="icon">💬</div><div class="info"><h2>常见问题快速问答</h2><p>按分类查找录取、专业、校园等常见咨询问题</p></div>
@@ -344,21 +516,22 @@
     <div class="home-card" onclick="showPage('major')">
       <div class="icon">📚</div><div class="info"><h2>专业介绍（按学院分类）</h2><p>各学院招生专业详细介绍</p></div>
     </div>
+    <div class="home-card" onclick="showPage('phone')">
+      <div class="icon">📞</div><div class="info"><h2>校内部门电话</h2><p>党政办、教务处、各学院等30个部门联系方式</p></div>
+    </div>
   </div>
 </div>
 
 <div class="page" id="page-qa">
   <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">💬 常见问题快速问答</span></div>
-  <div class="sub-tabs" id="qaTabs"></div>
-  <div class="search-box"><input type="text" id="qaSearch" placeholder="搜索问题关键词..." oninput="searchQA()"></div>
-  <div id="qaContent"></div>
+  <div class="qa-cat-grid" id="qaCatGrid"></div>
 </div>
 
 <div class="page" id="page-score">
   <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">📊 2025年最低录取分查询</span></div>
   <div class="sub-tabs" id="scoreTabs">
-    <buttont class="sub-tab active" onclick="switchScoreTab('nei')">四川省内</buttont>
-    <buttont class="sub-tab" onclick="switchScoreTab('wai')">四川省外</buttont>
+    <button class="sub-tab active" onclick="switchScoreTab('nei')">四川省内</button>
+    <button class="sub-tab" onclick="switchScoreTab('wai')">四川省外</button>
   </div>
   <div id="scoreContent"></div>
 </div>
@@ -369,6 +542,19 @@
   <div id="majorContent"></div>
 </div>
 
+<div class="page" id="page-phone">
+  <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">📞 校内部门电话</span></div>
+  <div class="search-box"><input type="text" id="phoneSearch" placeholder="搜索部门名称..." oninput="searchPhone()"></div>
+  <div id="phoneContent"></div>
+</div>
+
+
+<div class="page" id="page-qa-detail">
+  <div class="back-header"><button class="back-btn" onclick="showPage('qa')" aria-label="返回分类">‹</button><span class="title" id="qaDetailTitle">分类名称</span></div>
+  <div class="search-box"><input type="text" id="qaDetailSearch" placeholder="搜索问题关键词..." oninput="searchQADetail()"></div>
+  <div id="qaDetailContent"></div>
+</div>
+
 <button class="back-top" id="backTop" onclick="scrollToTop()" aria-label="回到顶部">↑</button>
 <div class="toast" id="toast"></div>
 
@@ -376,7 +562,7 @@
 <div class="site-footer">
   <div class="footer-brand">四川文化产业职业学院 · 招生咨询系统</div>
   <div class="footer-dev">开发者：优联协会——姜佳乐</div>
-  <div class="footer-disclaimer">本系统仅供招就处值班人员内部参考使用，数据来源于学校官方招生简章及历年录取统计。<br>如有疑问请以学校招生网（zsw.sceeo.com）公布为准。</div>
+  <div class="footer-disclaimer">本系统仅供招就处值班人员内部参考使用，数据来源于学校官方招生简章及历年录取统计。<br>如有疑问请以学校招生网（zsw.sceeo.com）公布为准。<br><br>⚠️ 如遇拿不准的问题，请以学校官方招生简章及线下实际资料为准。<br>发现内容与实际不符？请及时联系开发者反馈修正。</div>
 </div>
 
 <script>
@@ -392,57 +578,188 @@ const QA_CATEGORIES=[
 {q:'2024年各招生类别最低录取分？',a:'<strong>普通类</strong>：文科448，理科438<br><strong>美术与设计类（文）</strong>：467.53，<strong>（理）</strong>：461.1<br><strong>舞蹈类（文史）</strong>：430.03<br><strong>音乐表演类（文史）</strong>：421.45<br><strong>体育类</strong>：86.98<br>2025年是新高考，实际分数因试题难度和报考人数而异。'},
 {q:'学校好不好考？是不是艺术类院校？',a:'录取分数取决于填报我校的考生人数和考试分数。建议合理填报并选择<strong>服从专业调配</strong>增加录取几率。我校是<strong>综合类专科学校</strong>，并非艺术类学校。2026年单招33个专业中艺术类7个、普通类26个。'},
 {q:'四川省高考成绩和志愿填报截止时间？',a:'6月25日公布考生成绩及录取控制分数线。<br>艺术、体育类志愿截止：<strong>7月1日17:00</strong><br>普通类志愿截止：<strong>7月5日17:00</strong>'},
-{q:'普通类、艺术类什么时候开始录取？',a:'四川省艺体类预计在<strong>8月初</strong>，普通类在<strong>8月中旬</strong>。具体以省教育考试院公布为准。'}
+{q:'普通类、艺术类什么时候开始录取？',a:'四川省艺体类预计在<strong>8月初</strong>，普通类在<strong>8月中旬</strong>。具体以省教育考试院公布为准。'},
+{q:'报考学校有什么要求吗？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
+{q:'往届生可以报考吗？',a:'我校面向所有符合当年普通高校招生报名条件的考生招生。高级中等教育学校往届毕业生及具备同等学力人员均可报考。考生须遵纪守法、身体健康。凡属普通高校在校生、处于停考期或刑事处罚期的人员，不得报考。'},
+{q:'分数相同的考生，会优先录取谁？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
+{q:'学校哪些专业对单科成绩有要求？',a:'我校所有专业对高考单科成绩均无特定要求'},
+{q:'学校会降分录取？',a:'降分录取严格执行各省（市、自治区）招生主管部门统一政策，按照各省（市、自治区）招生主管部门相关部署落实，具体标准、范围及流程，请以各省（市、自治区）招生主管部门发布的本年度招生实施规定为准。'},
+{q:'学校认可哪些加分政策？',a:'学校严格执行国家和有关省（市、自治区）的相关加分投档政策，并以加分后形成的投档成绩作为录取和分配专业的依据。'},
+{q:'哪些专业按大类招生？',a:'我校未按大类招生。'},
+{q:'学校的专业级差是多少？',a:'我校未设置专业级差。'},
+{q:'请问“三校生”能报考吗？',a:'可以报考。“三校生”属于“中职类”学生，报考的前置条件必须先参加四川省当年普通高等学校招生报名（高考报名），并取得考生号后，方可进行单独招生和对口高考的报名。'},
+{q:'学校的招生代码是多少？',a:'在川招生代码5185，外省招生代码可在各省招生主管部门官网查询。'},
+{q:'学校在哪几个批次招生？',a:'我校在专科批进行招生，具体各专业招生批次可参考各省（市、自治区）招生主管部门公布的招生信息。'},
+{q:'学校今年的提档比例是多少？',a:'根据各省（市、自治区）招生计划以1:1提档。'},
+{q:'服从院校调剂和服从志愿调剂是否可以同时选择？',a:'服从院校调剂和服从志愿调剂可以同时选择。'},
+{q:'志愿调剂会不会提前通知考生？',a:'服从调剂的考生不会提前通知。'},
+{q:'学校春季招生什么时间开始？',a:'3月开始春季招生'},
+{q:'学校有没有“3+4”初中升本科招生计划？',a:'无"3+4"初中升本科招生计划。'},
+{q:'艺术生怎么计算综合分？',a:'艺术类考生综合成绩计算方法以各省（市、自治区）招生主管部门公布的测算公式为准，具体测算公式请登录各省（市、自治区）招生主管部门官网查询。'},
+{q:'学校在录取时有没有一些专业会有特殊要求？',a:'我校首饰设计与工艺、产品艺术设计、服装与服饰设计、游戏艺术设计、数字媒体艺术设计、室内艺术设计、视觉传达设计、公共艺术设计、文物修复与保护、宝玉石鉴定与加工等专业不招收色觉异常Ⅱ度(俗称色盲)考生。报考舞蹈表演专业的考生，建议男生身高不低于1.70米，女生身高不低于1.62米。'},
+{q:'学校有单招计划吗？',a:'有单招计划，具体招生专业及计划请登录学校招生网[https://zsw.svcci.cn]查询。'},
+{q:'我校招生还有补录吗？什么时间补录？',a:'我校招生补录计划视当年专业录取情况确定，具体补录时间请以省教育考试院公布为准。'},
+{q:'准考证丢失怎么办？',a:'准考证丢失请咨询当地招办。'},
+{q:'学校今年哪些专业有征集志愿？',a:'视当年专业录取情况确定。'},
+{q:'征集志愿时间是什么时候？',a:'以各省（市、自治区）招生主管部门相关通知为准。'},
+{q:'征集志愿和原志愿关系还很大吗？',a:'征集志愿与原志愿无关。'},
+{q:'学校对新高考考生的合格考成绩有什么要求吗？',a:'根据各省相关规定执行。'},
+{q:'实行新高考后，不分文理还能参考学校往年的录取数据吗？',a:'实行新高考后，不分文理了可以参考学校往年的录取数据'},
+{q:'学校对新高考省份的考生如何进行专业调剂？',a:'根据各省相关规定执行。'},
+{q:'学校在新高考省份的各批次提档比例是多少？',a:'平行志愿投档的省（市、自治区）投档比例为1：1。'},
+{q:'对进档考生进行专业录取时，学校认可新高考地区的全国性加分/地方性加分吗？',a:'认可，对进档考生进行专业录取时，学校严格执行国家和有关省（市、自治区）的相关加分投档政策，并以加分后形成的投档成绩作为录取和分配专业的依据。'},
+{q:'新高考省份，专业录取时对同分情况是如何处理的？',a:'投档成绩相同时，按照各省（市、自治区）的同分排序规则执行。'},
+{q:'总分相同的情况下，不同选科组合的考生，如何排序？',a:'按照各省（市、自治区）的同分排序规则执行。'},
+{q:'学校录取分数一分一段在哪里查询？',a:'一分一段表可在各省（市、自治区）招生主管部门官网查询。'},
+{q:'学校近三年各专业招生录取最低分数线？',a:'请登录学校招生网[https://zsw.svcci.cn]查询近三年各专业招生录取最低分数线。'},
+{q:'新生什么时候报到？',a:'详见当年的新生入学须知。'},
+{q:'报到需要注意什么？',a:'详见当年的新生入学须知。'},
+{q:'如何查询自己是否被学校录取？',a:'录取结果可登录生源地省招生主管部门官网查询或电话咨询省级招办。我校录取信息将在学校招生网中适时公布录取结果（网址：[https://zsw.svcci.cn]）。'},
+{q:'有贫困生资助吗？',a:'学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。'}
 ]},
 {id:'major-choice',label:'🎓 专业填报与选择',questions:[
+{q:'艺术类招生计划有吗',a:'具体招生专业及计划请登录学校招生网[https://zsw.svcci.cn]查询。'},
+{q:'学校各招生专业对选考科目有什么要求？',a:'各专业选考科目请详见各省（市、自治区）招生主管部门公布信息。'},
 {q:'今年有哪些招生专业？',a:'2025年共有<strong>38个招生专业</strong>，覆盖普通类、美术与设计类、舞蹈类、音乐表演类、体育类等。2026年单招共33个专业。详细专业和介绍见本系统"专业介绍"模块。'},
 {q:'我能报考什么专业？能不能跨类别？',a:'单招计划表上详细公布了每个专业对应的招生类别。填报专业志愿时最多可填<strong>6个专业</strong>。建议选择<strong>"服从调剂"</strong>增加录取几率。进校后可按规定转专业。'},
 {q:'非艺体生能报艺体类专业吗？',a:'单招中所有普高类专业均是<strong>文理兼收</strong>。中职需按对应招生类别报考。'},
 {q:'艺术类专业成绩没过省控线怎么办？',a:'如果<strong>文化成绩</strong>上了省控线，可以填报学校<strong>历史、物理类</strong>的专业志愿。'},
-{q:'哪些专业是王牌专业？',a:'学校围绕四川文化强省发展需要，对接文创产业、文化科技产业、文化旅游产业等，每个专业都有独特特色。可查看本系统"专业介绍"模块了解各专业详细情况。'}
+{q:'哪些专业是王牌专业？',a:'学校围绕四川文化强省发展需要，对接文创产业、文化科技产业、文化旅游产业等，每个专业都有独特特色。可查看本系统"专业介绍"模块了解各专业详细情况。'},
+{q:'物理类考生适合报学校哪些专业？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'历史类考生适合报学校哪些专业？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'有哪些专业历史类、物理类都能报？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'学校哪些专业开设了订单班？',a:''},
+{q:'学校体育类专业招生录取政策是怎样的？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
+{q:'学校有校企合作专业吗？',a:'学校无校企合作专业。'},
+{q:'学校的哪些专业是热门专业？',a:'新闻采编与制作、影视多媒体技术、融媒体技术与运营、数字媒体技术、文化产业经营与管理、大数据与会计、大数据技术、首饰设计与工艺、宝玉石鉴定与加工、文物修复与保护、游戏艺术设计、视觉传达设计、旅游管理'},
+{q:'学校有哪些新增专业？',a:'2026年我校新增专业：公共艺术设计、研学旅行管理与服务'},
+{q:'学校哪些专业招收体育类考生？',a:'我校休闲体育专业招收体育类考生，2026年招生计划60人。'},
+{q:'学校艺术类专业在录取时有什么要求？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'}
 ]},
 {id:'transfer',label:'🔄 转专业',questions:[
-{q:'录取专业不喜欢，进校后能换吗？',a:'<strong>可以</strong>。<br>1. 大一第一学期不能挂科。<br>2. 第一学期末教务处发布转专业通知，学生报名。<br>3. 转出学院审核，转入学院考核，合格后公示确认。<br><strong>不能跨大类</strong>，且转入专业必须在当年同一招生类别里。<br>统招生第一学期结束时<strong>免费</strong>转专业一次。（具体政策咨询教务处）'}
+{q:'录取专业不喜欢，进校后能换吗？',a:'<strong>可以</strong>。<br>1. 大一第一学期不能挂科。<br>2. 第一学期末教务处发布转专业通知，学生报名。<br>3. 转出学院审核，转入学院考核，合格后公示确认。<br><strong>不能跨大类</strong>，且转入专业必须在当年同一招生类别里。<br>统招生第一学期结束时<strong>免费</strong>转专业一次。（具体政策咨询教务处）'},
+{q:'新生可以转专业吗？有什么条件限制？',a:'我校全日制专科学生，在籍且入学满一学期，可依据学校转专业相关规定，经个人申请、院系考核、学校审批流程办理转专业。申请学生须品行端正、无纪律处分、学业无不合格科目，并满足转入专业的身体条件及录取要求，且转入专业尚有计划余额。有下列情形之一者，不得申请转专业：以特殊招生形式录取者；艺术类、体育类与普通类不得跨科类互转；处于休学、保留学籍或纪律处分期者不得转专业。'}
 ]},
 {id:'postadmit',label:'📋 录取后事宜',questions:[
+{q:'服从调剂还会被退档吗？',a:'进档考生所填全部专业志愿均未能录取且服从专业调剂的，将调剂至计划未满、且考生符合录取条件的专业；凡不服从专业调剂，或服从调剂但达不到剩余专业录取标准的，按退档办理。'},
+{q:'入学后是否需要体检？',a:'需要，我校新生入学后必须参加入学体检复查，一般在报到后1-3个月内统一组织。'},
+{q:'体检标准是什么？',a:'我校新生体检标准严格执行教育部关于《普通高等学校招生体检工作指导意见》（教学〔2003〕3 号）规定。'},
+{q:'大学新生可参军吗？保留学籍吗？',a:'大学新生可以参军，并保留学籍。'},
+{q:'如何办理退学手续？影响复读吗？',a:'退学不影响复读，具体的办理流程可咨询学校教务处。'},
+{q:'学籍档案邮寄地址',a:'四川省成都市双流区怡心街道锦江路四段399号 四川文化产业职业学院招生就业处'},
+{q:'请问怎样查看档案状态？',a:'登陆所在省份招生办公室官网。'},
+{q:'预录是什么意思？',a:'学校已经审阅完考生电子档案信息，并按录取要求将拟录取信息上载至省教育考试院审核。'},
+{q:'高考分数不够有其他方式被录取吗？',a:'无其他录取方式。'},
 {q:'怎么知道我已被录取？',a:'一是登录各省教育考试院官网查询或拨打录取查询热线。<br>二是省教育考试院审核通过后，在学校官网（招生网）点击<strong>"录取查询"</strong>查询。'},
 {q:'考上了但不想来读，能退档吗？',a:'可以申请<strong>放弃录取资格</strong>。须由考生本人携带二代身份证原件到学校招生就业处（明慧楼115室）现场办理。单招考生须在<strong>4月17日12:00前</strong>办理，逾期不予办理。电话：028-85766716。'},
 {q:'录取后能去当兵吗？',a:'<strong>可以</strong>。国家鼓励在校或毕业大学生应征入伍，相关政策和手续进校后咨询学生工作部和安全保卫处。'},
-{q:'新生报到时间和要求？',a:'具体报到时间以录取通知书及学校官网通知为准，一般在8月底至9月初。按录取通知书上的要求准备材料。学校全面实行网上缴费。'}
+{q:'新生报到时间和要求？',a:'具体报到时间以录取通知书及学校官网通知为准，一般在8月底至9月初。按录取通知书上的要求准备材料。学校全面实行网上缴费。'},
+{q:'录取通知书什么时候发，哪能查到快递号？',a:'我校全日制普通专科新生录取通知书于录取结束后陆续寄发，考生可通过考生号在中国邮政快递官网查询录取通知书物流情况。'},
+{q:'学校对未能按时报到的学生有什么安排？',a:'因特殊原因不能按时报到的新生，必须事先向所在学院请假，请假一般不得超过两周。未经请假或虽请假但超期未报到的新生，除不可抗力的因素外，视为放弃入学资格。'},
+{q:'新生开学报到流程？',a:'详见当年的新生入学须知。'},
+{q:'学费怎么交？',a:'通过网上缴费，具体缴费方式详见当年的新生入学须知。'},
+{q:'新生坐火车可以享受优惠吗？',a:'新生凭《录取通知书》可购买来校半价火车票。'},
+{q:'开学报到时火车站会有接待的吗？',a:'学校会安排专车在火车站、汽车站等接站'},
+{q:'报到时可以开车进学校吗？',a:'报到时不允许开车进校'},
+{q:'新生户口怎么迁？',a:'新生户口自愿迁移，详见当年的新生入学须知。'},
+{q:'新生报到时党、团关系要带过来吗？',a:'详见当年的新生入学须知。'},
+{q:'新生必须参加军训吗？',a:'除身体原因不适合参加军训外，其余学生均须参加军训。'},
+{q:'军训时间多久？',a:'军训时间一般为两周。'},
+{q:'新生军训要去军营里训练么？',a:'新生在校内军训。'},
+{q:'军训期间上专业课吗？',a:'军训期间有新生入学教育。'},
+{q:'新生入学是否可以带电脑？',a:'新生入学可以带电脑。'},
+{q:'入学新生要办理学校指定的手机卡吗？',a:'学校没有指定手机卡。'},
+{q:'怎么查询新生的学号',a:'开学后教务统一下发。'},
+{q:'宿舍可以提前入住吗？',a:'宿舍不可以提前入住'},
+{q:'床上用品学校统一发放吗？',a:'学校不统一发放床上用品，采取自愿购买。'},
+{q:'军训服多少钱一套？',a:'详见当年的新生入学须知。'},
+{q:'校园一卡通怎么办理？',a:'详见当年的新生入学须知。'}
 ]},
 {id:'further',label:'📚 专升本与留学',questions:[
 {q:'进校后可以专升本吗？',a:'<strong>可以</strong>，有2种途径：<br><strong>途径一</strong>：参加四川省教育考试院组织的全省专升本统一考试，录取后进入全日制本科学校学习。<br><strong>途径二</strong>：学校设有自考专升本助学服务中心，在专科学习的同时可报读自考本科，获取专科毕业证后即可申请本科毕业证。'},
-{q:'可以去留学吗？',a:'<strong>可以</strong>。学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，提供海外留学升本绿色通道。'}
+{q:'可以去留学吗？',a:'<strong>可以</strong>。学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，提供海外留学升本绿色通道。'},
+{q:'有没有对外交流项目？',a:'学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作关系，为我校学生提供了便捷的海外留学升本绿色通道。'},
+{q:'学校有外国留学生吗？',a:'无外国留学生？'}
 ]},
 {id:'campus',label:'🏠 校园生活与环境',questions:[
+{q:'学校有哪些外语语种？',a:'考生不限外语语种，但我校未开设除英语之外的其他外语语种教学，建议非英语语种考生慎重考虑。'},
 {q:'校园环境怎样？住宿条件怎样？',a:'校园占地<strong>520余亩</strong>，环境优美。学生公寓为<strong>六人间</strong>，配备独立卫生间、洗漱间、空调、电脑桌、衣橱、风扇、扫码式洗衣机、热水淋浴、直饮水等。住宿费<strong>800-1000元/年</strong>。'},
 {q:'学校周边交通方便吗？',a:'学校位于成都市，交通便利。可在地图APP搜索"四川文化产业职业学院"查看具体路线。'},
-{q:'学校有哪些实训基地？',a:'学校建有校内外实习实训基地<strong>150余个</strong>，大师工作室及传习所10余个。'}
+{q:'学校有哪些实训基地？',a:'学校建有校内外实习实训基地<strong>150余个</strong>，大师工作室及传习所10余个。'},
+{q:'学校风光如何？',a:'学校占地面积520余亩，校园整体是红墙现代文艺风，绿化充足、湖景 +四季花海、教学楼、运动场配套齐全，作为文创类院校，到处都适合拍照，环境整洁开阔，氛围感很强。'},
+{q:'学校所在城市气候怎么样？',a:'成都地处四川盆地，年均温 16～18℃，全年绿植常青。'},
+{q:'学校有几个学生食堂？',a:'校内共有2个学生食堂，整体以川味为主、口味适中、选择多，性价比高。'},
+{q:'学校食堂菜品种类多吗？',a:'一食堂 招牌必吃榜：油泼面、各类拌面、卤肉饭是全校爆款，面条劲道，酱料香辣入味，卤肉分量足、酱汁拌饭很香； 早餐种类丰富：包子、豆浆、馄饨、煎饼，口味清淡不腻。 口味特点：家常菜窗口咸鲜适中，辣度可调。 二食堂 一楼（平价大众餐）：两荤一素约 10 元，性价比高；冒菜很受欢迎，13 元左右一斤，送豆芽、免费热豆浆，汤底麻辣鲜香。 二楼（风味小吃层，人气最高）：覆盖川味小炒、干锅、炸鸡汉堡、关东煮、自选自助餐、减脂餐、卤肉饭、米线粉面等。'},
+{q:'一个月大概需要多少生活费？',a:'我校周围物价不高，生活费视家庭情况而定。'},
+{q:'新生入学在哪个校区就读？',a:'统招全日制新生全部在双流主校区就读，学校地址：成都市双流区怡心街道锦江路四段399号'},
+{q:'学校的教学设施状况如何？',a:'学校硬件配套完善，校内实训室贴合专业需求。'},
+{q:'学校图书馆藏书有多少？开放时间？',a:'一、馆藏藏书总量 全部馆藏（纸质 + 电子）合计超 100 万册，阅览座位 600 余个，藏借阅一体化布局。 二、日常开放时间 周一至周日：08:30—21:30 全天开放，中午不闭馆，可全天自习、借书。'},
+{q:'你们学校有室内体育馆吗？',a:'学校有室内体育馆。'},
+{q:'学校宿舍怎么样？',a:'宿舍是6人间，有独立卫生间、洗漱间、浴室、独立的衣柜和书桌、空调、直饮水等。'},
+{q:'每年住宿费多少？',a:'800元/人/年或1000元/人/年。'},
+{q:'学校宿舍有洗衣机吗？',a:'学校每栋公寓配有公共洗衣房，学生可自助扫码或投币洗衣服。'},
+{q:'学生宿舍晚上几点熄灯？',a:'周日至周四（工作日）22:50断电熄灯； 周五至周六（周末）23:50断电熄灯。'},
+{q:'学校wifi全覆盖吗？',a:'学校WiFi全覆盖'},
+{q:'宿舍和床位怎么分配？',a:'学校统一安排宿舍和床位'},
+{q:'学校附近有公交/地铁站吗，出行方便吗？',a:'出行方便，学校附近有地铁站，地铁5号线骑龙站下车，A出口出站。'},
+{q:'每个班级一般多少人？',a:'根据学校教务处相关规定，每个班级一般为40-50人。'},
+{q:'什么时候开始选课？',a:'具体选课时间以学校通知为准。'},
+{q:'各专业对学分有什么要求？',a:'全校三年制专科学分框架统一，学生必须修满本专业人才培养方案规定的全部总学分方可毕业。'},
+{q:'学校每年运动会都什么时候开？',a:'每年运动会时间约为11月上旬－12月上旬。'},
+{q:'学校课程安排的满吗？',a:'学校教务处依据专业人才培养方案的课程整体安排。'},
+{q:'学校周末上课吗？',a:'学校周末不上课'},
+{q:'学校管理严吗？',a:'学校严格按照《四川文化产业职业学院学生管理规定（试行）》《四川文化产业职业学院学生公寓管理规定》及其他相关规章制度进行管理。'},
+{q:'学校节假日会正常放假吗？',a:'非特殊情况学校正常放假。'},
+{q:'学校社团活动多吗？',a:'目前学校有50余个学生社团，不定期开展各类丰富多彩的社团活动。'},
+{q:'怎么可以查到自己所在班级？',a:'开学后统一分班。'},
+{q:'学校周边有什么美食？',a:'学校正门对面锦江路四段沿街就是学生专属美食街，步行 3-8 分钟全覆盖，分平价小吃快餐、卤味粉面、烧烤聚餐、奶茶饮品四大类，性价比很高。'}
 ]},
 {id:'award',label:'💰 奖助学金与政策',questions:[
+{q:'学校奖学金有哪几类？',a:'1．奖学金：①国家奖学金：奖励标准为10000元/生/年；②国家励志奖学金：奖励标准为 6000元/生/年；③学院奖学金：一等奖1000元/生/年，二等奖600元/生/年，三等奖400元/生/年；④优秀新生奖学金，奖励标准为：一等奖5000元/人，二等奖3000元/人，三等奖1000元/人。2．国家助学金：一般困难2500元/生/年，困难3700元/生/年，特殊困难4900元/生/年。3．助学贷款：符合条件的困难学生可在生源地申请国家助学贷款，每生每年最多可贷20000元。4．学费代偿：大学生应征入伍服义务兵役学费补偿国家助学贷款代偿及学费减免，每生每年最高不超过20000元。5．对于毕业到艰苦边远地区基层就业的我校学生，工作满三年后，可以申请四川省艰苦边远地区学费奖补，奖励标准为最高不超过6000元/人/年。'},
+{q:'学校设置哪些勤工俭学岗位？',a:'学校为贫困家庭学生提供勤工助学岗位，具体岗位以相关部门通知为准。'},
+{q:'学校给新生统一办理银行卡吗？',a:'学校没有统一办理新生银行卡，学校内部有中国工商银行的ATM机。'},
+{q:'教材费用是多少？',a:'详见当年的新生入学须知。'},
 {q:'高分考生有什么奖励？',a:'学校设立<strong>"优秀新生奖学金"</strong>奖励品学兼优新生：<br>一等奖 <strong>5000元</strong>/人<br>二等奖 <strong>3000元</strong>/人<br>三等奖 <strong>1000元</strong>/人'},
 {q:'学校有哪些奖助学金？',a:'设有<strong>国家奖学金</strong>、<strong>学校奖学金</strong>、<strong>国家励志奖学金</strong>、<strong>国家助学金</strong>等奖助项目，帮助品学兼优的学生完成学业。'},
-{q:'有贫困生资助吗？',a:'学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。'},
 {q:'少数民族或获奖能不能加分？',a:'以省教育考试院相关政策为准，我校在录取中予以认可。获奖证书保送/免试的具体条件请查阅学校招生网"单独招生"栏中的相关公告。'},
-{q:'进校后能考教师资格证吗？',a:'请进校后咨询学校教务处或相关部门，以当年国家及四川省相关政策为准。'}
+{q:'进校后能考教师资格证吗？',a:'请进校后咨询学校教务处或相关部门，以当年国家及四川省相关政策为准。'},
+{q:'学校有助学金或助学贷款吗？怎么办理？',a:'学校设有国家奖学金、学校奖学金、国家励志奖学金、国家助学金等奖助项目，用于资助品学兼优、家庭经济困难的在校学生。同时符合条件的困难学生可在生源地申请国家助学贷款，每生每年最多可贷20000元，生源地助学贷款在县（区）教育局学生资助管理中心办理。'},
+{q:'如何家庭经济困难学生资格？',a:'1.申请对象 家庭经济困难的高校全日制本专科学生，有助学贷款需求的学生，请在学生本人所在地的县教育局学生资助管理中心申请生源地助学贷款。 2.申请条件 （1）家庭经济困难； （2）具有中华人民共和国国籍，年满16周岁的需持有中华人民共和国居民身份证； （3）具有完全民事行为能力（未成年人申请国家助学贷款须由其法定监护人书面同意）； （4）诚实守信，遵纪守法，无违法违纪行为； （5）学习努力，能够正常完成学业。 3.申请材料 录取通知书、学校交费通知单及申请人身份证、户口簿、还要提供担保人或有效资产抵押、信用户评定等证明（具体材料以当地学生资助管理中心要求为准）。  4.贷款额度 每人每学年不超过20000元，原则上用于学生在校期间的学费和住宿费。需要办理生源地助学贷款的学生，准备齐全证明材料、在家庭所在县（市、区）教育局学生资助管理中心登记并领取申请表提出申请，借款人须将申请表填写完整并印章齐全。我校现暂未开通校园地国家助学贷款项目。 具体贷款要求，学生可向当地县（市、区）教育局学生资助管理中心咨询，或登录全国学生资助管理中心网https://www.xszz.edu.cn/?id=1895查询。'},
+{q:'已办理生源地助学贷款，其他费用怎么缴纳？',a:'已办理生源地助学贷款的学生，需首先登陆“文产E家”APP点击【生源地助学贷款】模块录入贷款信息，再点击【新生缴费】模块进行网上缴费。网上缴费时，根据自身贷款实际情况进行缴费，若只贷款了学费，则须缴纳住宿费；若同时贷款了学费及住宿费，则不需缴纳其他费用。操作完成后，学校给予办理贷款报到确认。'},
+{q:'学校各专业收费标准是多少？',a:'我校各招生专业学费标准严格按照四川省发展改革委、四川省财政厅和四川省教育厅有关政策执行，标准为：普通历史类、物理类4800-5200/学年，艺术类8000-10000/学年，体育类4800/学年。'},
+{q:'在校学习期间有哪些奖励？',a:'学校设有完善的奖励体系，具体可咨询学校学生资助管理中心或查看学校官网相关公告。'},
+{q:'各专业学费是多少？',a:'各专业学费以四川省发改委、财政厅核定标准执行，不同专业有所不同。住宿费800-1000元/年。具体可查看招生简章或咨询学校财务处。'}
 ]},
 {id:'career',label:'💼 就业与发展',questions:[
 {q:'学校毕业生就业情况怎么样？',a:'学校高度重视毕业生就业工作。根据往年数据，我校毕业生就业率保持在较高水平，学校每年举办多场校园招聘会，与多家文化企业建立了稳定的合作关系，为学生提供丰富的就业机会。具体情况可查看学校官网就业质量报告。'},
-{q:'在校学习期间有哪些奖励？',a:'学校设有完善的奖励体系，具体可咨询学校学生资助管理中心或查看学校官网相关公告。'}
+{q:'学校有校园招聘会吗？',a:'学校于每届大三上学期统一举办校园大型双选会，同时常态化开展各类专场招聘会、分专业精准招聘对接活动，为学生搭建多元化求职渠道。针对就业存在困难的毕业生，学校落实专项帮扶政策：依规发放求职创业补贴、就业困难补助，配套推行 “一对一” 专人就业指导帮扶机制，全方位助力毕业生顺利就业。'},
+{q:'毕业需要实习吗？',a:'需要实习。'},
+{q:'毕业实习时间怎么安排的？',a:'毕业实习时间由学校教务处统一安排。'},
+{q:'学校毕业后颁发什么文凭？',a:'学生在规定时间修满规定学分且考试合格者，准予毕业，颁发国家教育部电子注册的全国普通高校专科毕业证书。'},
+{q:'学校毕业生主要就业地区？',a:'学校毕业生去向主要区域以四川为主，辐射全国。'}
 ]},
 {id:'veteran',label:'⭐ 退伍军人',questions:[
 {q:'退伍军人能不能报名单招？',a:'已参加2026年四川省普通高等学校招生报名，且通过报名资格审核的考生，均可以参加2026年单招考试。（具体报名方式在省教育考试院官网查看）'}
 ]},
 {id:'brochure',label:'📖 招生简章补充',questions:[
+{q:'如何查看学校招生章程？',a:'请登录四川文化产业职业学院官网[https://www.svcci.cn/]点击招生网[https://zsw.svcci.cn]招生政策栏查询2026年招生章程,也可在教育部阳光高考网查询。'},
+{q:'学校官网地址？',a:'学校官网地址：[https://www.svcci.cn]'},
+{q:'学校教务处联系方式？',a:'教务处：028-85769756'},
+{q:'学校地址？',a:'四川省成都市双流区怡心街道锦江路四段399号'},
+{q:'学校设有哪些二级学院？',a:'学校设有融媒学院、文化旅游学院、文化商学院、文博学院、艺术设计学院、文化信息学院、人文与国际教育学院及马克思主义学院等8个二级教学单位。'},
+{q:'新生咨询的QQ群或微信群是多少？',a:'新生官方咨询群：758726867/563064678'},
+{q:'学校招生微信公众号多少？',a:'学校招生微信公众号：川文产院招生就业平台'},
 {q:'学校是什么性质的？',a:'我校是经四川省人民政府批准、教育部备案的<strong>公办全日制普通高等专科学校</strong>，由四川省教育厅主管。在川招生代码5185，部颁代码14086。'},
 {q:'学校地址在哪里？',a:'学校位于四川省成都市双流区（具体地址以招生简章为准）。'},
-{q:'学校有哪些二级学院？',a:'学校设有文化传播学院、文化旅游学院、文化商学院、艺术设计学院、文博学院、文化信息学院（数码学院）、体育部、音乐舞蹈学院等，涵盖文化艺术、新闻传播、旅游管理、商务会计、信息技术等领域。'},
-{q:'各专业学费是多少？',a:'各专业学费以四川省发改委、财政厅核定标准执行，不同专业有所不同。住宿费800-1000元/年。具体可查看招生简章或咨询学校财务处。'},
+{q:'学校有哪些二级学院？',a:'学校设有融媒学院、文化旅游学院、文化商学院、文博学院、艺术设计学院、文化信息学院、人文与国际教育学院等，涵盖文化艺术、新闻传播、旅游管理、商务会计、信息技术等领域。'},
 {q:'学校是否有国际交流合作？',a:'学校已与英国桑德兰大学、英国中央兰开夏大学及韩国庆星大学等建立了国际教育交流项目合作，为我校学生提供海外留学升本绿色通道。'},
 {q:'学校2025年招生总计划是多少？',a:'2025年共有38个招生专业，各专业的分省招生计划以各招生省份教育主管部门统一公布为准。'},
 {q:'学校的办学历史是怎样的？',a:'学校自2006年办学以来，致力于文化事业和文化产业办学专业的建设和发展。'},
-{q:'学校的师资力量如何？',a:'学校拥有一支高素质高水平的师资团队，建有大师工作室及传习所10余个。'}
-]}];
+{q:'学校的师资力量如何？',a:'学校拥有一支高素质高水平的师资团队，建有大师工作室及传习所10余个。'},
+{q:'学校是一所什么样的大学？',a:'四川文化产业职业学院是经四川省人民政府批准、教育部备案，中共四川省委宣传部主管的公办全日制普通高等职业院校，与四川省干部函授学院、中共四川省委宣传部党校合署办公、一体化运行管理。学校为四川省省级示范高等职业院校、四川省优质高等职业院校、四川省高水平高职学校培育单位。 学校先后被评为全国职业教育教学资源库项目建设单位、中国工艺美术大师传承创新基地院校、四川省新闻传播卓越人才建设高校、四川省文明校园、创新发展行动计划优质高等职业学校建设单位、四川省“对标竞进、争创一流”先进高校，是第46、47、48届世界技能大赛珠宝加工项目中国集训基地、成都市高技能人才培养基地。 学校主校区位于成都市双流区、高新区、天府新区交汇处，校园面积520余亩，地铁5号线直达，环境优美、区位优越。现有全日制在校生万余人，教职工530余人。学校设有融媒学院、文化旅游学院、文化商学院、文博学院、艺术设计学院、文化信息学院、人文与国际教育学院及马克思主义学院等8个二级教学单位。学校牵头发起成立全国广电和网络视听行业产教融合共同体、成都数智文博市域产教联合体、巴蜀文化创意（数字）产教联盟等平台，搭建起多层次、广覆盖的育人合作体系。 学校教学成果丰硕，近年教师先后荣获全国职业院校教学能力大赛一等奖，四川省职业教育教学成果一、二等奖。学生先后荣获世界职业院校技能大赛争夺赛金奖、金砖国家职业技能大赛奖、“挑战杯”四川省大学生创业计划竞赛金奖等世界级、国家级、省级技能大赛奖项300余项。学校坚持科研助推教育教学发展，科研成果数量和质量呈稳步上升趋势，承担的基础研究和应用基础研究科研项目近450项。毕业生去向落实率高于全省平均水平，被四川省教育厅评为“普通高等学校毕业生就业工作先进单位”“2023年度高校毕业生就业工作成绩突出单位”。'},
+{q:'学校的办学类型是什么？',a:'学校是公办全日制普通高等职业院校。'}
+]}
+];
 
 const SCORE_NEI={
 '美术与设计类（不分科类）':{touDang:'454.85',majors:[['首饰设计与工艺','455.19'],['产品艺术设计','458.02'],['服装与服饰设计','456.93'],['游戏艺术设计','475.19'],['环境艺术设计','454.85'],['数字媒体艺术设计','462.52'],['室内艺术设计','455.19'],['视觉传达设计','458']]},
@@ -484,79 +801,126 @@ const SCORE_WAI={
 };
 
 const COLLEGES=[
-{name:'文化传播学院',icon:'📡',majors:[
+{name:'融媒学院',icon:'📡',majors:[
 {name:'新闻采编与制作',desc:'培养掌握新闻采编、摄影摄像、图文编辑等技能，能在广播电视台、报社、新媒体平台从事新闻采编、报道制作等工作的高素质技术技能人才。主要课程：新闻采访与写作、新闻摄影、电视节目制作、新媒体运营等。'},
 {name:'网络舆情监测',desc:'培养掌握网络舆情分析、数据挖掘、危机公关等技能，能在政府部门、企事业单位、互联网公司从事舆情监测与分析、网络信息管理等工作的高素质技术技能人才。'},
-{name:'影视多媒体技术',desc:'培养掌握影视拍摄、后期剪辑、特效制作等技能，能在影视制作公司、广告公司、新媒体平台从事影视创作与制作的高素质技术技能人才。'},
 {name:'网络直播与运营',desc:'培养掌握网络直播策划、直播运营、短视频创作等技能，能在电商平台、MCN机构、新媒体企业从事网络直播、内容运营等工作的高素质技术技能人才。'},
-{name:'融媒体技术与运营',desc:'培养掌握融媒体内容生产、平台运营、数据分析等技能，能在融媒体中心、传媒公司、互联网平台从事融媒体内容策划、采编与运营的高素质技术技能人才。'},
-{name:'中文',desc:'培养具有扎实的中文功底和较强的文字表达能力，能在文化教育、新闻出版、行政管理等领域从事文秘、编辑、宣传、教育等工作的高素质技术技能人才。'}
+{name:'影视多媒体技术',desc:'培养掌握影视拍摄、后期剪辑、特效制作等技能，能在影视制作公司、广告公司、新媒体平台从事影视创作与制作的高素质技术技能人才。'},
+{name:'融媒体技术与运营',desc:'培养掌握融媒体内容生产、平台运营、数据分析等技能，能在融媒体中心、传媒公司、互联网平台从事融媒体内容策划、采编与运营的高素质技术技能人才。'}
 ]},
 {name:'文化旅游学院',icon:'✈️',majors:[
 {name:'旅游管理',desc:'培养掌握旅游服务与管理技能，能在旅行社、旅游景区、旅游电商平台等从事导游服务、旅游策划、景区管理等工作的高素质技术技能人才。'},
 {name:'酒店管理与数字化运营',desc:'培养掌握酒店数字化运营与管理技能，能在高星级酒店、连锁酒店集团、文旅企业等从事前厅、客房、餐饮管理及数字化运营的高素质技术技能人才。'},
 {name:'智慧旅游技术应用',desc:'培养掌握智慧旅游技术、旅游大数据分析等技能，能在智慧景区、在线旅游平台、文旅科技企业从事智慧旅游系统运维、数据分析等工作的高素质技术技能人才。'},
-{name:'会展策划与管理',desc:'培养掌握会展策划、组织管理、品牌推广等技能，能在会展公司、文化传媒机构、大型企业从事会议展览策划、管理与执行的高素质技术技能人才。'}
+{name:'公共文化服务与管理',desc:'培养掌握公共文化服务管理、文化项目策划等技能，能在文化馆、博物馆、社区文化中心等公共文化机构从事文化服务与管理工作的高素质技术技能人才。'},
+{name:'现代家政服务与管理',desc:'培养掌握现代家政管理、社区服务等技能，能在家政服务企业、社区服务中心、康养机构等从事管理、培训与服务工作的高素质技术技能人才。'}
 ]},
 {name:'文化商学院',icon:'💹',majors:[
 {name:'文化产业经营与管理',desc:'培养掌握文化产业运营管理、文化项目策划等技能，能在文化传媒公司、文旅企业、文创园区等从事经营管理、项目策划与推广的高素质技术技能人才。'},
-{name:'大数据与会计',desc:'培养掌握会计实务、财务数据分析、大数据处理等技能，能在企事业单位、会计师事务所、金融机构等从事会计核算、财务管理、数据分析等工作的高素质技术技能人才。'},
 {name:'市场营销',desc:'培养掌握市场调研、营销策划、品牌管理等技能，能在各类企业从事市场推广、品牌运营、新媒体营销等工作的高素质技术技能人才。'},
-{name:'跨境电子商务',desc:'培养掌握跨境电商平台运营、国际贸易、网络营销等技能，能在跨境电商企业、外贸公司等从事跨境平台运营、海外市场推广等工作的高素质技术技能人才。'},
-{name:'公共文化服务与管理',desc:'培养掌握公共文化服务管理、文化项目策划等技能，能在文化馆、博物馆、社区文化中心等公共文化机构从事文化服务与管理工作的高素质技术技能人才。'},
-{name:'现代家政服务与管理',desc:'培养掌握现代家政管理、社区服务等技能，能在家政服务企业、社区服务中心、康养机构等从事管理、培训与服务工作的高素质技术技能人才。'},
-{name:'婚庆服务与管理',desc:'培养掌握婚庆策划、活动组织、礼仪服务等技能，能在婚庆公司、文化传媒机构等从事婚庆策划、活动执行与管理工作的高素质技术技能人才。'}
-]},
-{name:'艺术设计学院',icon:'🎨',majors:[
-{name:'视觉传达设计',desc:'培养掌握平面设计、品牌形象设计、包装设计等技能，能在广告公司、设计机构、文化传媒企业等从事视觉设计与创意工作的高素质技术技能人才。'},
-{name:'环境艺术设计',desc:'培养掌握室内外环境设计、景观设计等技能，能在室内设计公司、建筑装饰企业、景观设计机构等从事环境艺术设计与施工管理的高素质技术技能人才。'},
-{name:'数字媒体艺术设计',desc:'培养掌握数字媒体设计、交互设计、UI/UX设计等技能，能在互联网企业、游戏公司、数字媒体机构等从事数字内容创作的高素质技术技能人才。'},
-{name:'产品艺术设计',desc:'培养掌握产品造型设计、文创产品开发等技能，能在制造企业、文创公司、设计机构等从事产品设计与开发的高素质技术技能人才。'},
-{name:'室内艺术设计',desc:'培养掌握室内空间设计、软装搭配等技能，能在装饰设计公司、家居企业、房地产企业等从事室内设计与项目管理的高素质技术技能人才。'},
-{name:'服装与服饰设计',desc:'培养掌握服装设计、制版工艺、服饰搭配等技能，能在服装企业、时尚机构等从事服装设计、产品开发等工作的高素质技术技能人才。'},
-{name:'首饰设计与工艺',desc:'培养掌握首饰设计、工艺制作、珠宝鉴定等技能，能在珠宝企业、文创公司等从事首饰设计、工艺制作与营销的高素质技术技能人才。'},
-{name:'游戏艺术设计',desc:'培养掌握游戏美术设计、角色建模、场景设计等技能，能在游戏开发公司、数字娱乐企业等从事游戏美术设计与制作的高素质技术技能人才。'},
-{name:'文化创意与策划',desc:'培养掌握文创产品设计、品牌策划、活动策划等技能，能在文创企业、文化传媒公司、文旅项目等从事文化创意与策划工作的高素质技术技能人才。'}
+{name:'大数据与会计',desc:'培养掌握会计实务、财务数据分析、大数据处理等技能，能在企事业单位、会计师事务所、金融机构等从事会计核算、财务管理、数据分析等工作的高素质技术技能人才。'},
+{name:'会展策划与管理',desc:'培养掌握会展策划、组织管理、品牌推广等技能，能在会展公司、文化传媒机构、大型企业从事会议展览策划、管理与执行的高素质技术技能人才。'},
+{name:'跨境电子商务',desc:'培养掌握跨境电商平台运营、国际贸易、网络营销等技能，能在跨境电商企业、外贸公司等从事跨境平台运营、海外市场推广等工作的高素质技术技能人才。'}
 ]},
 {name:'文博学院',icon:'🏛️',majors:[
-{name:'文物修复与保护',desc:'培养掌握文物修复技术、文物保护管理等技能，能在博物馆、文物修复机构、文化遗产保护单位等从事文物修复、保护与管理的高素质技术技能人才。'},
+{name:'首饰设计与工艺',desc:'培养掌握首饰设计、工艺制作、珠宝鉴定等技能，能在珠宝企业、文创公司等从事首饰设计、工艺制作与营销的高素质技术技能人才。'},
 {name:'宝玉石鉴定与加工',desc:'培养掌握宝玉石鉴定、饰品设计加工等技能，能在珠宝检测机构、珠宝企业等从事宝玉石鉴定评估、设计加工等工作的高素质技术技能人才。'},
-{name:'文物展示利用技术',desc:'培养掌握文物陈列展示、数字展览设计等技能，能在博物馆、展览馆、文化遗产景区等从事展陈设计、数字展示与文物活化利用的高素质技术技能人才。'}
+{name:'服装与服饰设计',desc:'培养掌握服装设计、制版工艺、服饰搭配等技能，能在服装企业、时尚机构等从事服装设计、产品开发等工作的高素质技术技能人才。'},
+{name:'婚庆服务与管理',desc:'培养掌握婚庆策划、活动组织、礼仪服务等技能，能在婚庆公司、文化传媒机构等从事婚庆策划、活动执行与管理工作的高素质技术技能人才。'},
+{name:'文物修复与保护',desc:'培养掌握文物修复技术、文物保护管理等技能，能在博物馆、文物修复机构、文化遗产保护单位等从事文物修复、保护与管理的高素质技术技能人才。'},
+{name:'文物展示利用技术',desc:'培养掌握文物陈列展示、数字展览设计等技能，能在博物馆、展览馆、文化遗产景区等从事展陈设计、数字展示与文物活化利用的高素质技术技能人才。'},
+{name:'产品艺术设计',desc:'培养掌握产品造型设计、文创产品开发等技能，能在制造企业、文创公司、设计机构等从事产品设计与开发的高素质技术技能人才。'},
+{name:'文化创意与策划',desc:'培养掌握文创产品设计、品牌策划、活动策划等技能，能在文创企业、文化传媒公司、文旅项目等从事文化创意与策划工作的高素质技术技能人才。'}
 ]},
-{name:'文化信息学院（数码学院）',icon:'💻',majors:[
-{name:'人工智能技术应用',desc:'培养掌握人工智能应用开发、数据分析、机器学习等技能，能在IT企业、智慧文旅企业等从事AI应用开发、数据标注与分析等工作的高素质技术技能人才。'},
+{name:'艺术设计学院',icon:'🎨',majors:[
+{name:'游戏艺术设计',desc:'培养掌握游戏美术设计、角色建模、场景设计等技能，能在游戏开发公司、数字娱乐企业等从事游戏美术设计与制作的高素质技术技能人才。'},
+{name:'数字媒体艺术设计',desc:'培养掌握数字媒体设计、交互设计、UI/UX设计等技能，能在互联网企业、游戏公司、数字媒体机构等从事数字内容创作的高素质技术技能人才。'},
+{name:'视觉传达设计',desc:'培养掌握平面设计、品牌形象设计、包装设计等技能，能在广告公司、设计机构、文化传媒企业等从事视觉设计与创意工作的高素质技术技能人才。'},
+{name:'环境艺术设计',desc:'培养掌握室内外环境设计、景观设计等技能，能在室内设计公司、建筑装饰企业、景观设计机构等从事环境艺术设计与施工管理的高素质技术技能人才。'},
+{name:'室内艺术设计',desc:'培养掌握室内空间设计、软装搭配等技能，能在装饰设计公司、家居企业、房地产企业等从事室内设计与项目管理的高素质技术技能人才。'},
+{name:'建筑动画技术',desc:'培养掌握建筑动画制作、BIM技术应用等技能，能在建筑设计公司、装饰企业、数字媒体公司等从事建筑可视化设计与动画制作的高素质技术技能人才。'}
+]},
+{name:'文化信息学院',icon:'💻',majors:[
+{name:'数字广播电视技术',desc:'培养掌握数字音视频制作、广播电视系统运维等技能，能在广播电视台、融媒体中心、网络视听机构等从事技术运维与内容制作的高素质技术技能人才。'},
+{name:'移动互联应用技术',desc:'培养掌握移动应用开发、Web前端设计等技能，能在互联网企业、软件公司等从事移动端应用开发与运维的高素质技术技能人才。'},
 {name:'大数据技术',desc:'培养掌握大数据采集、存储、处理与分析等技能，能在互联网企业、数据分析公司等从事大数据开发、数据分析与运维的高素质技术技能人才。'},
 {name:'数字媒体技术',desc:'培养掌握数字媒体开发、虚拟现实(VR/AR)、交互设计等技能，能在数字媒体企业、游戏公司、文化科技企业等从事数字内容开发的高素质技术技能人才。'},
-{name:'移动互联应用技术',desc:'培养掌握移动应用开发、Web前端设计等技能，能在互联网企业、软件公司等从事移动端应用开发与运维的高素质技术技能人才。'},
-{name:'建筑动画技术',desc:'培养掌握建筑动画制作、BIM技术应用等技能，能在建筑设计公司、装饰企业、数字媒体公司等从事建筑可视化设计与动画制作的高素质技术技能人才。'},
-{name:'数字广播电视技术',desc:'培养掌握数字音视频制作、广播电视系统运维等技能，能在广播电视台、融媒体中心、网络视听机构等从事技术运维与内容制作的高素质技术技能人才。'}
+{name:'人工智能技术应用',desc:'培养掌握人工智能应用开发、数据分析、机器学习等技能，能在IT企业、智慧文旅企业等从事AI应用开发、数据标注与分析等工作的高素质技术技能人才。'}
 ]},
-{name:'体育部',icon:'🏅',majors:[
-{name:'休闲体育',desc:'培养掌握休闲体育指导、健身教练、体育管理等技能，能在健身俱乐部、体育场馆、体育文化公司等从事体育指导、赛事组织与管理的高素质技术技能人才。'}
-]},
-{name:'音乐舞蹈学院（演艺学院）',icon:'🎵',majors:[
+{name:'人文与国际教育学院',icon:'🎓',majors:[
+{name:'中文',desc:'培养具有扎实的中文功底和较强的文字表达能力，能在文化教育、新闻出版、行政管理等领域从事文秘、编辑、宣传、教育等工作的高素质技术技能人才。'},
+{name:'音乐表演',desc:'培养掌握声乐演唱、器乐演奏等技能，能在文艺团体、文化馆站、演艺机构等从事音乐表演、艺术培训与文化活动组织的高素质技术技能人才。'},
 {name:'舞蹈表演',desc:'培养掌握舞蹈表演、舞蹈编导等技能，能在文艺团体、文化传媒公司、演艺机构等从事舞蹈表演、编导与教学的高素质技术技能人才。'},
-{name:'音乐表演',desc:'培养掌握声乐演唱、器乐演奏等技能，能在文艺团体、文化馆站、演艺机构等从事音乐表演、艺术培训与文化活动组织的高素质技术技能人才。'}
+{name:'休闲体育',desc:'培养掌握休闲体育指导、健身教练、体育管理等技能，能在健身俱乐部、体育场馆、体育文化公司等从事体育指导、赛事组织与管理的高素质技术技能人才。'}
 ]}];
+
+// FAQ detail page functions
+var qaDetailIndex = 0;
+
+// Grid card click -> navigate to detail page
+function showQADetail(i) {
+  qaDetailIndex = i;
+  var cat = QA_CATEGORIES[i];
+  document.getElementById('qaDetailTitle').textContent = cat.label;
+
+  var html = '';
+  cat.questions.forEach(function(q, j) {
+    var qid = 'qad-' + i + '-' + j;
+    html += '<div class="qa-card" id="' + qid + '">' +
+      '<div class="qa-q" onclick="toggleAnswer(\'' + qid + '\')">' +
+      '<span class="num">' + (j + 1) + '</span>' +
+      '<span class="q-text">' + q.q + '</span>' +
+      '<span class="arrow">\u25bc</span></div>' +
+      '<div class="qa-a" id="a-' + qid + '"><div>' + q.a + '</div>' +
+      '<button class="copy-btn" onclick="copyAnswer(\'' + qid + '\')">📋 \u590d\u5236\u7b54\u6848</button></div></div>';
+  });
+  document.getElementById('qaDetailContent').innerHTML = html;
+  document.getElementById('qaDetailSearch').value = '';
+  showPage('qa-detail');
+}
+
+function searchQADetail() {
+  var q = document.getElementById('qaDetailSearch').value.trim().toLowerCase();
+  var cat = QA_CATEGORIES[qaDetailIndex];
+  if (!cat || !cat.questions) return;
+  document.querySelectorAll('#qaDetailContent .qa-card').forEach(function(c, i) {
+    if (!q) { c.style.display = ''; return; }
+    var qt = cat.questions[i].q.toLowerCase();
+    var at = cat.questions[i].a.replace(/<[^>]*>/g, '').toLowerCase();
+    c.style.display = (qt.indexOf(q) >= 0 || at.indexOf(q) >= 0) ? '' : 'none';
+  });
+}
 
 // ============================================================
 // RENDER
-// ============================================================
+// Category grid on FAQ page
+const FAQ_GRID_COLORS = [
+  '#2563eb','#059669','#7c3aed','#d97706','#e11d48',
+  '#0891b2','#db2777','#65a30d','#0d9488','#4338ca'
+];
+const FAQ_GRID_LIGHTS = [
+  '#eff6ff','#ecfdf5','#f5f3ff','#fffbeb','#fff1f2',
+  '#ecfeff','#fdf2f8','#f7fee7','#f0fdfa','#eef2ff'
+];
+function renderQACategories() {
+  var grid = document.getElementById('qaCatGrid');
+  if (!grid) return;
+  var html = '';
+  QA_CATEGORIES.forEach(function(cat, i) {
+    var c = FAQ_GRID_COLORS[i % FAQ_GRID_COLORS.length];
+    var l = FAQ_GRID_LIGHTS[i % FAQ_GRID_LIGHTS.length];
+    var icon = (cat.label.match(/^(\S+)\s/) || ['','📋'])[1];
+    var title = cat.label.replace(/^\S+\s*/, '');
+    var count = cat.questions ? cat.questions.length : 0;
+    html += '<div class="qa-cat-card" onclick="showQADetail('+i+')" style="border-left-color:'+c+';--cc-hover-bg:'+l+';" id="qacc-'+i+'">' +
+      '<div class="cc-icon" style="background:'+l+';">' + icon + '</div>' +
+      '<div class="cc-info"><h3>' + title + '</h3>' +
+      '<div class="cc-count">' + count + ' 个问题</div></div></div>';
+  });
+  grid.innerHTML = html;
+}
+renderQACategories();
 
-function renderQA(){
-var t=document.getElementById('qaTabs'),c=document.getElementById('qaContent'),th='',ch='';
-QA_CATEGORIES.forEach(function(cat,i){
-th+='<buttont class="sub-tab'+(i===0?' active':'')+'" onclick="switchQATab('+i+')">'+cat.label+'</buttont>';
-var qj='',qa='';
-cat.questions.forEach(function(q,j){
-var qid='qa-'+cat.id+'-'+j;
-qj+='<span class="qj-tag" onclick="scrollToQA(\''+qid+'\')">Q'+(j+1)+'</span>';
-qa+='<div class="qa-card" id="'+qid+'"><div class="qa-q" onclick="toggleAnswer(\''+qid+'\')"><span class="num">'+(j+1)+'</span><span class="q-text">'+q.q+'</span><span class="arrow">▼</span></div><div class="qa-a" id="a-'+qid+'"><div>'+q.a+'</div><button class="copy-btn" onclick="copyAnswer(\''+qid+'\')">📋 复制答案</button></div></div>';
-});
-ch+='<div class="qa-section'+(i===0?'':' hidden')+'" id="qaSec-'+i+'"><div class="quick-jump"><div class="qj-label">快速跳转</div><div class="qj-tags">'+qj+'</div></div>'+qa+'</div>';
-});
-t.innerHTML=th;c.innerHTML=ch;
-}renderQA();
 
 function renderScoreNei(){
 var h='<div class="search-box"><input type="text" id="scoreNeiSearch" placeholder="输入专业名实时搜索..." oninput="searchScoreNei()"></div>';
@@ -566,14 +930,14 @@ h+='<div class="score-section"><table class="score-table"><tr class="cat-row"><t
 d.majors.forEach(function(m){h+='<tr class="score-row"><td>'+m[0]+'</td><td class="score-val">'+m[1]+'</td></tr>';});
 h+='</table></div>';
 });
-document.getElementById('scoreContent').innerHTML=h;
+var sc=document.getElementById('scoreContent');if(!sc)return;sc.innerHTML=h;
 }
 
 function renderScoreWai(){
 var p=Object.keys(SCORE_WAI).sort(),h='<div class="score-provinces">';
 p.forEach(function(x){h+='<button class="province-btn" onclick="showProvince(\''+x+'\')">'+x+'</button>';});
 h+='</div><div id="provinceDetail"><div class="empty-state">👆 点击上方省份查看录取分数</div></div>';
-document.getElementById('scoreContent').innerHTML=h;
+var sc=document.getElementById('scoreContent');if(!sc)return;sc.innerHTML=h;
 }renderScoreNei();
 
 function renderMajors(){
@@ -586,8 +950,68 @@ h+='<div class="major-card" onclick="toggleMajor(\''+mid+'\')"><div class="major
 });
 h+='</div>';
 });
-document.getElementById('majorContent').innerHTML=h;
+var mc=document.getElementById('majorContent');if(!mc)return;mc.innerHTML=h;
 }renderMajors();
+
+const PHONES=[
+{dept:'党政办公室',tel:'85766755'},
+{dept:'组织人事部',tel:'85768943'},
+{dept:'纪委办公室',tel:'85767736'},
+{dept:'宣传统战部',tel:'85671007'},
+{dept:'学生工作部',tel:'85769750'},
+{dept:'校团委',tel:'85874201'},
+{dept:'安全保卫处',tel:'85768405'},
+{dept:'校工会',tel:'85626337'},
+{dept:'发展规划处',tel:'81484175'},
+{dept:'教务处',tel:'85766726'},
+{dept:'招生就业处',tel:'85766716'},
+{dept:'科研处',tel:'85792285'},
+{dept:'产教融合处',tel:'85766769'},
+{dept:'财务处',tel:'85769495'},
+{dept:'培训管理处',tel:'85769389'},
+{dept:'审计处',tel:'85766140'},
+{dept:'资产管理处',tel:'81514336'},
+{dept:'后勤基建处',tel:'61535402'},
+{dept:'融媒学院',tel:'85766928'},
+{dept:'文化旅游学院',tel:'61150025'},
+{dept:'文化商学院',tel:'85769238'},
+{dept:'文博学院',tel:'85744132'},
+{dept:'艺术设计学院',tel:'85761581'},
+{dept:'文信学院',tel:'85640362'},
+{dept:'人文与国际教育学院',tel:'62124457'},
+{dept:'马克思主义学院',tel:'85765285'},
+{dept:'教育信息化办公室',tel:'85744089'},
+{dept:'图书档案馆',tel:'85793759'},
+{dept:'培训中心',tel:'85627193'},
+{dept:'四川学府文产商业管理有限公司',tel:'85610066'}
+];
+
+function renderPhoneDir(){
+var h='';
+PHONES.forEach(function(d,i){
+h+='<div class="phone-dept-card" data-search="'+d.dept+' '+d.tel+'">'+
+'<span class="dept-num">'+(i+1)+'</span>'+
+'<div class="dept-info"><div class="dept-name">'+d.dept+'</div><div class="dept-tel">'+d.tel+'</div></div>'+
+'<span class="copy-tel" onclick="copyPhone(\''+d.tel+'\',\''+d.dept+'\')">📋 复制</span>'+
+'<a class="call-btn" href="tel:+86028'+d.tel.replace(/-/g,'')+'" aria-label="拨打电话">📱</a>'+
+'</div>';
+});
+document.getElementById('phoneContent').innerHTML=h;
+}
+
+function searchPhone(){
+var q=document.getElementById('phoneSearch').value.trim().toLowerCase();
+document.querySelectorAll('#phoneContent .phone-dept-card').forEach(function(c){
+c.style.display=!q||c.getAttribute('data-search').toLowerCase().indexOf(q)>=0?'':'none';
+});
+}
+
+function copyPhone(tel,dept){
+var text=dept+'：'+tel;
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){showToast('已复制 '+text);}).catch(function(){showToast('复制失败');});
+}else{showToast('复制失败');}
+}renderPhoneDir();
 
 // ============================================================
 // NAVIGATION
@@ -599,32 +1023,130 @@ window.scrollTo(0,0);
 }
 function goHome(){showPage('home');}
 
-// QA
-var curQATab=0;
-function switchQATab(i){
-curQATab=i;
-document.querySelectorAll('#qaTabs .sub-tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
-document.querySelectorAll('#qaContent .qa-section').forEach(function(s,j){s.classList.toggle('hidden',j!==i);});
-document.getElementById('qaSearch').value='';
+// ---- Global Search ----
+var globalSearchIndex=[];
+function buildGlobalSearchIndex(){
+globalSearchIndex=[];
+QA_CATEGORIES.forEach(function(cat,ci){
+cat.questions.forEach(function(q,qi){
+globalSearchIndex.push({type:'qa',text:q.q,sub:cat.label,catIdx:ci,qIdx:qi});
+});
+});
+COLLEGES.forEach(function(col,ci){
+col.majors.forEach(function(m,mi){
+globalSearchIndex.push({type:'major',text:m.name,sub:col.name,colIdx:ci,majorIdx:mi});
+});
+});
+PHONES.forEach(function(d,i){
+globalSearchIndex.push({type:'phone',text:d.dept,sub:d.tel,phoneIdx:i});
+});
+// Score search
+Object.keys(SCORE_NEI).forEach(function(cat){
+var majors=SCORE_NEI[cat].majors;
+majors.forEach(function(m){
+if(globalSearchIndex.filter(function(x){return x.type==='score'&&x.text===m[0];}).length===0){
+globalSearchIndex.push({type:'score',text:m[0]+' ('+cat+')',sub:'四川省内录取分数'});
 }
+});
+});
+}
+buildGlobalSearchIndex();
+
+function globalSearch(){
+var q=document.getElementById('globalSearchInput').value.trim().toLowerCase();
+var r=document.getElementById('globalSearchResults');
+if(q.length<1){r.classList.remove('active');r.innerHTML='';return;}
+var matches=[];
+globalSearchIndex.forEach(function(item){
+var txt=(item.text+' '+item.sub).toLowerCase();
+if(txt.indexOf(q)>=0)matches.push(item);
+});
+window._searchMatches=matches;
+if(matches.length===0){
+r.innerHTML='<div class="gsr-empty">未找到相关内容</div>';
+}else{
+var html='';var shown=Math.min(matches.length,12);
+for(var i=0;i<shown;i++){
+var m=matches[i];
+var typeCls='',typeLabel='';
+switch(m.type){
+case 'qa':typeCls='qa-type';typeLabel='问答';break;
+case 'score':typeCls='score-type';typeLabel='分数';break;
+case 'major':typeCls='major-type';typeLabel='专业';break;
+case 'phone':typeCls='phone-type';typeLabel='电话';break;
+}
+html+='<div class="gsr-item" onclick="navigateToResult('+i+')">'+
+'<span class="gsr-type '+typeCls+'">'+typeLabel+'</span>'+
+'<div class="gsr-text">'+m.text+'<div class="gsr-sub">'+m.sub+'</div></div>'+
+'</div>';
+}
+if(matches.length>12)html+='<div class="gsr-empty">还有 '+(matches.length-12)+' 条结果，请细化搜索</div>';
+r.innerHTML=html;
+}
+r.classList.add('active');
+}
+
+function navigateToResult(idx){
+var item=window._searchMatches[idx];
+if(!item)return;
+document.getElementById('globalSearchInput').value='';
+document.getElementById('globalSearchResults').classList.remove('active');
+document.getElementById('globalSearchResults').innerHTML='';
+switch(item.type){
+case 'qa':
+showPage('qa');
+setTimeout(function(){
+showQADetail(item.catIdx);
+setTimeout(function(){
+var qid='qad-'+item.catIdx+'-'+item.qIdx;
+var el=document.getElementById(qid);
+if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}
+var aEl=document.getElementById('a-'+qid);
+if(aEl){aEl.classList.add('open');var ar=el.querySelector('.arrow');if(ar)ar.classList.add('open');}
+},200);
+},100);
+break;
+case 'major':
+showPage('major');
+setTimeout(function(){
+var mid='m-'+item.colIdx+'-'+item.majorIdx;
+var el=document.getElementById(mid);
+if(el){
+el.scrollIntoView({behavior:'smooth',block:'center'});
+toggleMajor(mid);
+}
+},100);
+break;
+case 'phone':
+showPage('phone');
+setTimeout(function(){
+document.getElementById('phoneSearch').value=item.text;
+searchPhone();
+},100);
+break;
+case 'score':
+showPage('score');
+switchScoreTab('nei');
+setTimeout(function(){
+document.getElementById('scoreNeiSearch').value=item.text.replace(/\s*\(.+\)\s*$/,'');
+searchScoreNei();
+},100);
+break;
+}
+}
+
+// Click outside to close search
+document.addEventListener('click',function(e){
+var s=document.getElementById('globalSearchResults');
+var inp=document.getElementById('globalSearchInput');
+if(s&&inp&&!s.contains(e.target)&&e.target!==inp){
+s.classList.remove('active');
+}
+});
+
 function toggleAnswer(id){
 var a=document.getElementById('a-'+id),ar=a.closest('.qa-card').querySelector('.arrow');
 a.classList.toggle('open');ar.classList.toggle('open');
-}
-function scrollToQA(id){
-var e=document.getElementById(id);if(!e)return;
-e.scrollIntoView({behavior:'smooth',block:'center'});
-var a=document.getElementById('a-'+id),ar=e.querySelector('.arrow');
-if(a)a.classList.add('open');if(ar)ar.classList.add('open');
-}
-function searchQA(){
-var q=document.getElementById('qaSearch').value.trim().toLowerCase();
-var cat=QA_CATEGORIES[curQATab];
-document.getElementById('qaSec-'+curQATab).querySelectorAll('.qa-card').forEach(function(c,i){
-if(!q){c.style.display='';return;}
-var qt=cat.questions[i].q.toLowerCase(),at=cat.questions[i].a.replace(/<[^>]*>/g,'').toLowerCase();
-c.style.display=(qt.indexOf(q)>=0||at.indexOf(q)>=0)?'':'none';
-});
 }
 function copyAnswer(id){
 var e=document.getElementById('a-'+id),t=e.textContent.replace('复制答案','').trim();

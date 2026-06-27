@@ -105,16 +105,19 @@
   .home-card:nth-child(2) { border-left: 4px solid var(--emerald); }
   .home-card:nth-child(3) { border-left: 4px solid var(--violet); }
   .home-card:nth-child(4) { border-left: 4px solid var(--amber); }
+  .home-card:nth-child(5) { border-left: 4px solid var(--rose); }
   .home-card:nth-child(1):hover, .home-card:nth-child(1):active { background: linear-gradient(135deg, #eff6ff, #fff); }
   .home-card:nth-child(2):hover, .home-card:nth-child(2):active { background: linear-gradient(135deg, #ecfdf5, #fff); }
   .home-card:nth-child(3):hover, .home-card:nth-child(3):active { background: linear-gradient(135deg, #f5f3ff, #fff); }
   .home-card:nth-child(4):hover, .home-card:nth-child(4):active { background: linear-gradient(135deg, #fffbeb, #fff); }
+  .home-card:nth-child(5):hover, .home-card:nth-child(5):active { background: linear-gradient(135deg, #fff1f2, #fff); }
 
   .home-card .icon { font-size: 36px; flex-shrink: 0; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 14px; }
   .home-card:nth-child(1) .icon { background: var(--pri-light); }
   .home-card:nth-child(2) .icon { background: var(--emerald-light); }
   .home-card:nth-child(3) .icon { background: var(--violet-light); }
   .home-card:nth-child(4) .icon { background: var(--amber-light); }
+  .home-card:nth-child(5) .icon { background: var(--rose-light); }
   .home-card .info { flex: 1; min-width: 0; }
   .home-card .info h2 { font-size: clamp(15px, 3.5vw, 17px); margin-bottom: 4px; font-weight: 700; }
   .home-card .info p { font-size: clamp(12px, 2.8vw, 13.5px); color: var(--text-mid); line-height: 1.5; }
@@ -485,6 +488,31 @@
 .gsr-item .gsr-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; }
 .gsr-empty { padding: 24px 14px; text-align: center; color: var(--text-light); font-size: 13px; }
 
+
+/* ---- Enrollment Plan 2026 ---- */
+.plan-summary { padding: 12px 16px; background: var(--rose-light); border-radius: var(--radius-sm); margin: 8px 12px; border: 1px solid #fecdd3; font-size: clamp(12px, 2.8vw, 13.5px); color: var(--text-mid); line-height: 1.7; }
+.plan-summary strong { color: var(--rose); }
+.plan-cat-card { margin: 8px 12px; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
+.plan-cat-header { padding: 12px 14px; font-weight: 700; font-size: clamp(13px, 3vw, 15px); display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; background: var(--rose-light); border-bottom: 1px solid #fecdd3; transition: background 0.15s; }
+.plan-cat-header:active { background: #ffe4e8; }
+.plan-cat-header .plan-cat-count { font-weight: 500; font-size: clamp(11px, 2.5vw, 12.5px); color: var(--rose); }
+.plan-cat-header .plan-cat-arrow { color: var(--text-light); font-size: 12px; transition: transform 0.2s; }
+.plan-cat-header .plan-cat-arrow.open { transform: rotate(180deg); }
+.plan-cat-body { display: none; }
+.plan-cat-body.open { display: block; }
+.plan-table { width: 100%; border-collapse: collapse; font-size: clamp(12px, 2.7vw, 13.5px); }
+.plan-table th { background: var(--bg); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-mid); font-size: clamp(11px, 2.5vw, 12.5px); border-bottom: 1px solid var(--border); }
+.plan-table td { padding: 9px 10px; border-bottom: 1px solid #f3f4f6; }
+.plan-table tr:last-child td { border-bottom: none; }
+.plan-table .plan-code { color: var(--text-light); font-size: clamp(11px, 2.5vw, 12px); width: 36px; }
+.plan-table .plan-name { font-weight: 600; color: var(--text); }
+.plan-table .plan-plan { font-weight: 700; color: var(--rose); }
+.plan-table .plan-fee { color: var(--text-mid); }
+@media (min-width: 480px) {
+  .plan-cat-card { max-width: 500px; margin: 8px auto; }
+  .plan-summary { max-width: 500px; margin: 8px auto; }
+}
+
 </style>
 </head>
 <body>
@@ -519,6 +547,9 @@
     <div class="home-card" onclick="showPage('phone')">
       <div class="icon">📞</div><div class="info"><h2>校内部门电话</h2><p>党政办、教务处、各学院等30个部门联系方式</p></div>
     </div>
+    <div class="home-card" onclick="showPage('plan')">
+      <div class="icon">📋</div><div class="info"><h2>2026年招生专业计划</h2><p>2026年高职专科及对口高考招生专业、计划、学费</p></div>
+    </div>
   </div>
 </div>
 
@@ -549,6 +580,13 @@
 </div>
 
 
+
+<div class="page" id="page-plan">
+  <div class="back-header"><button class="back-btn" onclick="goHome()" aria-label="返回">‹</button><span class="title">📋 2026年招生专业计划</span></div>
+  <div class="search-box"><input type="text" id="planSearch" placeholder="搜索专业名称..." oninput="searchPlan()"></div>
+  <div id="planContent"></div>
+</div>
+
 <div class="page" id="page-qa-detail">
   <div class="back-header"><button class="back-btn" onclick="showPage('qa')" aria-label="返回分类">‹</button><span class="title" id="qaDetailTitle">分类名称</span></div>
   <div class="search-box"><input type="text" id="qaDetailSearch" placeholder="搜索问题关键词..." oninput="searchQADetail()"></div>
@@ -562,7 +600,7 @@
 <div class="site-footer">
   <div class="footer-brand">四川文化产业职业学院 · 招生咨询系统</div>
   <div class="footer-dev">开发者：优联协会——姜佳乐</div>
-  <div class="footer-disclaimer">本系统仅供招就处值班人员内部参考使用，数据来源于学校官方招生简章及历年录取统计。<br>如有疑问请以学校官网（www.svcci.cn）公布为准。<br><br>⚠️ 如遇拿不准的问题，请以学校官方招生简章及线下实际资料为准。<br>发现内容与实际不符？请及时联系开发者反馈修正。</div>
+  <div class="footer-disclaimer">本系统仅供招就处值班人员内部参考使用，数据来源于学校官方招生简章及历年录取统计。<br>如有疑问请以学校招生网（www.svcci.cn）公布为准。<br><br>⚠️ 如遇拿不准的问题，请以学校官方招生简章及线下实际资料为准。<br>发现内容与实际不符？请及时联系开发者反馈修正。</div>
 </div>
 
 <script>
@@ -579,9 +617,9 @@ const QA_CATEGORIES=[
 {q:'学校好不好考？是不是艺术类院校？',a:'录取分数取决于填报我校的考生人数和考试分数。建议合理填报并选择<strong>服从专业调配</strong>增加录取几率。我校是<strong>综合类专科学校</strong>，并非艺术类学校。2026年单招33个专业中艺术类7个、普通类26个。'},
 {q:'四川省高考成绩和志愿填报截止时间？',a:'6月25日公布考生成绩及录取控制分数线。<br>艺术、体育类志愿截止：<strong>7月1日17:00</strong><br>普通类志愿截止：<strong>7月5日17:00</strong>'},
 {q:'普通类、艺术类什么时候开始录取？',a:'四川省艺体类预计在<strong>8月初</strong>，普通类在<strong>8月中旬</strong>。具体以省教育考试院公布为准。'},
-{q:'报考学校有什么要求吗？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://www.svcci.cn]查询当年招生章程。'},
+{q:'报考学校有什么要求吗？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
 {q:'往届生可以报考吗？',a:'我校面向所有符合当年普通高校招生报名条件的考生招生。高级中等教育学校往届毕业生及具备同等学力人员均可报考。考生须遵纪守法、身体健康。凡属普通高校在校生、处于停考期或刑事处罚期的人员，不得报考。'},
-{q:'分数相同的考生，会优先录取谁？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://www.svcci.cn]查询当年招生章程。'},
+{q:'分数相同的考生，会优先录取谁？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
 {q:'学校哪些专业对单科成绩有要求？',a:'我校所有专业对高考单科成绩均无特定要求'},
 {q:'学校会降分录取？',a:'降分录取严格执行各省（市、自治区）招生主管部门统一政策，按照各省（市、自治区）招生主管部门相关部署落实，具体标准、范围及流程，请以各省（市、自治区）招生主管部门发布的本年度招生实施规定为准。'},
 {q:'学校认可哪些加分政策？',a:'学校严格执行国家和有关省（市、自治区）的相关加分投档政策，并以加分后形成的投档成绩作为录取和分配专业的依据。'},
@@ -597,7 +635,7 @@ const QA_CATEGORIES=[
 {q:'学校有没有“3+4”初中升本科招生计划？',a:'无"3+4"初中升本科招生计划。'},
 {q:'艺术生怎么计算综合分？',a:'艺术类考生综合成绩计算方法以各省（市、自治区）招生主管部门公布的测算公式为准，具体测算公式请登录各省（市、自治区）招生主管部门官网查询。'},
 {q:'学校在录取时有没有一些专业会有特殊要求？',a:'我校首饰设计与工艺、产品艺术设计、服装与服饰设计、游戏艺术设计、数字媒体艺术设计、室内艺术设计、视觉传达设计、公共艺术设计、文物修复与保护、宝玉石鉴定与加工等专业不招收色觉异常Ⅱ度(俗称色盲)考生。报考舞蹈表演专业的考生，建议男生身高不低于1.70米，女生身高不低于1.62米。'},
-{q:'学校有单招计划吗？',a:'有单招计划，具体招生专业及计划请登录学校招生网[https://www.svcci.cn]查询。'},
+{q:'学校有单招计划吗？',a:'有单招计划，具体招生专业及计划请登录学校招生网[https://zsw.svcci.cn]查询。'},
 {q:'我校招生还有补录吗？什么时间补录？',a:'我校招生补录计划视当年专业录取情况确定，具体补录时间请以省教育考试院公布为准。'},
 {q:'准考证丢失怎么办？',a:'准考证丢失请咨询当地招办。'},
 {q:'学校今年哪些专业有征集志愿？',a:'视当年专业录取情况确定。'},
@@ -611,30 +649,32 @@ const QA_CATEGORIES=[
 {q:'新高考省份，专业录取时对同分情况是如何处理的？',a:'投档成绩相同时，按照各省（市、自治区）的同分排序规则执行。'},
 {q:'总分相同的情况下，不同选科组合的考生，如何排序？',a:'按照各省（市、自治区）的同分排序规则执行。'},
 {q:'学校录取分数一分一段在哪里查询？',a:'一分一段表可在各省（市、自治区）招生主管部门官网查询。'},
-{q:'学校近三年各专业招生录取最低分数线？',a:'请登录学校招生网[https://www.svcci.cn]查询近三年各专业招生录取最低分数线。'},
+{q:'学校近三年各专业招生录取最低分数线？',a:'请登录学校招生网[https://zsw.svcci.cn]查询近三年各专业招生录取最低分数线。'},
 {q:'新生什么时候报到？',a:'详见当年的新生入学须知。'},
 {q:'报到需要注意什么？',a:'详见当年的新生入学须知。'},
-{q:'如何查询自己是否被学校录取？',a:'录取结果可登录生源地省招生主管部门官网查询或电话咨询省级招办。我校录取信息将在学校招生网中适时公布录取结果（网址：[https://www.svcci.cn]）。'},
-{q:'有贫困生资助吗？',a:'学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。'}
+{q:'如何查询自己是否被学校录取？',a:'录取结果可登录生源地省招生主管部门官网查询或电话咨询省级招办。我校录取信息将在学校招生网中适时公布录取结果（网址：[https://zsw.svcci.cn]）。'},
+{q:'有贫困生资助吗？',a:'学校有完善的资助体系，包括国家助学金、学校助学金、勤工助学等方式，确保不让学生因家庭经济困难而失学。'},
+{q:'艺体类考生的综合分怎么计算？',a:'艺体类考生综合分计算公式为：<strong>文化成绩 × 0.5 + 专业成绩 × 1.25</strong>。最终的投档综合成绩以各省（市、自治区）招生主管部门实际测算为准。'},
+{q:'学校的"2+2"模式是什么？',a:'"2+2"是我校与<strong>乐山师范学院</strong>联合举办的<strong>新闻学本科专业</strong>。招生计划和录取均由乐山师范学院负责，学生前两年在乐山师范学院学习，后两年在我校学习，达到毕业要求后发放乐山师范学院的毕业证书和学位证书。'}
 ]},
 {id:'major-choice',label:'🎓 专业填报与选择',questions:[
-{q:'艺术类招生计划有吗',a:'具体招生专业及计划请登录学校招生网[https://www.svcci.cn]查询。'},
+{q:'艺术类招生计划有吗',a:'具体招生专业及计划请登录学校招生网[https://zsw.svcci.cn]查询。'},
 {q:'学校各招生专业对选考科目有什么要求？',a:'各专业选考科目请详见各省（市、自治区）招生主管部门公布信息。'},
 {q:'今年有哪些招生专业？',a:'2025年共有<strong>38个招生专业</strong>，覆盖普通类、美术与设计类、舞蹈类、音乐表演类、体育类等。2026年单招共33个专业。详细专业和介绍见本系统"专业介绍"模块。'},
 {q:'我能报考什么专业？能不能跨类别？',a:'单招计划表上详细公布了每个专业对应的招生类别。填报专业志愿时最多可填<strong>6个专业</strong>。建议选择<strong>"服从调剂"</strong>增加录取几率。进校后可按规定转专业。'},
 {q:'非艺体生能报艺体类专业吗？',a:'单招中所有普高类专业均是<strong>文理兼收</strong>。中职需按对应招生类别报考。'},
 {q:'艺术类专业成绩没过省控线怎么办？',a:'如果<strong>文化成绩</strong>上了省控线，可以填报学校<strong>历史、物理类</strong>的专业志愿。'},
 {q:'哪些专业是王牌专业？',a:'学校围绕四川文化强省发展需要，对接文创产业、文化科技产业、文化旅游产业等，每个专业都有独特特色。可查看本系统"专业介绍"模块了解各专业详细情况。'},
-{q:'物理类考生适合报学校哪些专业？',a:'请登录学校招生网[https://www.svcci.cn]查询当年专业招生计划及专业介绍'},
-{q:'历史类考生适合报学校哪些专业？',a:'请登录学校招生网[https://www.svcci.cn]查询当年专业招生计划及专业介绍'},
-{q:'有哪些专业历史类、物理类都能报？',a:'请登录学校招生网[https://www.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'物理类考生适合报学校哪些专业？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'历史类考生适合报学校哪些专业？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
+{q:'有哪些专业历史类、物理类都能报？',a:'请登录学校招生网[https://zsw.svcci.cn]查询当年专业招生计划及专业介绍'},
 {q:'学校哪些专业开设了订单班？',a:''},
-{q:'学校体育类专业招生录取政策是怎样的？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://www.svcci.cn]查询当年招生章程。'},
+{q:'学校体育类专业招生录取政策是怎样的？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'},
 {q:'学校有校企合作专业吗？',a:'学校无校企合作专业。'},
 {q:'学校的哪些专业是热门专业？',a:'新闻采编与制作、影视多媒体技术、融媒体技术与运营、数字媒体技术、文化产业经营与管理、大数据与会计、大数据技术、首饰设计与工艺、宝玉石鉴定与加工、文物修复与保护、游戏艺术设计、视觉传达设计、旅游管理'},
 {q:'学校有哪些新增专业？',a:'2026年我校新增专业：公共艺术设计、研学旅行管理与服务'},
 {q:'学校哪些专业招收体育类考生？',a:'我校休闲体育专业招收体育类考生，2026年招生计划60人。'},
-{q:'学校艺术类专业在录取时有什么要求？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://www.svcci.cn]查询当年招生章程。'}
+{q:'学校艺术类专业在录取时有什么要求？',a:'具体请查阅我校公布的招生章程。可在教育部阳光高考网查询，也可以登录学校招生网[https://zsw.svcci.cn]查询当年招生章程。'}
 ]},
 {id:'transfer',label:'🔄 转专业',questions:[
 {q:'录取专业不喜欢，进校后能换吗？',a:'<strong>可以</strong>。<br>1. 大一第一学期不能挂科。<br>2. 第一学期末教务处发布转专业通知，学生报名。<br>3. 转出学院审核，转入学院考核，合格后公示确认。<br><strong>不能跨大类</strong>，且转入专业必须在当年同一招生类别里。<br>统招生第一学期结束时<strong>免费</strong>转专业一次。（具体政策咨询教务处）'},
@@ -742,7 +782,7 @@ const QA_CATEGORIES=[
 {q:'退伍军人能不能报名单招？',a:'已参加2026年四川省普通高等学校招生报名，且通过报名资格审核的考生，均可以参加2026年单招考试。（具体报名方式在省教育考试院官网查看）'}
 ]},
 {id:'brochure',label:'📖 招生简章补充',questions:[
-{q:'如何查看学校招生章程？',a:'请登录四川文化产业职业学院官网[https://www.svcci.cn/]点击招生网[https://www.svcci.cn]招生政策栏查询2026年招生章程,也可在教育部阳光高考网查询。'},
+{q:'如何查看学校招生章程？',a:'请登录四川文化产业职业学院官网[https://www.svcci.cn/]点击招生网[https://zsw.svcci.cn]招生政策栏查询2026年招生章程,也可在教育部阳光高考网查询。'},
 {q:'学校官网地址？',a:'学校官网地址：[https://www.svcci.cn]'},
 {q:'学校教务处联系方式？',a:'教务处：028-85769756'},
 {q:'学校地址？',a:'四川省成都市双流区怡心街道锦江路四段399号'},
@@ -812,7 +852,7 @@ const COLLEGES=[
 {name:'旅游管理',desc:'培养掌握旅游服务与管理技能，能在旅行社、旅游景区、旅游电商平台等从事导游服务、旅游策划、景区管理等工作的高素质技术技能人才。'},
 {name:'酒店管理与数字化运营',desc:'培养掌握酒店数字化运营与管理技能，能在高星级酒店、连锁酒店集团、文旅企业等从事前厅、客房、餐饮管理及数字化运营的高素质技术技能人才。'},
 {name:'智慧旅游技术应用',desc:'培养掌握智慧旅游技术、旅游大数据分析等技能，能在智慧景区、在线旅游平台、文旅科技企业从事智慧旅游系统运维、数据分析等工作的高素质技术技能人才。'},
-{name:'研学旅行管理与服务',desc:'培养掌握研学旅行策划、课程设计、安全管理等技能，能在研学机构、旅行社、教育基地等从事研学旅行产品开发、组织实施与服务管理的高素质技术技能人才。'},
+{name:'公共文化服务与管理',desc:'培养掌握公共文化服务管理、文化项目策划等技能，能在文化馆、博物馆、社区文化中心等公共文化机构从事文化服务与管理工作的高素质技术技能人才。'},
 {name:'现代家政服务与管理',desc:'培养掌握现代家政管理、社区服务等技能，能在家政服务企业、社区服务中心、康养机构等从事管理、培训与服务工作的高素质技术技能人才。'}
 ]},
 {name:'文化商学院',icon:'💹',majors:[
@@ -836,7 +876,7 @@ const COLLEGES=[
 {name:'游戏艺术设计',desc:'培养掌握游戏美术设计、角色建模、场景设计等技能，能在游戏开发公司、数字娱乐企业等从事游戏美术设计与制作的高素质技术技能人才。'},
 {name:'数字媒体艺术设计',desc:'培养掌握数字媒体设计、交互设计、UI/UX设计等技能，能在互联网企业、游戏公司、数字媒体机构等从事数字内容创作的高素质技术技能人才。'},
 {name:'视觉传达设计',desc:'培养掌握平面设计、品牌形象设计、包装设计等技能，能在广告公司、设计机构、文化传媒企业等从事视觉设计与创意工作的高素质技术技能人才。'},
-{name:'公共艺术设计',desc:'培养掌握公共艺术策划、城市景观设计、装置艺术等技能，能在城市规划部门、设计院、文化创意企业等从事公共空间艺术设计与项目管理的高素质技术技能人才。'},
+{name:'环境艺术设计',desc:'培养掌握室内外环境设计、景观设计等技能，能在室内设计公司、建筑装饰企业、景观设计机构等从事环境艺术设计与施工管理的高素质技术技能人才。'},
 {name:'室内艺术设计',desc:'培养掌握室内空间设计、软装搭配等技能，能在装饰设计公司、家居企业、房地产企业等从事室内设计与项目管理的高素质技术技能人才。'},
 {name:'建筑动画技术',desc:'培养掌握建筑动画制作、BIM技术应用等技能，能在建筑设计公司、装饰企业、数字媒体公司等从事建筑可视化设计与动画制作的高素质技术技能人才。'}
 ]},
@@ -982,9 +1022,105 @@ const PHONES=[
 {dept:'马克思主义学院',tel:'85765285'},
 {dept:'教育信息化办公室',tel:'85744089'},
 {dept:'图书档案馆',tel:'85793759'},
-{dept:'培训中心',tel:'85627193'},
 {dept:'四川学府文产商业管理有限公司',tel:'85610066'}
 ];
+var ENROLLMENT_PLAN=[
+  {code:'01',name:'首饰设计与工艺',cat:'美术与设计类',plan:110,fee:8000},
+  {code:'02',name:'产品艺术设计',cat:'美术与设计类',plan:100,fee:8000},
+  {code:'03',name:'服装与服饰设计',cat:'美术与设计类',plan:50,fee:8000},
+  {code:'04',name:'游戏艺术设计',cat:'美术与设计类',plan:135,fee:8000},
+  {code:'06',name:'数字媒体艺术设计',cat:'美术与设计类',plan:135,fee:8000},
+  {code:'07',name:'室内艺术设计',cat:'美术与设计类',plan:90,fee:8000},
+  {code:'08',name:'视觉传达设计',cat:'美术与设计类',plan:95,fee:8000},
+  {code:'39',name:'公共艺术设计',cat:'美术与设计类',plan:60,fee:8000},
+  {code:'09',name:'舞蹈表演',cat:'舞蹈类',plan:50,fee:10000},
+  {code:'10',name:'音乐表演',cat:'音乐表演类',plan:50,fee:10000},
+  {code:'11',name:'休闲体育',cat:'体育类',plan:60,fee:4800},
+  {code:'12',name:'新闻采编与制作',cat:'历史、物理兼收',plan:140,fee:8000},
+  {code:'13',name:'网络舆情监测',cat:'历史、物理兼收',plan:120,fee:4800},
+  {code:'14',name:'影视多媒体技术',cat:'历史、物理兼收',plan:120,fee:10000},
+  {code:'15',name:'网络直播与运营',cat:'历史、物理兼收',plan:115,fee:10000},
+  {code:'16',name:'融媒体技术与运营',cat:'历史、物理兼收',plan:140,fee:10000},
+  {code:'17',name:'旅游管理',cat:'历史、物理兼收',plan:160,fee:4800},
+  {code:'18',name:'酒店管理与数字化运营',cat:'历史、物理兼收',plan:150,fee:4800},
+  {code:'19',name:'智慧旅游技术应用',cat:'历史、物理兼收',plan:100,fee:4800},
+  {code:'20',name:'现代家政服务与管理',cat:'历史、物理兼收',plan:105,fee:4800},
+  {code:'21',name:'研学旅行管理与服务',cat:'历史、物理兼收',plan:20,fee:4800},
+  {code:'22',name:'文化产业经营与管理',cat:'历史、物理兼收',plan:100,fee:4800},
+  {code:'23',name:'大数据与会计',cat:'历史、物理兼收',plan:170,fee:4800},
+  {code:'24',name:'会展策划与管理',cat:'历史、物理兼收',plan:100,fee:4800},
+  {code:'25',name:'市场营销',cat:'历史、物理兼收',plan:170,fee:4800},
+  {code:'26',name:'跨境电子商务',cat:'历史、物理兼收',plan:115,fee:4800},
+  {code:'27',name:'婚庆服务与管理',cat:'历史、物理兼收',plan:100,fee:4800},
+  {code:'28',name:'文化创意与策划',cat:'历史、物理兼收',plan:100,fee:4800},
+  {code:'29',name:'文物修复与保护',cat:'历史、物理兼收',plan:50,fee:4800},
+  {code:'30',name:'宝玉石鉴定与加工',cat:'历史、物理兼收',plan:40,fee:5200},
+  {code:'31',name:'文物展示利用技术',cat:'历史、物理兼收',plan:40,fee:4800},
+  {code:'32',name:'建筑动画技术',cat:'历史、物理兼收',plan:45,fee:5200},
+  {code:'33',name:'数字广播电视技术',cat:'历史、物理兼收',plan:100,fee:5200},
+  {code:'34',name:'移动互联应用技术',cat:'历史、物理兼收',plan:100,fee:5200},
+  {code:'35',name:'大数据技术',cat:'历史、物理兼收',plan:100,fee:5200},
+  {code:'36',name:'数字媒体技术',cat:'历史、物理兼收',plan:145,fee:5200},
+  {code:'37',name:'人工智能技术应用',cat:'历史、物理兼收',plan:100,fee:5200},
+  {code:'38',name:'中文',cat:'历史、物理兼收',plan:115,fee:4800},
+  {code:'40',name:'公共艺术设计',cat:'文化艺术类',plan:25,fee:8000},
+  {code:'41',name:'研学旅行管理与服务',cat:'旅游类',plan:15,fee:4800},
+  {code:'42',name:'研学旅行管理与服务',cat:'教育类',plan:15,fee:4800},
+];
+
+
+function renderPlan(){
+var cats={};
+ENROLLMENT_PLAN.forEach(function(m){
+if(!cats[m.cat])cats[m.cat]=[];
+cats[m.cat].push(m);
+});
+var catNames=Object.keys(cats);
+var totalPlan=0;
+ENROLLMENT_PLAN.forEach(function(m){totalPlan+=m.plan;});
+var summary='<div class="plan-summary">📋 <strong>2026年高职专科</strong>招生计划共计 <strong>'+ENROLLMENT_PLAN.length+'个专业</strong>，计划招生 <strong>'+totalPlan+'人</strong>。<br>另有对口高考招生专业 <strong>3个</strong>，计划招生 <strong>55人</strong>（详见分类内标注）。<br>各专业科类、学费标准如下，点击分类标题可展开/收起。</div>';
+var h=summary;
+catNames.forEach(function(cat,ci){
+var majors=cats[cat];
+var total=0;majors.forEach(function(m){total+=m.plan;});
+h+='<div class="plan-cat-card" data-plan-cat="'+ci+'">'+
+'<div class="plan-cat-header" onclick="togglePlanCat('+ci+')">'+
+'<span>'+cat+'</span>'+
+'<span style="display:flex;align-items:center;gap:8px">'+
+'<span class="plan-cat-count">'+majors.length+'个专业 · '+total+'人</span>'+
+'<span class="plan-cat-arrow" id="planArrow-'+ci+'">▼</span></span></div>'+
+'<div class="plan-cat-body open" id="planCat-'+ci+'">'+
+'<table class="plan-table"><thead><tr><th>代码</th><th>专业名称</th><th>计划</th><th>学费</th></tr></thead><tbody>';
+majors.forEach(function(m){
+h+='<tr><td class="plan-code">'+m.code+'</td><td class="plan-name">'+m.name+'</td><td class="plan-plan">'+m.plan+'人</td><td class="plan-fee">¥'+m.fee+'/年</td></tr>';
+});
+h+='</tbody></table></div></div>';
+});
+document.getElementById('planContent').innerHTML=h;
+}
+
+function togglePlanCat(i){
+var body=document.getElementById('planCat-'+i);
+var arrow=document.getElementById('planArrow-'+i);
+body.classList.toggle('open');
+arrow.classList.toggle('open');
+}
+
+function searchPlan(){
+var q=document.getElementById('planSearch').value.trim().toLowerCase();
+ENROLLMENT_PLAN.forEach(function(m){
+var cards=document.querySelectorAll('#planContent .plan-cat-card');
+cards.forEach(function(c){
+var matches=c.textContent.toLowerCase().indexOf(q)>=0;
+c.style.display=matches||!q?'':'none';
+});
+if(q){
+document.querySelectorAll('#planContent .plan-cat-body').forEach(function(b){b.classList.add('open');});
+document.querySelectorAll('#planContent .plan-cat-arrow').forEach(function(a){a.classList.add('open');});
+}
+});
+}
+
 
 function renderPhoneDir(){
 var h='';
@@ -1012,6 +1148,7 @@ if(navigator.clipboard){
 navigator.clipboard.writeText(text).then(function(){showToast('已复制 '+text);}).catch(function(){showToast('复制失败');});
 }else{showToast('复制失败');}
 }renderPhoneDir();
+renderPlan();
 
 // ============================================================
 // NAVIGATION
@@ -1039,6 +1176,9 @@ globalSearchIndex.push({type:'major',text:m.name,sub:col.name,colIdx:ci,majorIdx
 });
 PHONES.forEach(function(d,i){
 globalSearchIndex.push({type:'phone',text:d.dept,sub:d.tel,phoneIdx:i});
+ENROLLMENT_PLAN.forEach(function(m,pi){
+globalSearchIndex.push({type:'plan',text:m.name,sub:m.cat+' \u2022 \u62db\u751f'+m.plan+'\u4eba',planIdx:pi});
+});
 });
 // Score search
 Object.keys(SCORE_NEI).forEach(function(cat){
@@ -1074,6 +1214,7 @@ case 'qa':typeCls='qa-type';typeLabel='问答';break;
 case 'score':typeCls='score-type';typeLabel='分数';break;
 case 'major':typeCls='major-type';typeLabel='专业';break;
 case 'phone':typeCls='phone-type';typeLabel='电话';break;
+case 'plan':typeCls='phone-type';typeLabel='计划';break;
 }
 html+='<div class="gsr-item" onclick="navigateToResult('+i+')">'+
 '<span class="gsr-type '+typeCls+'">'+typeLabel+'</span>'+
@@ -1122,6 +1263,13 @@ showPage('phone');
 setTimeout(function(){
 document.getElementById('phoneSearch').value=item.text;
 searchPhone();
+},100);
+break;
+case 'plan':
+showPage('plan');
+setTimeout(function(){
+document.getElementById('planSearch').value=item.text;
+searchPlan();
 },100);
 break;
 case 'score':
